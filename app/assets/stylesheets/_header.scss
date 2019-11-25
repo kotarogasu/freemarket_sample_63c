@@ -1,0 +1,147 @@
+
+header{
+  background-color: white;
+}
+.header-inner{
+  width: 1020px;
+  margin: 0 auto;
+  padding-top: 8px;
+
+  &__upper{
+    display: flex;
+    justify-content: space-between;
+
+    .site-logo{
+      margin-right: 45px;
+
+      img{
+        width: 134px;
+        height: 36px;
+      }
+    }
+
+    .search-form { 
+      width: 100%;
+      position: relative;
+
+      &__input{
+        width: 100%;
+        height: 40px;
+        padding:0 50px 0 10px;
+        background-color: #F5F5F5;
+        border-radius: 4px;
+        border: solid 1px #CCCCCC;
+        font-size: 16px;
+      }
+
+      &__btn{
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        right: 0;
+        top: 0;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        background-color: transparent;
+        border-style: none;
+      }
+    }
+  }
+
+  &__lower{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    &__left{
+      display: flex;
+
+      .search-list{
+        display: flex;
+        margin-right: 20px;
+        cursor: pointer;
+
+        &__logo img{
+          width: 25px;
+        }
+
+        &__title h2{
+          font-size: 14px;
+          font-weight: 600;
+          margin-top: 5px;
+        }
+      }
+    }
+
+    &__right{
+
+      .mypage-menu{
+        display: flex;
+        justify-content: space-between;
+
+
+        &__list{
+          padding: 0 15px;
+
+          a{
+            text-decoration: none;
+            color: rgb(51, 51, 51);
+            font-size: 14px;
+            cursor: pointer;
+            height: 32px;
+          }
+
+          i{
+            margin-right: 10px;
+            color: rgb(204, 204, 204);
+          }
+
+          &:last-child img{
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            vertical-align: middle;
+          }
+        }
+      }
+
+
+      .login-btns{
+        display: flex;
+        justify-content: space-between;
+        height: 33px;
+        line-height: 33px;
+
+        &__btn{
+          cursor: pointer;
+          display: block;
+          border-radius: 5px;
+          text-decoration: none;
+          text-align: center;
+          font-size: 14px;
+
+          &--signup{
+            width: 106px;
+            background-color: #EA352D;
+            color: #ffffff;
+            
+          }
+
+          &--login{
+            width: 75px;
+            border: solid 1px #0195EE;
+            color:  #0195EE;
+            margin-left: 10px;
+            transition: 0.3s linear;
+
+            &:hover{
+              background-color: #0195EE;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
