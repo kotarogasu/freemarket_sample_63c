@@ -1,8 +1,10 @@
-@import 'login';
+@import "reset";
 @import "color";
+@import "common";
+@import 'login';
 @import "items";
-@import "header&footer";
+@import "header";
+@import "footer";
 @import "show";
-@import "./reset";
 @import "show-sidebar";
 @import "user-signup";
