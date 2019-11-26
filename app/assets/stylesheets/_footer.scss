@@ -1,0 +1,94 @@
+
+.app-banner{
+  // position: relative;
+  img{
+    width: 100%;
+    z-index: 1;
+   display: block;
+  }
+ }
+
+.footer-inner{
+  background-color: #212121;
+  padding: 0 20px 10px;
+  a{
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav{
+    width: 1020px;
+    margin: 0 auto;
+    display: flex;
+  
+    .nav-box{
+      margin-top: 18px;
+      display: inline-block;
+      padding-right: 40px;
+      width: auto;
+  
+      &--2rows{        
+        width: 43%;
+      }
+
+      &--small{
+        display: inline-block;
+        vertical-align: top;
+        width: 49%;
+        padding-left: 10px;
+        &:first-of-type{
+          padding: 0 10px 0 0;
+        }
+      }
+  
+      &__title{
+        font-weight: 600;
+        font-size: 16px;
+        color: white;
+      }
+      
+      .nav-lists{
+
+        &__item{
+          margin-top: 13px;
+          font-size: 12px;
+          opacity: 0.7;
+        }
+      }
+  
+  
+      .sns-logos{
+        margin-top: 30px;
+        img{
+          height: 35px;
+          width: 80px;
+        }
+       }
+  
+    }
+  }
+  
+  .copy-right{
+    align-items: center;
+    display: flex;
+    width: 1020px;
+    margin: 30px auto 20px;
+    color: white;
+
+    .meru-logo img{
+      width: 130px;
+    }
+  
+    .copy-letter{
+      text-align: center;
+      width: 75%;
+      font-size: 12px;
+    }
+  }
+  
+}
+ 
+
+
+
+
