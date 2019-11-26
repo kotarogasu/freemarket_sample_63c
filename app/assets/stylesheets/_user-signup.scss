@@ -33,7 +33,7 @@
           position: relative;
         }
         #first__li{
-          color: #ea352d;
+          color: $red;
           z-index: 10;
         }
         .ball{
@@ -171,7 +171,7 @@
   color: #ffffff;
   line-height: 20px;
   text-align: center;
-  background-color: #ea352d;
+  background-color: $red;
   font-size: 10px;
   margin: auto 0 auto 5px;
   border-radius: 3px;
@@ -269,7 +269,7 @@ select{
 }
 
 .block-address{
-  background-color: #ea352d;
+  background-color: $red;
   color: #ffffff;
   line-height: 50px;
   text-decoration: none;

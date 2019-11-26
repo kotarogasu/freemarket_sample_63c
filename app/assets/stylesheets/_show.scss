@@ -58,7 +58,7 @@
             font-weight: bold;
             font-size: 22px;
             &__a {
-              border-top: 2px solid #ea352d;
+              border-top: 2px solid $red;
               position: relative;
               display: block;
               color: #333;
@@ -193,7 +193,7 @@
             font-weight: bold;
             font-size: 22px;
             &__a {
-              border-top: 2px solid #ea352d;
+              border-top: 2px solid $red;
               position: relative;
               display: block;
               color: #333;
