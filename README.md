@@ -91,7 +91,7 @@ has_one :prefeture
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false| <!--カテゴリ名 -->
-|ancestory|integer|null: false| <!--カテゴリ名 -->
+|ancestory|string|
 ### Association
 - has_many: :items
 
