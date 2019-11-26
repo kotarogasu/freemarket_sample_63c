@@ -41,11 +41,6 @@ Things you may want to cover:
 |last_name|string|null: false| <!-- 苗字 -->
 |first_name_kana|string|null: false| <!-- 名前（カナ） -->
 |last_name_kana|string|null: false| <!-- 苗字（カナ） -->
-|post_number|integer|null: false| <!-- 住所 -->
-|prefectures_id|references|null:false|foreign_key: true<!--県>
-|city|string|null: false| <!-- 市区町村 -->
-|town|string|null: false| <!-- 番地 -->
-|building|string|| <!-- 建物名 -->
 |phone_number|integer|null: false|unique: true| <!-- 電話番号 -->
 |birthday|date|null: false| <!-- 誕生日 -->
 
@@ -56,6 +51,18 @@ has_many items, dependent: :destroy
 has_many comments dependent: :destroy
 has_many item_likes dependent: :destroy
 has_one :prefeture
+has_one :address
+
+## addressテーブル
+|post_number|integer|null: false| <!-- 住所 -->
+|prefectures_id|references|null:false|foreign_key: true<!--県>
+|city|string|null: false| <!-- 市区町村 -->
+|town|string|null: false| <!-- 番地 -->
+|building|string|| <!-- 建物名 -->
+
+### Association
+- belongs_to :user
+
 
 
 ## sns_credentialsテーブル（API連携認証）
