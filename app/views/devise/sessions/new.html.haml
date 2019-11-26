@@ -1,17 +1,47 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+%body.login
+  %header.login-header
+    %div.login-header-title
+      =link_to "" do
+        = image_tag "mypage/fmarket_logo_red.svg", alt:"fmarket-icon", class:"fmarket-image", width:"175px"
+  %div.login-block
+    %div.login-block-up
+      %div.login-block-up-text
+        アカウントをお持ちでない方はこちら
+        %div.login-block-up-link
+          =link_to "", class: "login-block-up-link-address" do
+            新規会員登録
+    %div.login-block-main
+      %div.login-block-main-lists
+        =link_to "", method: :post, class: "login-block-main-lists-facebook" do
+          %i.fab.fa-facebook-square
+          Facebookでログイン
+        =link_to "", method: :post, class: "login-block-main-lists-google", style:"" do
+          = image_tag "mypage/281764.png", class:"logo_google", width:"20px"
+          Googleでログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %div.login-block-main-lists-email
+          = f.email_field :email, autofocus: true, class:'login-block-main-lists-email-string',  autocomplete: "email", placeholder: "メールアドレス"
+        %div.login-block-main-lists-pass
+          = f.password_field :password,class:'login-block-main-lists-pass-string', autocomplete: "current-password", placeholder: "パスワード"
+        %label.login-block-main-lists-robo
+          = check_box :group, :user_ids, {class: "login-block-main-lists-robo-check"}, true, false
+          %div.login-block-main-lists-robo-write
+            私はロボットではありません
+        %div.login-block-main-lists-box
+          = f.submit "ログイン", class:"login-block-main-lists-box-btn"
+        %div.login-block-main-lists-remember
+          =link_to "", class:"login-block-main-lists-remember__a" do
+            パスワードをお忘れの方
+    %div.login-block-footer
+      %div.list
+        =link_to "", class: "list-privacy" do
+          プライバシーポリシー
+        =link_to "", class: "list-riyoukiyaku" do
+          メルカリ利用規約
+        =link_to "", class: "list-tokuteishoutorihiki" do
+          特定商取引に関する表記
+      %div.login-block-footer-logo
+        =link_to "" do
+          = image_tag "mypage/logo_gray.svg", alt:"logo_white", class:"logo_white",width:"80px"
+      %div.mercari-logo
+        © 2019 Fmarket
