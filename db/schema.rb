@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191125151404) do
+ActiveRecord::Schema.define(version: 20191126112816) do
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
+  end
+
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                          null: false
+    t.text     "item_text",       limit: 65535
+    t.integer  "price",                         null: false
+    t.string   "condition",                     null: false
+    t.string   "delivery_fee",                  null: false
+    t.string   "delivery_method",               null: false
+    t.string   "delivery_days",                 null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["name"], name: "index_items_on_name", using: :btree
+    t.index ["user_id"], name: "index_items_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "nickname",                                          null: false
@@ -22,13 +45,7 @@ ActiveRecord::Schema.define(version: 20191125151404) do
     t.string   "last_name",                                         null: false
     t.string   "first_name_kana",                                   null: false
     t.string   "last_name_kana",                                    null: false
-    t.integer  "post_number"
-    t.integer  "phone_number"
-    t.integer  "prefecture",                           default: 0,  null: false
-    t.string   "city"
-    t.string   "town"
-    t.string   "building"
-    t.date     "birthday"
+    t.date     "birthday",                                          null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -38,4 +55,5 @@ ActiveRecord::Schema.define(version: 20191125151404) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "items", "users"
 end

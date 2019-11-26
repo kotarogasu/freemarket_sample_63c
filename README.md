@@ -17,7 +17,7 @@ Things you may want to cover:
 |------|----|-------|
 |email|string|null: false|unique: true <!-- Emailアドレス -->
 |nickname|string|null:false (ニックネーム）
-|password|integer|null:false (パスワード）
+|password|string|null:false (パスワード）
 |avatar|string|| <!-- ユーザー画像 -->
 |user_text|text|| <!-- 自己紹介文 -->
 |sns_credential_id|references|foreign_key: true<!--api外部キー>
@@ -115,8 +115,7 @@ has_one :address
 |condition|string|null: false <!-- コンディション-->
 |delivery_fee|string|null: false <!-- 配送料負担 -->
 |delivery_method|string|null:false <!-- 配達方法 -->
-|prefecture_id|references|null: false <!-- 外部キー、配達元 -->
-|delivery_time|string|null: false <!-- 発送目安 -->
+|delivery_days|string|null: false <!-- 発送目安 -->
 |price|string|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
 ### Association
