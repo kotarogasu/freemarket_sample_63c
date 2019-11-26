@@ -1,0 +1,21 @@
+// ビュー共通のCSS
+*{
+  box-sizing: border-box;
+}
+body{
+  background-color: rgb(245, 245, 245);
+  position: relative;
+}
+.camera{
+  align-items: center;
+  float: right;
+  position: fixed;
+  bottom: 32px;
+  right: 30px;
+  z-index: 2;
+}
+.camera img{
+  width: 170px;
+  z-index: 2;
+}
+

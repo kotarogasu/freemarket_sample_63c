@@ -1,0 +1,45 @@
+%header
+  .header-inner
+    .header-inner__upper
+      .site-logo
+        =link_to "" do
+          =image_tag "top_page/site-logo.png"
+      .search-form
+        %input.search-form__input{type: "text", size: "20", name: "keyword", placeholder: "何かお探しですか？"}
+        %button.search-form__btn
+          %i.fas.fa-search
+    .header-inner__lower
+      .header-inner__lower__left
+        .search-list
+          .search-list__logo
+            =image_tag "top_page/a-1.png"
+          .search-list__title
+            %h2 カテゴリーから探す
+        .search-list
+          .search-list__logo
+            =image_tag "top_page/a-2.png"
+          .search-list__title
+            %h2 ブランドから探す
+      .header-inner__lower__right
+        - if user_signed_in?
+          %ul.mypage-menu
+            %li.mypage-menu__list
+              =link_to "" do
+                %i.far.fa-heart
+                いいね！一覧
+            %li.mypage-menu__list
+              =link_to "" do
+                %i.far.fa-bell
+                お知らせ
+            %li.mypage-menu__list
+              =link_to "" do
+                %i.fas.fa-check
+                やることリスト
+            %li.mypage-menu__list
+              =link_to "" do
+                =image_tag "mypage/user-icon.png" 
+                マイページ
+        - else
+          .login-btns
+            =link_to "新規会員登録", new_user_registration_path, class: 'login-btns__btn login-btns__btn--signup' 
+            =link_to "ログイン", new_user_session_path, class: 'login-btns__btn login-btns__btn--login' 
