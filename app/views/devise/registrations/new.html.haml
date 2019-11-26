@@ -1,0 +1,78 @@
+%body.signup
+  %header.signup-header
+    -# = render 'shared/title'
+
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    %div.block
+      %div.block-up
+        %b 会員情報入力
+      %div.block-main
+        %div.block-submain
+          %div.block-titlebox
+            %div.block-titles
+              ニックネーム
+            %div.block-required
+              必須
+          %div.block-texts
+            = f.text_field :nickname, class:'text', autofocus: true, placeholder: "例)フリマ太郎"
+          %div.block-titlebox
+            %div.block-titles
+              メールアドレス
+            %div.block-required
+              必須
+          %div.block-texts
+            = f.email_field :email, class:'text', autofocus: true, placeholder: "PC・携帯どちらでも可"
+          %div.block-titlebox
+            %div.block-titles
+              パスワード
+            %div.block-required
+              必須
+          %div.block-texts
+            = f.password_field :password, class:'text', autofocus: true, placeholder: "7文字以上"
+          %div.chk-box
+            = check_box :group, :user_ids, {class: "check_box"}, true, false
+            %div.message-box
+              パスワードを表示する
+          %div.block-confirmation
+            本人確認
+          %div.block-confirmation__details
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          %div.block-titlebox
+            %div.block-titles
+              お名前(全角)
+            %div.block-required
+              必須
+          %div.block-name
+            = f.text_field :first_name, class:'block-name-text', autofocus: true, placeholder: "例)山田"
+            = f.text_field :last_name, class:'block-name-text', autofocus: true, placeholder: "太郎"
+          %div.block-titlebox
+            %div.block-titles
+              お名前カナ(全角)
+            %div.block-required
+              必須
+          %div.block-name
+            = f.text_field :first_name_kana, class:'block-name-text', autofocus: true, placeholder: "例)ヤマダ"
+            = f.text_field :last_name_kana, class:'block-name-text', autofocus: true, placeholder: "タロウ"
+          %div.block-titlebox
+            %div.block-titles
+              誕生日
+            %div.block-required
+              必須
+          %div.block-name
+            != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+          %div.block-confirmation__details
+            ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+          %label.block-robo
+            = check_box :group, :user_ids, {class: "block-robotto-check"}, true, false
+            %div.block-robo-write
+              私はロボットではありません
+          %div.block-caution
+            「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
+          %div.block-next
+            = f.submit "次へ進む", class: "block-address" 
+          %div.block-master
+            = link_to "", class: "block-master-caution" do
+              本人情報の登録について
+              %i.fas.fa-angle-right
+              
+    -# = render 'shared/footer'
