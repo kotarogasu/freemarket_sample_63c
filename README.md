@@ -54,7 +54,7 @@ Things you may want to cover:
 has_many :sns_credentials, dependent: :destroy
 has_many items, dependent: :destroy
 has_many comments dependent: :destroy
-has_many product_likes dependent: :destroy
+has_many item_likes dependent: :destroy
 has_one :prefeture
 
 
@@ -68,65 +68,38 @@ has_one :prefeture
 - belongs_to :user
 
 
-## prefecturesテーブル（マイページ情報）
-|Column|Type|Options|
-|------|----|-------|
-|prefecture|string|null: false|<!-- 県名 -->
-### Association
-- belongs_to :user
-- belongs_to :item
-
 ## commentsテーブル（製品コメント）
 |Column|Type|Options|
 |------|----|-------|
-|user_id|references|null: false|forgin_key:true <!--外部キー  ユーザー-->
+|user_id|references|null: false|foreign_key:true <!--外部キー  ユーザー-->
 |comment|text|null: false| <!--コメント-->
-|item_id|references|null: false|forgin_key:true <!--外部キー、売手-->
+|item_id|references|null: false|foreign_key:true <!--外部キー、売手-->
 ### Association
 - belongs_to :item
 - belongs_to :user
 
-## product_likesテーブル（製品いいね）
+## item_likesテーブル（製品いいね）
 |Column|Type|Options|
 |------|----|-------|
-|item_id|references|null: false|forgin_key:true <!--外部キー  アイテム-->
-|user_id|references|null: false|forgin_key:true <!--外部キー、ユーザー-->
+|item_id|references|null: false|foreign_key:true <!--外部キー  アイテム-->
+|user_id|references|null: false|foreign_key:true <!--外部キー、ユーザー-->
 ### Association
 - belongs_to :item
 - belongs_to :user
 
-
-## sub2_categoriesテーブル（小カテゴリ）
+## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false| <!--カテゴリ名 -->
-|sub1_category_id|references|null: false|forgin_key:true <!--外部キー、中カテゴリ -->
+|ancestory|integer|null: false| <!--カテゴリ名 -->
 ### Association
-- belongs_to :sub1_category
-- has_many :items
-
-## sub1_categoriesテーブル（中カテゴリ）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false| <!--カテゴリ名 -->
-|main_category_id|references|null: false|forgin_key:true <!--外部キー、大カテゴリ -->
-### Association
-- has_many: sub2_categories
-- belongs_to :main_category
-- has_many: items
-
-## main_categoriesテーブル（大カテゴリ）
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false| <!--カテゴリ名 -->
-### Association
-- has_many: :sub1_categories
 - has_many: :items
 
 ## item_imagesテーブル（アイテム写真群）
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false| <!--アイテム写真 -->
+|items_id|references|null: false|foreign_key:true,
 ### Association
 - belongs_to :item
 
@@ -141,8 +114,8 @@ has_one :prefeture
 ## brands_bcategoriesテーブル（ブランドカテゴリー中間テーブル）
 |Column|Type|Options|
 |------|----|-------|
-|bcategorie_id|references|null: false|forgin_key:true,index:true <!-- 外部キーブランドカテゴリー名 -->
-|brand_id|references|null: false| forgin_key:true,index:true<!-- 外部キーブランドカテゴリー名 -->
+|bcategorie_id|references|null: false|foreign_key:true,index:true <!-- 外部キーブランドカテゴリー名 -->
+|brand_id|references|null: false| foreign_key:true,index:true<!-- 外部キーブランドカテゴリー名 -->
 ### Association
 - belongs_to :brands
 - belongs_to :bcategories
@@ -160,9 +133,7 @@ has_one :prefeture
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|index:true <!-- 商品名-->
-|sub1_categories_id|references|null: false|foreign_key: true <!-- 外部キー、カテゴリーID-->
-|sub2_categories_id|references|null: false|foreign_key: true <!-- 外部キー、カテゴリーID-->
-|main_categories_id|references|null: false|foreign_key: true <!-- 外部キー、カテゴリーID-->
+|category_id|references|null: false|foreign_key: true <!-- 外部キー、カテゴリーID-->
 |brand_id|references|foreign_key: true <!-- 外部キー、ブランド -->
 |user_id|references|foreign_key: true <!-- 外部キー、個人 -->
 |condition|string|null: false <!-- コンディション-->
@@ -172,16 +143,14 @@ has_one :prefeture
 |delivery_time|string|null: false <!-- 発送目安 -->
 |price|string|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
-|item_image_id|references|foreign_key: true <!-- 外部キー、商品写真 -->
+
 
 ### Association
 - has_one :prefecture
 - has_many :item_images dependent: :destroy
-- has_many :product_likes dependent: :destroy
+- has_many :item_likes dependent: :destroy
 - has_many :comments dependent: :destroy
 - belongs_to :user
-- belongs_to :sub2_category
-- belongs_to :sub1_category
-- belongs_to :main_category
+- belongs_to :category
 - belongs_to :brand
 
