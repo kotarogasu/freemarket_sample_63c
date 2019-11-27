@@ -34,6 +34,10 @@ has_many comments dependent: :destroy
 has_many item_likes dependent: :destroy
 has_one :prefeture
 has_one :address
+
+
+
+
 ## addressテーブル
 |post_number|integer|null: false| <!-- 住所 -->
 |prefectures_id|references|null:false|foreign_key: true<!--県>
@@ -50,6 +54,12 @@ has_one :address
 |user_id|references|foreign_key:true <!--外部キー>
 ### Association
 - belongs_to :user
+
+
+
+
+
+
 ## commentsテーブル（製品コメント）
 |Column|Type|Options|
 |------|----|-------|
@@ -59,6 +69,11 @@ has_one :address
 ### Association
 - belongs_to :item
 - belongs_to :user
+
+
+
+
+
 ## item_likesテーブル（製品いいね）
 |Column|Type|Options|
 |------|----|-------|
@@ -67,6 +82,11 @@ has_one :address
 ### Association
 - belongs_to :item
 - belongs_to :user
+
+
+
+
+
 ## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -74,6 +94,10 @@ has_one :address
 |ancestory|string|
 ### Association
 - has_many: :items
+
+
+
+
 ## item_imagesテーブル（アイテム写真群）
 |Column|Type|Options|
 |------|----|-------|
@@ -81,6 +105,11 @@ has_one :address
 |items_id|references|null: false|foreign_key:true,
 ### Association
 - belongs_to :item
+
+
+
+
+
 ## bcategoriesテーブル（ブランドのカテゴリー区分）
 |Column|Type|Options|
 |------|----|-------|
@@ -88,6 +117,12 @@ has_one :address
 ### Association
 - has_many :bcategories_bcategories
 - has_many :brands, through: :blands_bcategories
+
+
+
+
+
+
 ## brands_bcategoriesテーブル（ブランドカテゴリー中間テーブル）
 |Column|Type|Options|
 |------|----|-------|
@@ -96,6 +131,13 @@ has_one :address
 ### Association
 - belongs_to :brands
 - belongs_to :bcategories
+
+
+
+
+
+
+
 ## brandsテーブル（ブランド）
 |Column|Type|Options|
 |------|----|-------|
@@ -104,6 +146,11 @@ has_one :address
 - has_many :items
 - has_many :brands_bcategories
 - has_many :bcategories, through: :brands_bcategories
+
+
+
+
+
   
 ## itemsテーブル（商品情報）
 |Column|Type|Options|
