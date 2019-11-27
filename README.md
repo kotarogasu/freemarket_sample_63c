@@ -128,8 +128,8 @@ Things you may want to cover:
 |bcategorie_id|references|null: false|foreign_key:true,index:true <!-- 外部キーブランドカテゴリー名 -->
 |brand_id|references|null: false| foreign_key:true,index:true<!-- 外部キーブランドカテゴリー名 -->
 ### Association
-- belongs_to :brands
-- belongs_to :bcategories
+- belongs_to :brand
+- belongs_to :bcategory
 
 
 
