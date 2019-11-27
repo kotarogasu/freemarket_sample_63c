@@ -1,0 +1,13 @@
+%body.signup
+  %header.signup-header
+    -# = render 'shared/title'
+
+  = form_for @user, url: signup_index_path, method: :post, html: {class: 'second-main__box'} do |f|
+    %div.block
+      %div.block-up
+        %b 会員情報入力
+      %div.block-main
+        %div.block-submain
+          %div.block-titlebox
+            %div.block-titles
+              = f.submit "次へ進む", class: "block-address" 
