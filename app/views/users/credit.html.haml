@@ -1,0 +1,19 @@
+.main-contents
+  = render 'show-sidebar'
+  .credit-content
+    .credit-content__title
+      支払い方法
+      .credit-content__index
+        .credit-content__index__top
+          クレジットカード一覧
+        .credit-content__index__icon
+          = image_tag "mypage/mastercard-icon.png", class:"credit-content__index__icon"
+        .credit-content__index__num
+          ************8784
+        .credit-content__index__limit
+          5/24
+        %button.credit-content__index__btn{:type => "submit"}
+          削除する
+    .credit-content__etc
+      = link_to "#", class:"credit-content__etc__a" do
+        支払い方法について >
