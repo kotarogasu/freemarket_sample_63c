@@ -28,12 +28,11 @@ Things you may want to cover:
 |phone_number|integer|null: false|unique: true| <!-- 電話番号 -->
 |birthday|date|null: false| <!-- 誕生日 -->
 ### Association
-has_many :sns_credentials, dependent: :destroy
-has_many items, dependent: :destroy
-has_many comments dependent: :destroy
-has_many item_likes dependent: :destroy
-has_one :prefeture
-has_one :address
+- has_many :sns_credentials, dependent: :destroy
+- has_many :items, dependent: :destroy
+- has_many :comments dependent: :destroy
+- has_many :item_likes dependent: :destroy
+- has_one :address dependent: :destroy
 
 
 
@@ -93,7 +92,7 @@ has_one :address
 |name|string|null: false| <!--カテゴリ名 -->
 |ancestory|string|
 ### Association
-- has_many: :items
+- has_many :items
 
 
 
@@ -166,7 +165,6 @@ has_one :address
 |price|string|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
 ### Association
-- has_one :prefecture
 - has_many :item_images dependent: :destroy
 - has_many :item_likes dependent: :destroy
 - has_many :comments dependent: :destroy
