@@ -1,0 +1,243 @@
+.product-exhibit {
+  background-color: #f5f5f5;
+  .product-exhibit-main {
+    background-color: #fff;
+    width: 700px;
+    margin: 0 auto;
+    color: #333;
+    .sell-container {
+      display: block;
+      .sell-container__head {
+        padding: 32px 16px;
+        font-size: 22px;
+        text-align: center;
+        font-weight: bold;
+      }
+      .sell-form {
+        border-top: 1px solid #eee;
+        .sell-container__upload-box {
+          width: 620px;
+          padding: 40px;
+          &-head{
+            font-size: 16px;
+            font-weight: 600;
+          }
+          span{
+            @include form-require;  
+          }
+          p{
+            margin: 8px 0 0;
+            line-height: 1.5;
+            font-size: 14px;
+          }
+          .sell-container__upload-drop-box {
+            margin: 16px auto 0;
+            display: block;
+            width: 620px;
+            &__items-container {
+              float: left;
+              display: block;
+            }
+            &__have-item {
+              padding: 40px;
+              position: relative;
+              min-height: 80px;
+              background: #f5f5f5;
+              border: 1px dashed #ccc;
+              text-align: center;
+              .visible-pc {
+                position: absolute;
+                top: 50%;
+                left: 16px;
+                right: 16px;
+                text-align: center;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .sell-content {
+          padding: 40px;
+          border-top: 1px solid #eee;
+          .form-group {
+            margin: 0;
+            label{
+              font-weight: 600;
+              display: inline-block;
+              font-size: 14px;
+              span{
+                @include form-require;
+              }
+            }
+            .input-default {
+              width: 95%;
+              margin: 8px 0 0;
+              height: 24px;
+              padding: 10px 16px 8px;
+              border: 1px solid #ccc;
+              border-radius: 3px;
+              background: #fff;
+              font-size: 16px;
+            }
+            .textarea-default {
+              margin: 8px 0 0;
+              display: block;
+              width: 97%;
+              min-height: 104px;
+              padding: 10px;
+              border: 1px solid #ccc;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          } 
+        }
+        .sell-content {
+          padding: 40px;
+          border-top: 1px solid #eee;
+          .sell-sub-head {
+            float: left;
+            color: #888;
+            font-size: 14px;
+            font-weight: 600;
+          }
+          .round-icon {
+            @include question;
+          }
+          .sell-form-box {
+            float: right;
+            width: 400px;
+            margin: 0;
+            .form-group {
+              margin: 0;
+              label{
+                font-weight: 600;
+                display: inline-block;
+                font-size: 14px;
+                span{
+                  @include form-require;
+                }
+              }
+              .select-wrap {
+                margin: 8px 0 0;
+                position: relative;
+                background: #fff;
+                color: #333;
+                .fas.fa-chevron-down{
+                  position: absolute;
+                  right: 16px;
+                  top: 35%;
+                  color: #888;
+                }
+                .select-default {
+                  width: 100%;
+                  height: 48px;
+                  padding: 0 16px;
+                  border: 1px solid #ccc;
+                  background: 0;
+                  font-size: 16px;
+                  line-height: 1.5;
+                  -webkit-appearance: none;
+                  -moz-appearance: none;
+                }
+              }
+            }
+            .sell-price {
+              list-style: none;            
+              .sell-price-group {
+                padding: 0 0 24px;
+                margin: 0;
+                .l-left {
+                  font-weight: 600;
+                  font-size: 14px;
+                  width: 50%;
+                  line-height: 48px;
+                  display: inline-block;
+                  span{
+                    @include form-require;
+                  }
+                }
+                .l-right.sell-price-input {
+                  width: 50%;
+                  text-align: left;
+                  float: right;
+                  div{
+                    display: inline-block;
+                    width: 80%;
+                    margin: 0 0 0 5%;
+                    .input-default {
+                      width: 85%;
+                      margin: 0;
+                      text-align: right;
+                      height: 24px;
+                      padding: 8px 16px;
+                      background: #fff;
+                      line-height: 1.5;
+                      border-radius: 3px;
+                      border: 1px solid #ccc;
+                      font-size: 16px;
+                    }
+                  }
+                }
+              }
+              .clearfix:not(:first-child) {
+                padding: 24px 0;
+                border-top: 1px solid #ccc;
+                font-size: 14px;
+                .l-left {
+                  float: left;
+                }
+                .l-right {
+                  float: right;
+                }
+                &.bold{
+                  font-weight: 600;
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+        .sell-content__sell-btn-box {
+          padding: 40px;
+          border-top: 1px solid #eee;
+          color: #333;
+          font-size: 14px;
+          p{
+            line-height: 1.5;
+            a{
+              color: #0099e8;
+              text-decoration: none;  
+            }
+          }
+          .btn-default.btn-red {
+            margin: 40px 0 0;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+          }
+          .btn-default.btn-gray {
+            width: 45%;
+            margin: 24px auto 0;
+            background: #aaa;
+            border: 1px solid #aaa;
+            color: #fff;
+            display: block;
+            line-height: 48px;
+            font-size: 14px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: block;
+}
