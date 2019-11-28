@@ -30,7 +30,7 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
-
+  config.secret_key = 'd95cf34845f0879f7608c57af00398ee3cb7e06540b30bb1450849329bdfe307da6b394734673e4eb1ddfef92154b9a2b199ab9ad4d76bff5174d98289c07b8d'
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -292,7 +292,7 @@ Devise.setup do |config|
   # end
 
   # ==> Configuration for :registerable
-
+  
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
