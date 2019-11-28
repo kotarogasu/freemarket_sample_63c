@@ -5,6 +5,11 @@ class SignupController < ApplicationController
   end
 
   def step2
+    @user = User.new
+  end
+
+
+  def step3
     params[:user][:birthday] = birthday_join(params[:birthday])
     session[:nickname] = user_params[:nickname]
     session[:email] = user_params[:email]

@@ -7,9 +7,9 @@
     %div.login-block-up
       %div.login-block-up-text
         アカウントをお持ちでない方はこちら
-        %div.login-block-up-link
-          =link_to "", class: "login-block-up-link-address" do
-            新規会員登録
+      %div.login-block-up-link
+        =link_to step1_signup_index_path, class: "login-block-up-link-address" do
+          新規会員登録
     %div.login-block-main
       %div.login-block-main-lists
         =link_to "", method: :post, class: "login-block-main-lists-facebook" do
@@ -32,16 +32,4 @@
         %div.login-block-main-lists-remember
           =link_to "", class:"login-block-main-lists-remember__a" do
             パスワードをお忘れの方
-    %div.login-block-footer
-      %div.list
-        =link_to "", class: "list-privacy" do
-          プライバシーポリシー
-        =link_to "", class: "list-riyoukiyaku" do
-          メルカリ利用規約
-        =link_to "", class: "list-tokuteishoutorihiki" do
-          特定商取引に関する表記
-      %div.login-block-footer-logo
-        =link_to "" do
-          = image_tag "mypage/logo_gray.svg", alt:"logo_white", class:"logo_white",width:"80px"
-      %div.mercari-logo
-        © 2019 Fmarket
+  = render 'signup/footer'

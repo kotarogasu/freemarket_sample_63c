@@ -1,13 +1,95 @@
-%body.signup
-  %header.signup-header
-    -# = render 'shared/title'
+%body.step2
+  %header.step2-header
+    = render "title"
+    %div.progress
+      %ul.progress-distance
+        %li.progress-distance__li#first__li
+          会員情報
+          %div.ball#ball-first
+        %li.progress-distance__li#second
+          電話番号認証
+          %div.ball
+        %li.progress-distance__li#third
+          お届け先住所入力
+          %div.ball
+        %li.progress-distance__li#four
+          支払い方法
+          %div.ball
+        %li.progress-distance__li#five
+          完了
+          %div.ball-end
 
-  = form_for @user, url: signup_index_path, method: :post, html: {class: 'second-main__box'} do |f|
-    %div.block
-      %div.block-up
+  = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+    %div.step2-block
+      %div.step2-block-up
         %b 会員情報入力
-      %div.block-main
-        %div.block-submain
-          %div.block-titlebox
-            %div.block-titles
-              = f.submit "次へ進む", class: "block-address" 
+      %div.step2-block-main
+        %div.step2-block-submain
+          %div.step2-block-titlebox
+            %div.step2-block-titles
+              ニックネーム
+            %div.step2-block-required
+              必須
+          %div.step2-block-texts
+            = f.text_field :nickname, class:'step2-block-text', autofocus: true, placeholder: "例)フリマ太郎"
+          %div.step2-block-titlebox
+            %div.step2-block-titles
+              メールアドレス
+            %div.step2-block-required
+              必須
+          %div.step2-block-texts
+            = f.email_field :email, class:'step2-block-text', autofocus: true, placeholder: "PC・携帯どちらでも可"
+          %div.step2-block-titlebox
+            %div.step2-block-titles
+              パスワード
+            %div.step2-block-required
+              必須
+          %div.step2-block-texts
+            = f.password_field :password, class:'step2-block-text', autofocus: true, placeholder: "7文字以上"
+          %div.step2-block-chk-box
+            = check_box :group, :user_ids, {class: "step2-block-chk-box-check"}, true, false
+            %div.step2-block-chk-box-message
+              パスワードを表示する
+          %div.step2-block-confirmation
+            本人確認
+          %div.step2-block-confirmation__details
+            安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+          %div.step2-block-titlebox
+            %div.step2-block-titlebox-titles
+              お名前(全角)
+            %div.step2-block-required
+              必須
+          %div.step2-block-name
+            = f.text_field :first_name, class:'step2-block-name-text', autofocus: true, placeholder: "例)山田"
+            = f.text_field :last_name, class:'step2-block-name-sei', autofocus: true, placeholder: "太郎"
+          %div.step2-block-titlebox
+            %div.step2-block-titles
+              お名前カナ(全角)
+            %div.step2-block-required
+              必須
+          %div.step2-block-name
+            = f.text_field :first_name_kana, class:'step2-block-name-text', autofocus: true, placeholder: "例)ヤマダ"
+            = f.text_field :last_name_kana, class:'step2-block-name-sei', autofocus: true, placeholder: "タロウ"
+          %div.step2-block-titlebox
+            %div.step2-block-titles
+              誕生日
+            %div.step2-block-required
+              必須
+          %div.step2-block-name
+            != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+          %div.step2-block-confirmation__details
+            ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
+          %label.step2-block-robo
+            = check_box :group, :user_ids, {class: "step2-block-robo-check"}, true, false
+            %div.step2-block-robo-write
+              私はロボットではありません
+          %div.step2-block-caution
+            「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
+          %div.step2-block-next
+            = f.submit "次へ進む", class: "step2-block-address" 
+          %div.step2-block-master
+            = link_to "", class: "step2-block-master-caution" do
+              本人情報の登録について
+              %i.fas.fa-angle-right
+              
+    = render 'footer'
