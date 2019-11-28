@@ -45,6 +45,8 @@ Things you may want to cover:
 |city|string|null: false| <!-- 市区町村 -->
 |town|string|null: false| <!-- 番地 -->
 |building|string|| <!-- 建物名 -->
+
+
 ### Association
 - belongs_to :user
 
