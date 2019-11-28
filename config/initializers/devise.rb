@@ -12,7 +12,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-
+  config.secret_key = '1e38c60e0de4cc61530fc6e0d866cb3169b7d8d7bb62e0789b94b0f770c35c05a1ec738d1ef90db0afba154159728049c139f918379f9790943fad3f3e8b76bc'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -296,4 +296,7 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.secret_key = '39874d74952252aede86c11a91e5446126e8afffb0a7d121f9fb95c8ccd25da686f46e06aa7261c0d768b0a0c8ccc06854694349895ef952a28e6d2ae4e8a283'
+  
 end
