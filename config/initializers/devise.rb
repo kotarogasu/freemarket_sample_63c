@@ -12,7 +12,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
-  config.secret_key = '0ce81293e8f4d33723944d4bd72543c739d0015bba8b78b6ecb2972e1b878aa16ffff01ceeae6fd1ea12f8b3731152f09309b76b930c5be6e3d6f64a350ef977'
+  config.secret_key = '1e38c60e0de4cc61530fc6e0d866cb3169b7d8d7bb62e0789b94b0f770c35c05a1ec738d1ef90db0afba154159728049c139f918379f9790943fad3f3e8b76bc'
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -30,7 +30,7 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
-
+  config.secret_key = 'd95cf34845f0879f7608c57af00398ee3cb7e06540b30bb1450849329bdfe307da6b394734673e4eb1ddfef92154b9a2b199ab9ad4d76bff5174d98289c07b8d'
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -40,7 +40,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
-
+  config.secret_key = 'c473eebfe30f374677152f239ad0974ca865fcc91e391d26603a44a9681430c4d6e452dbaa97caf00cee3162300697f0f2e5f0f025f11f55c513dd6acb4cdf16'
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
   # find_for_authentication method and considered in your model lookup. For instance,
@@ -292,8 +292,11 @@ Devise.setup do |config|
   # end
 
   # ==> Configuration for :registerable
-
+  
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.secret_key = '39874d74952252aede86c11a91e5446126e8afffb0a7d121f9fb95c8ccd25da686f46e06aa7261c0d768b0a0c8ccc06854694349895ef952a28e6d2ae4e8a283'
+  
 end

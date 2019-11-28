@@ -2,7 +2,7 @@
   %header.signup-header
     -# = render 'shared/title'
 
-  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = form_for @user, url: step2_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
     %div.block
       %div.block-up
         %b 会員情報入力

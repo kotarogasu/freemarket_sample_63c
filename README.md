@@ -41,7 +41,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |post_number|integer|null: false| <!-- 住所 -->
-|prefectures_id|references|null:false|foreign_key: true<!--県>
+|prefectures_id|integer|null: false|<!-- 県 -->
 |city|string|null: false| <!-- 市区町村 -->
 |town|string|null: false| <!-- 番地 -->
 |building|string|| <!-- 建物名 -->
@@ -49,6 +49,11 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
+
+
+
+
+
 ## sns_credentialsテーブル（API連携認証）
 |Column|Type|Options|
 |------|----|-------|
