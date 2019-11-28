@@ -9,69 +9,70 @@
     background-color: rgb(245, 245, 245);
     display: flex;
     margin: 0 auto;
-    .progress{
-      height: 80px;
-      width: 500px;
-      margin: auto 0 0 auto;
-      &-distance{
-        height: 50px;
-        display: flex;
-        &__li{
-          height: 30px;
-          width: 80px;
-          margin-left: 20px;
-          font-size: 8px;
-          text-align: center;
-          position: relative;
+  }
+  &-progress{
+    height: 80px;
+    width: 500px;
+    margin: auto 0 0 auto;
+    &-distance{
+      height: 50px;
+      display: flex;
+      &__li{
+        height: 30px;
+        width: 80px;
+        margin-left: 20px;
+        font-size: 8px;
+        text-align: center;
+        position: relative;
+      }
+      #first__li{
+        color: $red;
+        z-index: 10;
+      }
+      .ball{
+        height: 12px;
+        width: 12px;
+        background-color: gray;
+        margin: 0 auto;
+        border-radius: 50%;
+        z-index: 1;
+        &::before{
+          content: '';
+          height: 2px;
+          width: 50px;
+          color: gray;
+          position: absolute;
+          bottom: 8px;
+          z-index: 1;
+          border-bottom: solid 1px gray;
+          margin-left: 45px;
         }
-        #first__li{
-          color: $red;
-          z-index: 10;
+        &::after{
+          content: '';
+          height: 2px;
+          width: 50px;
+          color: gray;
+          position: absolute;
+          bottom: 8px;
+          border-bottom: solid 1px gray;
+          margin-right: 45px;
+          z-index: 1;
         }
-        .ball{
+        &-end{
           height: 12px;
           width: 12px;
           background-color: gray;
           margin: 0 auto;
           border-radius: 50%;
-          z-index: 1;
-          &::before{
-            content: '';
-            height: 2px;
-            width: 50px;
-            color: gray;
-            position: absolute;
-            bottom: 8px;
-            z-index: 1;
-            border-bottom: solid 1px gray;
-            margin-left: 45px;
-          }
-          &::after{
-            content: '';
-            height: 2px;
-            width: 50px;
-            color: gray;
-            position: absolute;
-            bottom: 8px;
-            border-bottom: solid 1px gray;
-            margin-right: 45px;
-            z-index: 1;
-          }
-          &-end{
-            height: 12px;
-            width: 12px;
-            background-color: gray;
-            margin: 0 auto;
-            border-radius: 50%;
-          }
         }
-        #ball-first{
-          background-color: #ea532d;
-          z-index: 10;
-        }
+      }
+      #ball-first{
+        background-color: #ea532d;
+        z-index: 10;
       }
     }
   }
+
   &-block{
     height: 1400px;
     width: 700px;
