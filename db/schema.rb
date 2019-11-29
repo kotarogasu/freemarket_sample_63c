@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20191127051628) do
     t.string   "delivery_method",               null: false
     t.string   "delivery_days",                 null: false
     t.integer  "user_id"
+    t.string   "prefecture_id",                 null: false
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "category_id"
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20191127051628) do
     t.datetime "reset_password_sent_at"
     t.string   "phone_number",                                      null: false
     t.datetime "remember_created_at"
+    t.string   "prefecture_id",                                     null: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree

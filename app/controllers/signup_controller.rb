@@ -23,6 +23,20 @@ class SignupController < ApplicationController
     @user = User.new
   end
 
+  def step4
+    session[:phone_number] = user_params[:phone_number]
+    @user = User.new
+  end
+
+  def step5
+    @user = User.new
+  end
+
+  def done
+    @user = User.new
+  end
+
+
   def create
     @user = User.new(
       nickname: session[:nickname],
@@ -33,11 +47,13 @@ class SignupController < ApplicationController
       first_name: session[:first_name],
       last_name_kana: session[:last_name_kana],
       first_name_kana: session[:first_name_kana],
-      birthday: session[:birthday]
+      birthday: session[:birthday],
+      phone_number: session[:phone_number]
     )
 
     if @user.save
       sign_in(@user)
+      session[:id] = @user.id
       redirect_to root_path(@user)
     else
       render '/signup/step1'
@@ -55,7 +71,8 @@ class SignupController < ApplicationController
         :first_name,
         :last_name_kana,
         :first_name_kana,
-        :birthday
+        :birthday,
+        :phone_number
       )
     end
 
