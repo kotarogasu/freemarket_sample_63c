@@ -36,9 +36,8 @@
                 %i.fas.fa-check
                 やることリスト
             %li.mypage-menu__list
-              =link_to "" do
-                =image_tag "mypage/user-icon.png" 
-                マイページ
+              = link_to "マイページ", profile_users_path
+              = image_tag "mypage/user-icon.png" 
         - else
           .login-btns
             =link_to "新規会員登録", step1_signup_index_path, class: 'login-btns__btn login-btns__btn--signup' 

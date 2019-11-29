@@ -17,8 +17,16 @@ Rails.application.routes.draw do
 
   resources :users, only: :show do
     collection do
-      get :profile, :credit, :identification
+      get :profile, :identification
     end
   end
-
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+      get 'mypage_new', to: 'card#mypage_new'
+      get 'addition', to: 'card#addition'
+    end
+  end
 end
