@@ -44,16 +44,13 @@
               border: 1px dashed #ccc;
               text-align: center;
             }
-            &__have-item {
-              
-              .visible-pc {
-                position: absolute;
-                top: 50%;
-                left: 16px;
-                right: 16px;
-                text-align: center;
-                font-size: 14px;
-              }
+            .visible-pc {
+              position: absolute;
+              top: 40%;
+              left: 16px;
+              right: 16px;
+              text-align: center;
+              font-size: 14px;
             }
           }
         }
@@ -161,12 +158,13 @@
                   width: 50%;
                   text-align: left;
                   float: right;
+                  display: inline-block;
                   div{
                     display: inline-block;
                     width: 80%;
                     margin: 0 0 0 5%;
                     .input-default {
-                      width: 100%;
+                      width: 110%;
                       margin: 0;
                       text-align: right;
                       height: 48px;
@@ -241,4 +239,8 @@
   content: "";
   clear: both;
   display: block;
+}
+
+.hidden {
+  display: none;
 }
