@@ -39,6 +39,15 @@ class SignupController < ApplicationController
     end
   end
 
+  def logout
+    
+  end  
+
+  def destroy
+    reset_session
+    redirect_to root_url
+  end
+
   private
     def user_params
       params.require(:user).permit(
