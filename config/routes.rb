@@ -10,12 +10,14 @@ Rails.application.routes.draw do
     end
   end
 
+ 
+
   devise_for :users
   root 'items#index'
 
-  resources :items, only: :new  
+  resources :items, only: [:new, :create]
 
-  resources :users, only: :show do
+  resources :users, only: [:show] do
     collection do
       get :profile, :credit, :identification
     end

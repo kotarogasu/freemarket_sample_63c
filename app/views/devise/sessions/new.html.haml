@@ -8,8 +8,7 @@
       %div.login-block-up-text
         アカウントをお持ちでない方はこちら
         %div.login-block-up-link
-          =link_to "", class: "login-block-up-link-address" do
-            新規会員登録
+          =link_to "新規会員登録", step1_signup_index_path, class: "login-block-up-link-address" 
     %div.login-block-main
       %div.login-block-main-lists
         =link_to "", method: :post, class: "login-block-main-lists-facebook" do
