@@ -73,11 +73,10 @@
       %li
         %a 本人情報
         %i.fa.fa-chevron-right
-        %li
-        = link_to identification_users_path,
       %li
         %a 電話番号の確認
         %i.fa.fa-chevron-right
       %li
-        %a ログアウト
-        %i.fa.fa-chevron-right
+        = link_to logout_signup_index_path, class:"side-bar__menu-link" do
+          ログアウト
+          %i.fa.fa-chevron-right

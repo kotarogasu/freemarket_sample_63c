@@ -7,10 +7,12 @@ Rails.application.routes.draw do
       # get 'step3'
       # get 'step4' # ここで、入力の全てが終了する
       get 'done'
+      get 'logout'
     end
   end
 
- 
+  delete '/logout', to: 'signup#destroy'
+
 
   devise_for :users
   root 'items#index'
