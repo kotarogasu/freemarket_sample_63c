@@ -1,0 +1,80 @@
+%body.step4
+  %header.step4-header
+    = render "title"
+    .step4-progress
+      %ul.step4-progress-distance
+        %li.step4-progress-distance__li#first__li
+          会員情報
+          .ball#ball-first
+        %li.step4-progress-distance__li#second__li
+          電話番号認証
+          .ball#ball-second
+        %li.step4-progress-distance__li#third__li
+          お届け先住所入力
+          .ball#ball-third
+        %li.step4-progress-distance__li
+          支払い方法
+          .ball
+        %li.step4-progress-distance__li
+          完了
+          .ball-end
+
+  = form_for @user, url: done_signup_index_path, method: :get, class: 'first-main__box' do |f|
+    .step4-block
+      .step4-block-up
+        %b 発送元・お届け先住所入力
+      .step4-block-main
+        .step4-block-main-submain
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              お名前
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :first_name, class: 'step4-block-main-submain-text-first'
+          = f.text_field :last_name, class: 'step4-block-main-submain-text-last'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              お名前 カナ
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :first_name_kana, class: 'step4-block-main-submain-text-first'
+          = f.text_field :last_name_kana, class: 'step4-block-main-submain-text-last'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              郵便番号
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              都道府県
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              市区町村
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              番地
+            .step4-block-main-submain-titlebox-required
+              必須
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              建物名
+            .step4-block-main-submain-titlebox-any
+              任意
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-titlebox
+            .step4-block-main-submain-titlebox-titles
+              電話
+            .step4-block-main-submain-titlebox-any
+              任意
+          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+          .step4-block-main-submain-next
+            = f.submit "次へ進む", class: "step4-block-main-submain-address" 
+    = render 'footer'
