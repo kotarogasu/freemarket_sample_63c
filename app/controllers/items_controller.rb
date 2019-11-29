@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: :index
+  layout :false, only: :new
 
   def index 
     @items = Item.all
+    @category = Category.find(1)
   end
 
   def new
@@ -12,12 +14,12 @@ class ItemsController < ApplicationController
 
   def create
     @item = @current_user.items.new(item_params)
-    image = @item.images.new(images_params)
-
-    if @item.save
+    - unless image_params == {}
+      @item.save! 
+      @item.images.create(image_params)
       redirect_to root_path
     else
-      render 'items/new'
+      redirect_to new_item_path
     end
 
   end
@@ -38,7 +40,7 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def images_params
+  def image_params
     params.require(:item).permit(:image)
   end
 
