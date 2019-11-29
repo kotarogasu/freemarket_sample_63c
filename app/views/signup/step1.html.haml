@@ -1,14 +1,14 @@
 %body.step1
   %header.step1-header
-    %div.block-title
+    .block-title
       =link_to root_path() do
         = image_tag "mypage/fmarket_logo_red.svg", alt:"fmarket-icon", class:"fmarket-image", width:"175px"
 
-  %div.step1-block
-    %div.step1-block-up
+  .step1-block
+    .step1-block-up
       %b 新規会員登録
-    %div.step1-block-main
-      %div.step1-block-lists
+    .step1-block-main
+      .step1-block-lists
         =link_to step2_signup_index_path, class: "step1-block-address" do
           %i.far.fa-envelope
           メールアドレスで登録する
