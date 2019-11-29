@@ -1,0 +1,9 @@
+.wrapper
+  .mypage-main-content
+    = render 'users/show-sidebar'
+    .l-content
+      .l-chapter-container
+        %form.l-single-inner{action: "#", method: "POST", novalidate: "novalidate"}
+          .l-single-content
+            =link_to "ログアウト", logout_path, method: :delete, class: 'btn-default btn-red' 
+            %input{name: "__csrf_value", type: "hidden", value: ""}/
