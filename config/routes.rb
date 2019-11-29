@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     collection do
       get 'step1'
       get 'step2'
-      # get 'step3'
-      # get 'step4' # ここで、入力の全てが終了する
+      get 'step3'
+      get 'step4'
+      # get 'step5' # ここで、入力の全てが終了する
       get 'done'
       get 'logout'
     end
@@ -21,8 +22,16 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     collection do
-      get :profile, :credit, :identification
+      get :profile, :identification
     end
   end
-
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+      get 'mypage_new', to: 'card#mypage_new'
+      get 'addition', to: 'card#addition'
+    end
+  end
 end

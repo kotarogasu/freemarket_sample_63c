@@ -4,9 +4,6 @@ class UsersController < ApplicationController
    
   end
 
-  def credit
-  end
-
   def identification
   end
   
