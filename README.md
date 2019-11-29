@@ -106,7 +106,7 @@ Things you may want to cover:
 
 
 
-## item_imagesテーブル（アイテム写真群）
+## imagesテーブル（アイテム写真群）
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false| <!--アイテム写真 -->
@@ -170,11 +170,11 @@ Things you may want to cover:
 |condition|string|null: false <!-- コンディション-->
 |delivery_fee|string|null: false <!-- 配送料負担 -->
 |delivery_method|string|null:false <!-- 配達方法 -->
-|delivery_days|string|null: false <!-- 発送目安 -->
+|days|string|null: false <!-- 発送目安 -->
 |price|string|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
 ### Association
-- has_many :item_images dependent: :destroy
+- has_many :images dependent: :destroy
 - has_many :item_likes dependent: :destroy
 - has_many :comments dependent: :destroy
 - belongs_to :user
