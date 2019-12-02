@@ -20,9 +20,12 @@ Rails.application.routes.draw do
 
   resources :items, only: [:new, :create]
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :create] do
     collection do
-      get :profile, :credit, :identification
+      get :profile
+      get :credit
+      get :identification
+      post :identification_2
     end
   end
 
