@@ -17,9 +17,8 @@
         %li.popular-section__box__menu__list
           =link_to "", class: "popular-section__box__menu__list__item" do
             おもちゃ・ホビー・グッズ
-  .content
-    レディース新着アイテム
-    もっと見る
+  .new-arrival-section
+    =render partial: "item_card"
   .popular-section
     %h2.popular-section__title
       人気のブランド
@@ -36,6 +35,6 @@
       %li.popular-section__box__menu__list
         =link_to "", class: "popular-section__box__menu__list__item" do
           ナイキ
-  .content
-    レディース新着アイテム
-  もっと見る
+  .new-arrival-section
+    =render partial: "item_card"
+  

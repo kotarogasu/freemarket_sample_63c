@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root 'items#index'
 
   resources :signup do
     collection do
@@ -14,10 +16,6 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'signup#destroy'
 
-
-  devise_for :users
-  root 'items#index'
-
   resources :items, only: [:new, :create]
 
   resources :users, only: [:show, :create] do
@@ -28,5 +26,13 @@ Rails.application.routes.draw do
       post :identification_2
     end
   end
-
+  resources :card, only: [:new, :show] do
+    collection do
+      post 'show', to: 'card#show'
+      post 'pay', to: 'card#pay'
+      post 'delete', to: 'card#delete'
+      get 'mypage_new', to: 'card#mypage_new'
+      get 'addition', to: 'card#addition'
+    end
+  end
 end
