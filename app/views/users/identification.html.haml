@@ -1,40 +1,65 @@
-.bb
-  = render partial: "users/show-sidebar"
-  .zennbu
-    .alla2
-      %h1 本人情報の登録
-      .llpp
-      .uu00
-        .llpo
-        .llpo2
-          %h2 お客さまの本人情報をご登録ください。
-          %h2 登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
-          .rr55
-            %a{:href => "#"} 本人確認書類のアップロードについて
-          .hako22
-            %h3 お名前
-          .hako22
-            %h3 お名前カナ
-          .hako22
-            %h3 生年月日
-          .hako22
-            %h3 郵便番号
-            %input.hoge3{:placeholder => "例）1234567", :size => "20", :type => "text"}/
-          .hako22
-            %h3 市区町村
-            %input.hoge3{:placeholder => "", :size => "20", :type => "text"}/
-          .hako22
-            %h3 都道府県
-            %input.hoge3{:placeholder => "例) 横浜市緑区", :size => "20", :type => "text"}/
-          .hako22
-            %h3 番地
-            %input.hoge3{:placeholder => "例) 青山1−1−1", :size => "20", :type => "text"}/
-          .hako22
-            %h3 建物名
-            %input.hoge3{:placeholder => "例) 柳ビル103", :size => "20", :type => "text"}/
-          .ii2234
-            %h1 登録する
-          .alla23
-            %a{:href => "#"} 本人情報の登録について
-  
+.wrapper
+  .mypage-main-content
+    = render 'users/show-sidebar'
+
+    .l-content
+      %section.l-chapter-container
+        %h2.l-chapter-head 本人情報の登録
+        = form_for @address, url: {controller: "users", action: "identification"}, html: {class: 'l-single-inner'} do |f|
+          %div
+            %p
+              お客さまの本人情報をご登録ください。
+              %br>/
+              登録されたお名前・生年月日を変更する場合、本人確認書類の提出が必要になります。
+            %p.text-right
+              =link_to  "#" do
+                本人確認書類のアップロードについて
+                %i.fa.fa-chevron-right
+          .form-group
+            %label お名前
+            %p 
+            = @current_user.first_name + @current_user.last_name
+          .form-group
+            %label お名前カナ
+            %p 
+            =@current_user.first_name_kana  + @current_user.last_name_kana
+          .form-group
+            =f.label :birthday do
+              生年月日
+            %p 
+            = @current_user.birthday.to_s
+          .form-group
+            =f.label :post_number do
+              郵便番号
+            %span 任意
+            = f.text_field :post_number, class: "input-default",  placeholder: "例) 1234567"
+          .form-group
+            =f.label :prefecture_id do
+              都道府県
+            %span.form-arbitrary 任意
+            .select-wrap
+              %i.fas.fa-chevron-down
+              =f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: "select-default"
+              
+          .form-group
+            =f.label :city do
+              市区町村
+            %span 任意
+            = f.text_field :city, class: "input-default",  placeholder: "例) 横浜市緑区"
+          .form-group
+            =f.label :town do
+              番地
+            %span 任意
+            = f.text_field :town, class: "input-default",  placeholder: "例) 青山1−1−1"
+          .form-group
+            =f.label :building do
+              建物名
+            %span 任意
+            = f.text_field :building, class: "input-default",  placeholder: "例) 柳ビル103"
+          =f.submit '登録する', class: "btn-default btn-red"
+          .form-group.text-right
+            %p
+              =link_to  "#" do
+                本人情報の登録について
+                %i.fa.fa-chevron-right
 

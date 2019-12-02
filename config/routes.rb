@@ -18,9 +18,12 @@ Rails.application.routes.draw do
 
   resources :items, only: [:new, :create]
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :create] do
     collection do
-      get :profile, :identification
+      get :profile
+      get :credit
+      get :identification
+      post :address
     end
   end
   resources :card, only: [:new, :show] do
