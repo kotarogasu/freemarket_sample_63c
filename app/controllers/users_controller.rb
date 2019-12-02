@@ -3,9 +3,6 @@ class UsersController < ApplicationController
   def profile
   end
 
-  def credit
-  end
-
   def identification
     @address = Address.new
   end
