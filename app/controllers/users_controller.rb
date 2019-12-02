@@ -8,7 +8,6 @@ class UsersController < ApplicationController
 
   def identification
     @address = Address.new
-    @user = @current_user
   end
 
   def identification_2
