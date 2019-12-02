@@ -2,13 +2,13 @@
   .category-items-box__header
     .category-items-box__header__title
       %h3 
-        =@category.name+"新着アイテム"
+        =@pop_category.name+"新着アイテム"
     .category-items-box__header__see-more
       = link_to "" do
         もっと見る
   .category-items-box__content 
     %ul.category-items-box__content__list
-      - @category.items.each do |item|
+      - @pop_category.items.each do |item|
         %li.category-items-box__content__list__item
           .visible-box
             =link_to "" do

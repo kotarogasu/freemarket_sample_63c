@@ -55,6 +55,7 @@ class SignupController < ApplicationController
       sign_in(@user)
       session[:id] = @user.id
       redirect_to root_path(@user)
+  
     else
       render '/signup/step1'
     end

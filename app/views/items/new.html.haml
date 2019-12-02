@@ -20,7 +20,7 @@
               %p 最大10枚までアップロードできます
               .sell-container__upload-drop-box
                 .sell-container__upload-drop-box__items-container
-                =f.file_field :item_image, class: "sell-container__upload-drop-box__have-item" do
+                =f.file_field :image, class: "sell-container__upload-drop-box__have-item" do
                   %pre.visible-pc
                   :preserve
                     クリックしてファイルをアップロード                  
@@ -42,10 +42,16 @@
                   =f.label :category_id do
                     カテゴリー
                     %span.form-require 必須
-                  %div
+                  .select-wraps
                     .select-wrap
                       %i.fas.fa-chevron-down
-                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default"
+                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default", id: "category-select"
+                    .select-wrap#child-wrap
+                      =f.select :category_id, {}, {}, class: "select-default hidden", id: "child-select" do
+                        %option{value: "0"} ---
+                    .select-wrap#grandchild-wrap
+                      =f.select :category_id, {}, {}, class: "select-default hidden", id: "grandchild-select" do
+                        %option{value: "0"} ---
                 .form-group
                   =f.label :condition do
                     商品の状態

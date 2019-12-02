@@ -124,7 +124,7 @@ Things you may want to cover:
 |name|string|null: false| <!-- ブランドのカテゴリー区分 -->¥
 ### Association
 - has_many :bcategories_bcategories
-- has_many :brands, through: :blands_bcategories
+- has_many :brands, through: :brands_bcategories
 
 
 
