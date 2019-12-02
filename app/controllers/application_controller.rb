@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :set_current_user
 
   protect_from_forgery with: :exception
 
@@ -41,5 +40,4 @@ class ApplicationController < ActionController::Base
     @current_user = User.find(session[:id])
   end
   
-
 end

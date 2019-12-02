@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: :index
   layout :false, only: :new
+  before_action :set_current_user, except: :index
 
   def index 
     @items = Item.all
@@ -12,6 +12,14 @@ class ItemsController < ApplicationController
     respond_to do |format| 
       parent = Category.find(params[:category_id])
       @children = parent.children
+      format.json
+    end
+  end
+
+  def brand_find
+    respond_to do |format| 
+      return nil if params[:keyword] == ""
+      @brands = Brand.where(['name LIKE ?', "%#{params[:keyword]}%"] ).limit(5)
       format.json
     end
   end
@@ -38,6 +46,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
+    @brand = Brand.search(params[:brand_name])
     params.require(:item).permit(
       :name, 
       :item_text,
@@ -46,8 +55,8 @@ class ItemsController < ApplicationController
       :prefecture_id,
       :delivery_fee,
       :days,
-      :price
-    ).merge(user_id: current_user.id)
+      :price,
+    ).merge(user_id: current_user.id, brand_id: @brand.id)
   end
 
   def image_params

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :new, :create] do
     collection do
       get :category_find
+      get :brand_find
     end
   end
 
