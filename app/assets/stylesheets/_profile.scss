@@ -27,21 +27,27 @@
     left: 205px;
   }
   .xxxx2 img{
+    overflow: hidden;
     width: 60px;
     height: 60px;
+    margin: 0 auto;
+    border-radius: 50%;
   }
-  input.hoge { width: 222px;
+  input.hoge { 
+    width: 220px;
+    margin: 0 0 0 8px;
+    vertical-align: middle;
     height: 50px;
-   margin-left: 5px;
-   border-radius: 7px;
+    padding: 10px 16px 8px;
+    border-radius: 7px;
     border: solid 1px #CCCCCC;
     }
    
-    input.hoge2 {  margin-top: 40px;
-      width: 670px; height: 215px;
-     
+    input.hoge2 {  
+      margin-top: 40px;
+      width: 670px; 
+      height: 215px;
       margin-left: 17px;
-      
       border: solid 1px #CCCCCC;
     }
   
@@ -62,7 +68,7 @@
     .alla2  textarea{
       width: 670px;
       height: 215px;
-      
+      padding: 10px;
       margin-left: 17px;
       margin-top: 15px;
     }
@@ -177,4 +183,3 @@
       height: 1208px;
       background-color: #fff;
     }
-    
