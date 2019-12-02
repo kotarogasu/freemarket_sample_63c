@@ -5,7 +5,7 @@
     .l-content
       %section.l-chapter-container
         %h2.l-chapter-head 本人情報の登録
-        = form_for @address,:url => {controller: "users", action: "identification"}, html: {class: 'l-single-inner'} do |f|
+        = form_for @address, url: {controller: "users", action: "identification"}, html: {class: 'l-single-inner'} do |f|
           %div
             %p
               お客さまの本人情報をご登録ください。
