@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       get :profile
       get :credit
       get :identification
-      post :identification_2
+      post :address
     end
   end
   resources :card, only: [:new, :show] do

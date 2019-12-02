@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @address = Address.new
   end
 
-  def identification_2
+  def address
     @address = @current_user.address.new(address_params)
   end
 
