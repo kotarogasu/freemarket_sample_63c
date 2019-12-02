@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
   def profile
-   
   end
 
   def credit
@@ -9,5 +8,5 @@ class UsersController < ApplicationController
 
   def identification
   end
-  
+
 end

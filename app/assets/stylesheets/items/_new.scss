@@ -58,7 +58,7 @@
           padding: 40px;
           border-top: 1px solid #eee;
           .form-group {
-            margin: 0;
+            margin: 40px 0  0;
             label{
               font-weight: 600;
               display: inline-block;
@@ -209,14 +209,7 @@
             }
           }
           .btn-default.btn-red {
-            margin: 40px 0 0;
-            background: #ea352d;
-            border: 1px solid #ea352d;
-            color: #fff;
-            display: block;
-            width: 100%;
-            line-height: 48px;
-            font-size: 14px;
+            @include register-btn-red;
           }
           .btn-default.btn-gray {
             width: 45%;
