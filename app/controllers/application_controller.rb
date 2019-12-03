@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
-  
   protect_from_forgery with: :exception
 
   layout :layout_by_resource
@@ -23,6 +22,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :email, :password, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
   end
 
+  
   private
   
   def production?
@@ -39,5 +39,4 @@ class ApplicationController < ActionController::Base
     @current_user = User.find(session[:id])
   end
   
-
 end

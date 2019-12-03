@@ -16,7 +16,7 @@
             .sell-container__upload-box.clearfix
               %h3.sell-container__upload-box-head
                 出品画像
-                %span.form-require 必須
+                %span 必須
               %p 最大10枚までアップロードできます
               .sell-container__upload-drop-box
                 =f.label :image, class: "sell-container__upload-drop-box__items-container" do
@@ -29,12 +29,12 @@
               .form-group
                 =f.label :name do
                   商品名
-                  %span.form-require 必須
+                  %span 必須
                 =f.text_field :name, class: "input-default", placeholder: "商品名（必須 40文字まで)", value: ""
               .form-group
                 =f.label :item_text do
                   商品の説明
-                  %span.form-require 必須
+                  %span 必須
                 =f.text_area :item_text, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: 5, value: ""
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
@@ -42,15 +42,30 @@
                 .form-group
                   =f.label :category_id do
                     カテゴリー
-                    %span.form-require 必須
-                  %div
+                    %span 必須
+                  .select-wraps
                     .select-wrap
                       %i.fas.fa-chevron-down
-                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default"
+                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default", id: "category-select"
+                    .select-wrap#child-wrap
+                      %i.fas.fa-chevron-down
+                      =f.select :category_id, {}, {}, class: "select-default", id: "child-select" do
+                        %option{value: "0"} ---
+                    .select-wrap#grandchild-wrap
+                      %i.fas.fa-chevron-down
+                      =f.select :category_id, {}, {}, class: "select-default", id: "grandchild-select" do
+                        %option{value: "0"} ---
+                .form-group#brand-wrap
+                  %label{for: "brand_name"}
+                    ブランド
+                    %span.gray 任意
+                  .select-wrap
+                    %input{name: "brand_name", id: "brand-select", class: "select-default", placeholder: "例）シャネル"}
+                    %ul{id: 'brands-search-list'}
                 .form-group
                   =f.label :condition do
                     商品の状態
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
                     = f.select :condition, Item.conditions.keys,{}, class: "select-default"
@@ -61,14 +76,21 @@
                 .form-group
                   =f.label :delivery_fee do
                     配送料の負担
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default"
+                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default", id: "condition-select"
+                .form-group#delivery-method-wrap
+                  =f.label :delivery_method do
+                    配送の方法
+                    %span 必須
+                  .select-wrap
+                    %i.fas.fa-chevron-down
+                    =f.select :delivery_method, Item.delivery_methods.keys,{}, class: "select-default"
                 .form-group
                   =f.label :prefecture_id do
                     発送元の地域
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
                     =f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: "select-default"
@@ -76,7 +98,7 @@
                 .form-group
                   =f.label :days do
                     発送までの日数
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
                     =f.select :days, Item.days.keys,{}, class: "select-default"
@@ -89,7 +111,7 @@
                     .clearfix
                       =f.label :price, class: "l-left" do 
                         価格
-                        %span.form-require 必須
+                        %span 必須
                       .l-right.sell-price-input
                         ¥
                         %div

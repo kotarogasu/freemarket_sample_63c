@@ -16,7 +16,18 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'signup#destroy'
 
-  resources :items, only: [:new, :create]
+
+
+  devise_for :users
+  root 'items#index'
+
+  resources :items, only: [:index, :new, :create] do
+    collection do
+      get :category_find
+      get :brand_find
+    end
+  end
+
 
   resources :users, only: [:show, :create] do
     collection do
