@@ -78,7 +78,14 @@
                     %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default"
+                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default", id: "condition-select"
+                .form-group#delivery-method-wrap
+                  =f.label :delivery_method do
+                    配送の方法
+                    %span 必須
+                  .select-wrap
+                    %i.fas.fa-chevron-down
+                    =f.select :delivery_method, Item.delivery_methods.keys,{}, class: "select-default"
                 .form-group
                   =f.label :prefecture_id do
                     発送元の地域

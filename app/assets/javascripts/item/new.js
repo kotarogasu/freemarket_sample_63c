@@ -3,6 +3,7 @@ $(function(){
   $("#brand-wrap").hide();
   $("#child-wrap").hide();
   $("#grandchild-wrap").hide();
+  $("#delivery-method-wrap").hide();
 
   function appendChildOptions(child){
     var child_option =`<option value="${child.id}" class="child-option">${child.name}</option>`
@@ -16,12 +17,11 @@ $(function(){
   function showBrandInput(){
     $("#brand-wrap").show();
   }
-
+  
   function searchBrand(brand){
     let brands_list = `<li class="search_result" data-id="${brand.id}" data-name="${brand.name}">${brand.name}</li>`
     $("#brands-search-list").append(brands_list)
   }
-    
 
 
   $(document).on('change','#category-select', function(){
@@ -108,4 +108,13 @@ $(function(){
     $('#brand-select').val(brand_name);
     $("#brands-search-list").empty();
   });
+
+
+
+
+  $(document).on('change', '#condition-select', function(){
+    $("#delivery-method-wrap").show();
+    console.log("ok")
+  });
+
 });

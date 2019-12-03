@@ -1,6 +1,7 @@
 class Brand < ApplicationRecord
   has_many :brands_categories
   has_many :categories, through: :brands_categories
+  has_many :items
 
 
 
@@ -10,4 +11,6 @@ class Brand < ApplicationRecord
     return nil if brand_name == ""
     @brand = Brand.find_by(name: brand_name)
   end
+
+
 end
