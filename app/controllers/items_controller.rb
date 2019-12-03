@@ -45,8 +45,10 @@ class ItemsController < ApplicationController
     else
       redirect_to new_item_path
     end
+  end
 
-
+  def show
+    @item = Item.find(params[:id])
   end
 
 
