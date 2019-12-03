@@ -1,0 +1,125 @@
+
+
+.new-arrival-section{
+  width: 700px;
+  margin: 0 auto;
+  padding: 50px 0 30px;
+
+  .category-items-box{
+    height: 455px;
+    margin-top: 60px;
+
+    &:first-child{
+      margin: 0;
+    }
+
+    &__header{
+      display: flex;
+      align-items: flex-end;
+      justify-content:space-between;
+      margin-bottom: 16px;
+      
+
+      &__title a{
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;
+      }
+      &__see-more a{
+        text-decoration: none;
+        font-size: 14px;
+        color: #0295EE;
+        display: block;
+      }
+    }
+    
+    &__content{
+        
+
+      &__list {
+        display: flex;
+        flex-wrap: wrap;
+
+        &__item{
+          width: 20%;
+          padding: 10px;
+
+
+          .style_card{
+            width: 100%;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,.18);
+            flex-direction: column-reverse;
+            margin: 0;
+            overflow: hidden;
+            z-index: 0;
+
+            figcaption{
+              display: inline-block;
+              color: #222;
+              font-size: 14px;
+              height: 64px;
+              line-height: 1.4em;
+              padding: 0 12px;
+              white-space: normal;
+              word-break: break-word;
+
+              .fig-text{
+                display: inline-block;
+                height: 2.8em;
+                overflow: hidden;
+                position: relative;
+              }
+            }
+
+
+            .thumbnail{
+              height: 0;
+              overflow: hidden;
+              padding: 0 0 100%;
+              position: relative;
+
+              .price{
+                height: 250px;
+                align-items: center;
+                background: rgba(0,0,0,.4);
+                border-radius: 0 14px 14px 0;
+                bottom: 8px;
+                box-sizing: border-box;
+                color: #fff;
+                display: inline-flex;
+                font-size: 17px;
+                height: 32px;
+                height: 28px;
+                letter-spacing: .02em;
+                margin: 0;
+                padding: 0 12px;
+                position: absolute;
+                z-index: 2;
+              }
+
+              img{
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                height: 100%;
+                object-fit: cover;
+                vertical-align: top;
+                width: 100%;
+                z-index: 1;
+              }
+            }
+
+          }
+
+        }
+        
+      }
+      
+    }
+    
+  }
+}

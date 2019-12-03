@@ -4,15 +4,16 @@
 
     .right-content
       %section.right-content__user-icon
-        -# = link_to "出品情報評価"
-        %figure
-          = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon', class:"user-icon"
+        %a
+          %figure
+            = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
           %h2.bold ユーザー名
-        .right-content__user-about
-          %p.right-content__user-review 評価
-          %span.bold 0
-          %p.right-content__user-exhibit 出品数
-          %span.bold 0
+          -# = current_user.first_name + current_user.last_name
+          .right-content__user-about
+            %p.right-content__user-about__review 評価
+            %span 0
+            %p.right-content__user-about__exhibit 出品数
+            %span 0
       %section.mypage--tab__container__notification--todo
         %ul.mypage--tabs
           %li.mypage--tabs__active

@@ -1,5 +1,5 @@
-.main-contents
-  = render 'show-sidebar'
+.main-contents 
+  = render 'users/show-sidebar'
   .credit-content
     .credit-content__title
       支払い方法
@@ -9,11 +9,14 @@
         .credit-content__index__icon
           = image_tag "mypage/mastercard-icon.png", class:"credit-content__index__icon"
         .credit-content__index__num
-          ************8784
+          = "**** **** **** " + @default_card_information.last4
+        - exp_month = @default_card_information.exp_month.to_s
+        - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
         .credit-content__index__limit
-          5/24
-        %button.credit-content__index__btn{:type => "submit"}
-          削除する
+          = exp_month + " / " + exp_year
+        = form_for @card, url: delete_card_index_path, method: :post do |f|
+          = f.button "削除する", class:"credit-content__index__btn"
     .credit-content__etc
       = link_to "#", class:"credit-content__etc__a" do
         支払い方法について >
+        

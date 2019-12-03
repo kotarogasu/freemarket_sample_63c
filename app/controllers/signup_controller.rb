@@ -126,6 +126,7 @@ class SignupController < ApplicationController
       @address.save
       sign_in(@user)
       redirect_to root_path(@user)
+  
     else
       render '/signup/step1'
     end
