@@ -48,6 +48,14 @@ class Item < ApplicationRecord
 
   }, _suffix: true
 
+  enum status: {
+
+    出品中:1,
+    取引中:2,
+    売り切れ:3,
+  }
+
+
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
 

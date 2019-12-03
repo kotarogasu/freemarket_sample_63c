@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "city",          null: false
     t.string   "town",          null: false
     t.string   "building"
-    t.integer  "user_id",       null: false
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.integer  "delivery_method"
     t.integer  "days",                          null: false
     t.integer  "prefecture_id",                 null: false
+    t.integer  "status",                        null: false
+    t.integer  "size"
     t.integer  "user_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false

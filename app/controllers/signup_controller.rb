@@ -1,6 +1,6 @@
 class SignupController < ApplicationController
   before_action :validates_user_registration, only: :sms_confirmation # step2のバリデーション
-  before_action :validates_sms_confirmation, only: address: # step3のバリデーション
+  before_action :validates_sms_confirmation, only: :address # step3のバリデーション
   before_action :validates_address, only: :complete # step4のバリデーション
 
   def social_choice
@@ -27,7 +27,7 @@ class SignupController < ApplicationController
   end
 
  def validates_user_registration
-¥   params[:user][:birthday] = birthday_join(params[:birthday])
+   params[:user][:birthday] = birthday_join(params[:birthday])
    session[:nickname] = user_params[:nickname]
    session[:email] = user_params[:email]
    session[:password] = user_params[:password]
