@@ -55,7 +55,7 @@
                     .select-wrap
                       %i.fas.fa-chevron-down
                       = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default", id: "category-select" do
-                        %option{value: ""} ---
+                        %option{value: ''} ---
                     - if @item.errors[:category_id].any?
                       %ul.error-text
                         - @item.errors[:category_id].each do |message|
@@ -63,7 +63,7 @@
                     .select-wrap#child-wrap
                       %i.fas.fa-chevron-down
                       =f.select :category_id, {}, {}, class: "select-default", id: "child-select" do
-                        %option{value: ""} ---
+                        %option{value: ''} ---
                       - if @item.errors[:category_id].any?
                         %ul.error-text
                           - @item.errors[:category_id].each do |message|
@@ -71,7 +71,7 @@
                     .select-wrap#grandchild-wrap
                       %i.fas.fa-chevron-down
                       =f.select :category_id, {}, {}, class: "select-default", id: "grandchild-select" do
-                        %option{value: ""} ---
+                        %option{value: ''} ---
                       - if @item.errors[:category_id].any?
                         %ul.error-text
                           - @item.errors[:category_id].each do |message|
@@ -89,7 +89,7 @@
                     %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    = f.select :condition, Item.conditions.keys,{}, class: "select-default"
+                    = f.select :condition, Item.conditions.keys,{prompt: '---'}, class: "select-default"
                 - if @item.errors[:condition].any?
                   %ul.error-text
                     - @item.errors[:condition].each do |message|
@@ -104,18 +104,18 @@
                     %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default", id: "condition-select"
+                    =f.select :delivery_fee, Item.delivery_fees.keys,{prompt: '---'}, class: "select-default", id: "condition-select"
                   - if @item.errors[:delivery_fee].any?
                     %ul.error-text
                       - @item.errors[:delivery_fee].each do |message|
                         %li= message
-                  .form-group#delivery-method-wrap
+                .form-group#delivery-method-wrap
                   =f.label :delivery_method do
                     配送の方法
                     %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :delivery_method, Item.delivery_methods.keys,{}, class: "select-default"
+                    =f.select :delivery_method, Item.delivery_methods.keys,{prompt: '---'}, class: "select-default"
                   - if @item.errors[:delivery_method].any?
                     %ul.error-text
                       - @item.errors[:delivery_method].each do |message|
@@ -137,7 +137,7 @@
                     %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :days, Item.days.keys,{}, class: "select-default"
+                    =f.select :days, Item.days.keys,{prompt: '---'}, class: "select-default"
                   - if @item.errors[:days].any?
                     %ul.error-text
                       - @item.errors[:days].each do |message|
