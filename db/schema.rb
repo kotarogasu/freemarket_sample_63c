@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20191129045320) do
-
-
+ActiveRecord::Schema.define(version: 20191201023413) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "post_number",   null: false
@@ -21,7 +18,7 @@ ActiveRecord::Schema.define(version: 20191129045320) do
     t.string   "city",          null: false
     t.string   "town",          null: false
     t.string   "building"
-    t.integer  "user_id"
+    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
@@ -71,11 +68,11 @@ ActiveRecord::Schema.define(version: 20191129045320) do
     t.string   "name",                          null: false
     t.text     "item_text",       limit: 65535
     t.integer  "price",                         null: false
-    t.string   "condition",                     null: false
-    t.string   "delivery_fee",                  null: false
-    t.string   "delivery_method"
-    t.string   "days",                          null: false
-    t.string   "prefecture_id",                 null: false
+    t.integer  "condition",                     null: false
+    t.integer  "delivery_fee",                  null: false
+    t.integer  "delivery_method"
+    t.integer  "days",                          null: false
+    t.integer  "prefecture_id",                 null: false
     t.integer  "user_id"
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
@@ -108,14 +105,12 @@ ActiveRecord::Schema.define(version: 20191129045320) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "brands_categories", "brands"
   add_foreign_key "brands_categories", "categories"
   add_foreign_key "cards", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "brands"
-  add_foreign_key "addresses", "users"
-  add_foreign_key "cards", "users"
-  add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "users"
 end
