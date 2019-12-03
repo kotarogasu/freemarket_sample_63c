@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
-  layout :false, only: :new
   before_action :set_current_user, except: :index
+  layout :false, only: :new
+
 
   def index 
     @items = Item.all

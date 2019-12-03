@@ -13,17 +13,18 @@
         .sell-container
           %h2.sell-container__head 商品の情報を入力
           =form_for @item do |f|
-            .sell-container__upload-box
+            .sell-container__upload-box.clearfix
               %h3.sell-container__upload-box-head
                 出品画像
                 %span 必須
               %p 最大10枚までアップロードできます
               .sell-container__upload-drop-box
-                .sell-container__upload-drop-box__items-container
-                =f.file_field :image, class: "sell-container__upload-drop-box__have-item" do
-                  %pre.visible-pc
-                  :preserve
-                    クリックしてファイルをアップロード                  
+                =f.label :image, class: "sell-container__upload-drop-box__items-container" do
+                  =f.file_field :image, class: "sell-container__upload-drop-box__have-item hidden"
+                  %pre.visible-pc 
+                    :preserve
+                      ドラッグアンドドロップ
+                      またはクリックしてファイルファイルをアップロード                
             .sell-content
               .form-group
                 =f.label :name do
