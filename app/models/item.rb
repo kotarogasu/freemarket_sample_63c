@@ -1,4 +1,13 @@
 class Item < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 40}
+  validates :item_text, presence: true
+  validates :condition, numericality: {greater_than: 0, message: "選択してください" }
+  validates :category_id, numericality: {greater_than: 0, message: "選択してください" }
+  validates :delivery_method, numericality: {greater_than: 0, message: "選択してください" }
+  validates :delivery_fee, numericality: {greater_than: 0, message: "選択してください" }
+  validates :days, numericality: {greater_than: 0, message: "選択してください" }
+  validates :prefecture_id, numericality: {greater_than: 0, message: "選択してください" }
+  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_qual_to: 9999999, message: "300以上9999999以下で入力してください" }
   belongs_to :user
   belongs_to :category
   belongs_to :brand
@@ -68,7 +77,6 @@ class Item < ApplicationRecord
     children = Category.find_by(name: "おもちゃ・ホビー・グッズ").children
     hobbies_items = get_category_items(range(children))
   end
-
   
 
 end
