@@ -39,42 +39,43 @@
               必須
           = f.text_field :first_name_kana, class: 'step4-block-main-submain-text-first'
           = f.text_field :last_name_kana, class: 'step4-block-main-submain-text-last'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              郵便番号
-            .step4-block-main-submain-titlebox-required
-              必須
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              都道府県
-            .step4-block-main-submain-titlebox-required
-              必須
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              市区町村
-            .step4-block-main-submain-titlebox-required
-              必須
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              番地
-            .step4-block-main-submain-titlebox-required
-              必須
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              建物名
-            .step4-block-main-submain-titlebox-any
-              任意
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-titlebox
-            .step4-block-main-submain-titlebox-titles
-              電話
-            .step4-block-main-submain-titlebox-any
-              任意
-          = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
-          .step4-block-main-submain-next
-            = f.submit "次へ進む", class: "step4-block-main-submain-address" 
+          = f.fields_for @address do |i|
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                郵便番号
+              .step4-block-main-submain-titlebox-required
+                必須
+            = i.text_field :post_number, class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                都道府県
+              .step4-block-main-submain-titlebox-required
+                必須
+            = i.collection_select :prefecture_id, Prefecture.all, :id, :name, {},  class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                市区町村
+              .step4-block-main-submain-titlebox-required
+                必須
+            = i.text_field :city, class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                番地
+              .step4-block-main-submain-titlebox-required
+                必須
+            = i.text_field :town, class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                建物名
+              .step4-block-main-submain-titlebox-any
+                任意
+            = i.text_field :building, class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-titlebox
+              .step4-block-main-submain-titlebox-titles
+                電話
+              .step4-block-main-submain-titlebox-any
+                任意
+            = f.text_field :phone_number, class: 'step4-block-main-submain-text-first'
+            .step4-block-main-submain-next
+              = f.submit "次へ進む", class: "step4-block-main-submain-address" 
     = render 'footer'

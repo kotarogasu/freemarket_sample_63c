@@ -20,6 +20,7 @@
           .ball-end
 
   = form_for @user, url: step3_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
+    = render 'devise/shared/error_messages', model: f.object
     .step2-block
       .step2-block-up
         %b 会員情報入力
