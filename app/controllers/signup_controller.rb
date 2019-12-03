@@ -3,25 +3,25 @@ class SignupController < ApplicationController
   before_action :validates_step3, only: :step4 # step2のバリデーション
   before_action :validates_step4, only: :done # step2のバリデーション
 
-  def step1
+  def social_choice
     @user = User.new
   end
 
-  def step2
+  def user_registration
     @user = User.new
   end
 
 
-  def step3
+  def sms_confirmation
     @user = User.new
   end
 
-  def step4
+  def address
     @user = User.new
     @address = Address.new
   end
 
-  def done
+  def complete
     @user = User.new
     @address = Address.new
   end
@@ -124,7 +124,6 @@ class SignupController < ApplicationController
       session[:user_id] = @user.id
       @address[:user_id] = @user.id
       @address.save
-      binding.pry
       sign_in(@user)
       redirect_to root_path(@user)
     else
