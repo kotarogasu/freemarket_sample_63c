@@ -2,7 +2,8 @@
   .left-content__bar
     %ul.left-content__bar-list
       %li
-        %a マイページ
+        = link_to "#", class:"side-bar__menu-link" do 
+          マイページ
         %i.fa.fa-chevron-right
       %li
         %a お知らせ
@@ -58,20 +59,22 @@
     %p 設定
     %ul.left-content__bar-list  
       %li
-        %a プロフィール
+        = link_to profile_users_path, class:"side-bar__menu-link" do 
+          プロフィール
         %i.fa.fa-chevron-right
       %li
         %a 発送元・お届け先住所変更
         %i.fa.fa-chevron-right
       %li
-        = link_to credit_users_path, class:"side-bar__menu-link" do
+        = link_to card_index_path, class:"side-bar__menu-link" do
           支払い方法
-          %i.fa.fa-chevron-right
+        %i.fa.fa-chevron-right
       %li
         %a メール/パスワード
         %i.fa.fa-chevron-right
       %li
-        %a 本人情報
+        = link_to identification_users_path, class:"side-bar__menu-link" do
+          本人情報
         %i.fa.fa-chevron-right
       %li
         %a 電話番号の確認
@@ -79,4 +82,4 @@
       %li
         = link_to logout_signup_index_path, class:"side-bar__menu-link" do
           ログアウト
-          %i.fa.fa-chevron-right
+        %i.fa.fa-chevron-right

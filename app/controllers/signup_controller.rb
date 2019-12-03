@@ -127,6 +127,7 @@ class SignupController < ApplicationController
       binding.pry
       sign_in(@user)
       redirect_to root_path(@user)
+  
     else
       render '/signup/step1'
     end

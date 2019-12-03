@@ -45,6 +45,7 @@ Things you may want to cover:
 |city|string|null: false| <!-- 市区町村 -->
 |town|string|null: false| <!-- 番地 -->
 |building|string|| <!-- 建物名 -->
+|user_id|foreign_key: true|null: false|
 
 
 ### Association
@@ -124,7 +125,7 @@ Things you may want to cover:
 |name|string|null: false| <!-- ブランドのカテゴリー区分 -->¥
 ### Association
 - has_many :bcategories_bcategories
-- has_many :brands, through: :blands_bcategories
+- has_many :brands, through: :brands_bcategories
 
 
 
