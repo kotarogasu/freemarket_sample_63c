@@ -86,7 +86,6 @@ $(function(){
       dataType: "json"
     })
     .done(function(brands){
-      console.log(brands)
       $("#brands-search-list").empty();
       if (brands.length !== 0) {
         brands.forEach(function(brand){
@@ -114,7 +113,6 @@ $(function(){
 
   $(document).on('change', '#condition-select', function(){
     $("#delivery-method-wrap").show();
-    console.log("ok")
   });
 
 });
