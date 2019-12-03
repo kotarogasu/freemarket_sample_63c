@@ -49,6 +49,9 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @user = User.find(@item.user_id)
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @brand = Brand.find(@item.brand_id)
   end
 
 

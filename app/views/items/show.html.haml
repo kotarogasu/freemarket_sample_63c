@@ -1,6 +1,7 @@
 .wrapper
   %section.item-box-container
-    %h1.item-name 商品名
+    %h1.item-name
+      = @item.name
     .item-main-content.clearfix
       .item-photo
         .owl-carousel__loaded__drag
@@ -28,18 +29,18 @@
           %tr
             %th 出品者
             %td
-              = link_to "#" do
-                出品者名
+              %a
+                = @user.nickname
               %div
                 .item-user-ratings
                   %i.fas.fa-grin
-                  %span 2140
+                  %span 3
                 .item-user-ratings
                   %i.fas.fa-meh
-                  %span 19
+                  %span 1
                 .item-user-ratings
                   %i.fas.fa-frown
-                  %span 1
+                  %span 0
           %tr
             %th カテゴリー
             %td
@@ -56,48 +57,44 @@
           %tr
             %th ブランド
             %td
+              = @brand.name
           %tr
             %th 商品の状態
-            %td 目立った傷や汚れなし
+            %td
+              = @item.condition
           %tr
             %th 配送料の負担
-            %td 送料込み(出品者負担)
+            %td 
+              = @item.delivery_fee
           %tr
             %th 配送の方法
-            %td 普通郵便(定形、定形外)
+            %td 
+              = @item.delivery_method
           %tr
             %th 配送元地域
             %td
-              = link_to "#" do
-                奈良県
+              = @prefecture.name
           %tr
             %th 発送日の目安
-            %td 4~7日で発送
+            %td 
+              = @item.days
     .item-price-box
-      %span.item-price ¥1,450
+      %span.item-price 
+        = number_to_currency(@item.price, unit: "¥", precision:0)
       %span.item-tax (税込)
       %span.item-shipping-fee 送料込み
     = link_to "#", class:"item-buy-btn" do
       購入画面に進む
     .item-description.f14
       %p.item-description-inner
-        商品名です。
-        1つのお値段です。2つご希望の方はコメントお願い致します。
-      
-
-        ♡・コメントがありましても即購入いただいた方優先です。
-        ♡・キャンセル防止のためにも取り置きは承っておりません。
-        ♡・メルカリ便への変更は+100円で対応可能です。
-
-
-        ♡・質問・ご要望等ありましたら必ずご購入前にご相談お願い致します。ご購入後は対応致しかねますのでご了承ください
+        = @item.item_text
     .item-button-container.clearfix
       .item-button-left
         %button.item-button.item-button-like{name: "like!", type: "button"}
           %i.far.fa-heart
           %span いいね!
-          %span.fade-in-down{"data-num" => "like"} 0
-        %a.item-button.item-button-report.clearfix{"data-modal" => "report-item", "data-open" => "modal", href: ""}
+          %span.fade-in-down 0
+        %a.item-button.item-button-report.clearfix
           %i.fas.fa-flag-checkered
           %span 不適切な商品の報告
         %input{name: "like_add_url", type: "hidden", value: ""}/
@@ -132,13 +129,13 @@
 
   .item-social-media-box
     .text-center
-      .fb-save.fb_iframe_widget{"data-uri" => "product://113299479059860/m39995405277", "fb-iframe-plugin-query" => "app_id=466308336793848&container_width=700&locale=ja_JP&sdk=joey&uri=product%3A%2F%2F113299479059860%2Fm39995405277", "fb-xfbml-state" => "rendered"}
+      .fb-save.fb_iframe_widget
         %span{style: "vertical-align: top; width: 0px; height: 0px; overflow: hidden;"}
           %iframe{allow: "encrypted-media", allowfullscreen: "true", allowtransparency: "true", frameborder: "0", height: "1000px", name: "fee32177648ea8", scrolling: "no", src: "", style: "border: none; visibility: visible; width: 0px; height: 0px;", title: "fb:save Facebook Social Plugin", width: "1000px"}
     %ul.social-media-box
       %li
         = link_to "https://ja-jp.facebook.com/", name: "facebook_window",class:"share-btn", target: "_blank" do
-          %i.fab.fa-facebook-square.fa-2x
+          %i.fab.fa-facebook.fa-2x
       %li
         = link_to "https://twitter.com/login?redirect_after_login=%2Fhome", name: "twitter_window",class:"share-btn", target: "_blank" do
           %i.fab.fa-twitter.fa-2x
