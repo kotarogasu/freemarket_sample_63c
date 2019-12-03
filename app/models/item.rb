@@ -1,4 +1,13 @@
 class Item < ApplicationRecord
+  validates :name, presence: true, length: {maximum: 40}
+  validates :item_text, presence: true
+  validates :condition, presence: {message: "選択してください"}
+  validates :category_id, numericality: {greater_than: 0, message: "選択してください" }
+  validates :delivery_method, presence: {message: "選択してください"}
+  validates :delivery_fee, presence: {message: "選択してください"}
+  validates :days, presence: {message: "選択してください"}
+  validates :prefecture_id, numericality: {greater_than: 0, message: "選択してください" }
+  validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_qual_to: 9999999, message: "300以上9999999以下で入力してください" }
   belongs_to :user
   belongs_to :category
   belongs_to :brand
@@ -7,26 +16,26 @@ class Item < ApplicationRecord
 
 
   enum condition: {
-    "---":0,
+
     新品、未使用:1,未使用に近い:2,目立った傷や汚れなし:3,
     やや傷や汚れあり:4,傷や汚れあり:5,全体的に状態が悪い:6
   }, _suffix: true
 
   enum days: {
-    "---":0,
+
     １〜２日で発送:1,
     ２〜３日で発送:2,
     ４〜７日で発送:3,
   }, _suffix: true
 
   enum delivery_fee: {
-    "---":0,
+
     送料込み（出品者負担）:1,
     着払い（購入者負担）:2,
   }, _suffix: true
 
   enum delivery_method: {
-    "---":0,
+
     未定:1,
     らくらくメルカリ便:2,
     ゆうメール:3,
@@ -68,7 +77,6 @@ class Item < ApplicationRecord
     children = Category.find_by(name: "おもちゃ・ホビー・グッズ").children
     hobbies_items = get_category_items(range(children))
   end
-
   
 
 end

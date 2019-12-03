@@ -38,12 +38,13 @@ class ItemsController < ApplicationController
 
   def create
     @item = @current_user.items.new(item_params)
-    - unless image_params == {}
-      @item.save! 
-      @item.images.create(image_params)
+    if @item.save
+      unless image_params == {}
+        @item.images.create(image_params)
+      end
       redirect_to root_path
-    else
-      redirect_to new_item_path
+    else   
+      render :new, layout: false
     end
 
 
