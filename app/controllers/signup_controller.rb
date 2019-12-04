@@ -29,13 +29,25 @@ class SignupController < ApplicationController
   end
 
   def step5
-    @user = User.new
+  end
+
+  def card_create #payjpとCardのデータベース作成を実施します。
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.create(
+      description: '登録テスト', #なくてもOK
+      card: params['payjp-token'],
+      ) 
+      @@card = Card.new(customer_id: customer.id, card_id: customer.default_card)
+      if @@card.save
+        redirect_to action: "done"
+      else
+        redirect_to action: "step5"
+      end
   end
 
   def done
     @user = User.new
   end
-
 
   def create
     @user = User.new(
@@ -50,10 +62,11 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       phone_number: session[:phone_number]
     )
-
     if @user.save
-      sign_in(@user)
       session[:id] = @user.id
+      @@card[:user_id] = @user.id
+      @@card.save
+      sign_in(@user)
       redirect_to root_path(@user)
     else
       render '/signup/step1'

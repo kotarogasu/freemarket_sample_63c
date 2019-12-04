@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'step2'
       get 'step3'
       get 'step4'
-      # get 'step5' # ここで、入力の全てが終了する
+      get 'step5' # ここで、入力の全てが終了する
+      post 'card_create', to: 'signup#card_create'
       get 'done'
       get 'logout'
     end
