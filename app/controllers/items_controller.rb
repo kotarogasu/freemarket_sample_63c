@@ -48,6 +48,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+
+  end
+
   def show
     @item = Item.find(params[:id])
     @user = @item.user
@@ -55,6 +63,12 @@ class ItemsController < ApplicationController
     @brand = Brand.find(@item.brand_id)
   end
 
+  def show_user_item
+    @item = Item.find(params[:id])
+    @brand = @item.brand
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @user = current_user
+  end
 
   private
 

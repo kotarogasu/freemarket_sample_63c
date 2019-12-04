@@ -1,0 +1,20 @@
+.mypage-main-content
+  .l-content
+    %section.item-box-container
+      %h1.item-name
+        = @item.name
+      =render 'detail'
+      .item-price-box
+        %span.item-price 
+          = number_to_currency(@item.price, unit: "¥", precision:0)
+        %span.item-tax (税込)
+        %span.item-shipping-fee 送料込み
+      .item-description
+      %p.item-description-inner
+        = @item.item_text
+    .listing-item-change-box
+      =link_to "商品の編集", edit_item_path(@item), class: "btn-default btn-red" 
+      %p.text-center or
+      %button.btn-default.btn-gray 出品を一時停止する
+      %button.btn-default.btn-gray 商品を削除する
+    =render 'item-detail-message'

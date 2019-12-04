@@ -1,0 +1,15 @@
+.item-social-media-box
+  .text-center
+    .fb-save.fb_iframe_widget
+      %span{style: "vertical-align: top; width: 0px; height: 0px; overflow: hidden;"}
+        %iframe{allow: "encrypted-media", allowfullscreen: "true", allowtransparency: "true", frameborder: "0", height: "1000px", name: "fee32177648ea8", scrolling: "no", src: "", style: "border: none; visibility: visible; width: 0px; height: 0px;", title: "fb:save Facebook Social Plugin", width: "1000px"}
+  %ul.social-media-box
+    %li
+      = link_to "https://ja-jp.facebook.com/", name: "facebook_window",class:"share-btn", target: "_blank" do
+        %i.fab.fa-facebook.fa-2x
+    %li
+      = link_to "https://twitter.com/login?redirect_after_login=%2Fhome", name: "twitter_window",class:"share-btn", target: "_blank" do
+        %i.fab.fa-twitter.fa-2x
+    %li
+      = link_to "https://www.pinterest.jp/", name: "pinterest_window",class:"share-btn", target: "_blank" do
+        %i.fab.fa-pinterest.fa-2x

@@ -16,8 +16,13 @@ class UsersController < ApplicationController
   end
 
   def listing
-    
+
+    @items_on_sale = current_user.items.where(status: 1)
+    @items_on_transaction = current_user.items.where(status: 2)
+    @purchased_items = current_user.items.where(status: 3)
+
   end
+
 
   private
 

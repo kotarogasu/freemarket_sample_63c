@@ -19,7 +19,28 @@
               売却済み
       .tab-content
         %ul.mypage-item-list
-          %li.mypage-item-not-found
-            %figure.mypage-item-not-found__figure
-              = image_tag 'mypage/logo_gray.svg', size: '100x100'
-            取引中の商品がありません
+          - if @items_on_sale.present?
+            -@items_on_sale.each do |item|
+              %li
+                =link_to show_user_item_item_path(item), class: "mypage-item-link" do
+                  %figure
+                    =image_tag item.images.first.image
+                  .mypage-item-link__body
+                    .mypage-item-link__body__text
+                      =item.name
+                    %div
+                      %span.listing-item-count
+                        %i.fas.fa-heart
+                        0
+                      %span.listing-item-count
+                        %i.fas.fa-comment-alt
+                        0
+                      .item-status-icon.awating
+                        =item.status
+                  %i.fas.fa-chevron-right.icon-arrow-right
+
+          - else
+            %li.mypage-item-not-found
+              %figure.mypage-item-not-found__figure
+                = image_tag 'mypage/logo_gray.svg', size: '100x100'
+              取引中の商品がありません
