@@ -1,43 +1,26 @@
 %html
   %head
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
-
-= form_tag(card_create_signup_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-  %label カード番号
-  = text_field_tag "number", "", class: "number", placeholder: "半角数字のみ" ,maxlength: "16", type: "text", id: "card_number"
-  %br
-  %label 有効期限
-  %select#exp_month{name: "exp_month", type: "text"}
-    %option{value: ""} --
-    %option{value: "1"}01
-    %option{value: "2"}02
-    %option{value: "3"}03
-    %option{value: "4"}04
-    %option{value: "5"}05
-    %option{value: "6"}06
-    %option{value: "7"}07
-    %option{value: "8"}08
-    %option{value: "9"}09
-    %option{value: "10"}10
-    %option{value: "11"}11
-    %option{value: "12"}12
-  %span 月/
-  %select#exp_year{name: "exp_year", type: "text"}
-    %option{value: ""} --
-    %option{value: "2019"}19
-    %option{value: "2020"}20
-    %option{value: "2021"}21
-    %option{value: "2022"}22
-    %option{value: "2023"}23
-    %option{value: "2024"}24
-    %option{value: "2025"}25
-    %option{value: "2026"}26
-    %option{value: "2027"}27
-    %option{value: "2028"}28
-    %option{value: "2029"}29
-  %span 年
-  %br
-  %label セキュリティコード
-  = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
-  #card_token
-  = submit_tag "追加する", id: "token_submit" 
+  %body.step5
+    %header.step5-header
+      = render "title"
+      .step4-progress
+        %ul.step4-progress-distance
+          %li.step4-progress-distance__li#first__li
+            会員情報
+            .ball#ball-first
+          %li.step4-progress-distance__li#second__li
+            電話番号認証
+            .ball#ball-second
+          %li.step4-progress-distance__li#third__li
+            お届け先住所入力
+            .ball#ball-third
+          %li.step4-progress-distance__li
+            支払い方法
+            .ball
+          %li.step4-progress-distance__li
+            完了
+            .ball-end
+    = form_tag(card_create_signup_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+      = render "card/card-index" 
+      = render 'footer'           
