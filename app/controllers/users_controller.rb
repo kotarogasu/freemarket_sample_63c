@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_current_user, except: :index
+
+  def mypage
+  end
+
 
   def profile
   end
@@ -9,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def address
-    @address = @current_user.address.new(address_params)
+    @address = _user.address.new(address_params)
+  end
+
+  def listing
+    
   end
 
   private

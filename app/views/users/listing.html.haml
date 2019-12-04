@@ -1,0 +1,25 @@
+.mypage-main-content
+  = render 'users/mypage-sidebar'
+
+  .right-content
+    %section.mypage-tab-container
+      %h2.mypage-tab-head 購入した商品
+      %ul.listing-tabs
+        %li
+          %h3.mypage-tabs__active__h3
+            =link_to "#" do
+              取引中
+        %li
+          %h3.mypage-tabs__inactive__h3
+            =link_to "#" do
+              交渉中
+        %li
+          %h3.mypage-tabs__inactive__h3
+            =link_to "#" do
+              売却済み
+      .tab-content
+        %ul.mypage-item-list
+          %li.mypage-item-not-found
+            %figure.mypage-item-not-found__figure
+              = image_tag 'mypage/logo_gray.svg', size: '100x100'
+            取引中の商品がありません

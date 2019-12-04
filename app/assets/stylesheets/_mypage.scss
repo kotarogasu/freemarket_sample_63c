@@ -1,101 +1,93 @@
-.wrapper {
-  background-color: #f5f5f5;
-  .mypage-main-content {
-    margin: 40px auto 0;
-    padding: 0 0 40px;
-    width: 1020px;
-    height: 100vw;
-    .right-content { 
-      width: 700px;
-      margin: 0;
-      padding: 0;
-      background-repeat: no-repeat;
-      float: right;
-      .right-content__user-icon {
-        position: relative;
-        height: 200px;
-        padding: 20px;
-        text-align: center;
-        background: url(mypage/background_image.png);
-        a{
-          display: block;
-          position: absolute;
-          top: 25%;
-          left: 0;
-          right: 0;
-          color: #333;
-          figure{
-            overflow: hidden;
-            width: 60px;
-            height: 60px;
-            margin: 0 auto;
-            border-radius: 50%;
-          }
-          .bold {
-            margin: 8px 0 0;
-            font-size: 14px;
-            font-weight: 600;
-          }
-          .right-content__user-about {
-            margin: 8px 0 0;
-            font-size: 0;
-            &__review {
-              display: inline-block;
-              font-size: 14px;
-              margin: 0 0 0 8px;
-            }
-            span{
-              margin: 0 0 0 8px;
-              font-size: 14px;
-              font-weight: 600;
-            }
-            &__exhibit {
-              margin: 0 0 0 16px;
-              font-size: 14px;
-              display: inline-block;
-            }
-          }
-        }
+a{
+  text-decoration: none;
+}
+
+.mypage-main-content {
+  margin: 40px auto 0;
+  padding: 0 0 40px;
+  width: 1020px;
+  height: 100vw;
+  .right-content { 
+    width: 700px;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    float: right;
+
+
+
+    .user-info {
+      position: relative;
+      display: flex;
+      height: 200px;
+      padding: 20px;
+      text-align: center;
+      background: url(mypage/background_image.png);
+      a{
+        display: block;
+        position: absolute;
+        top: 25%;
+        left: 0;
+        right: 0;
+        color: #333;
       }
+      figure{
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+      }
+      .bold {
+        margin: 8px 0 0;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      &__user-rate {
+        margin: 8px 0 0;
+        font-size: 0;
+        &--review {
+          display: inline-block;
+          font-size: 14px;
+          margin: 0 0 0 8px;
+        }
+        span{
+          margin: 0 0 0 8px;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        &--exhibit {
+          margin: 0 0 0 16px;
+          font-size: 14px;
+          display: inline-block;
+        }
+        }
+      
     }
-    .mypage--tab__container__notification--todo {
+
+
+
+
+    
+    .mypage-tab-container-notification-todo {
       padding: 0px;
       margin: 0;
       background: #fff;
-      .mypage--tabs{
+      .mypage-tabs{
         border: 0;
         background: #eee;
         list-style: none;
-        &__active {
+        font-size: 0;
+        li {
           background: #fff;
           width: 50%;
           text-align: center;
           vertical-align: top;
-          float: left;
-          &__h3 {
-            font-weight: bold;
-            font-size: 22px;
-            &__a {
-              border-top: 2px solid $red;
-              position: relative;
-              display: block;
-              color: #333;
-              font-size: 16px;
-              line-height: 72px;
-              text-decoration: none;
-              touch-action: manipulation;
-            }
-          }
-        }
-        &__inactive {
-          width: 50%;
           display: inline-block;
-          text-align: center;
-          vertical-align: top;
-          &__h3 {
+          h3 {
             font-weight: bold;
             font-size: 22px;
-            &__a {
+            a {
               position: relative;
               display: block;
               color: #333;
@@ -107,7 +99,10 @@
           }
         }
       }
-      .mypage--item--ul {
+
+
+
+      .mypage-item-ul {
         position: relative;
         display: block;
         &__li {
@@ -129,7 +124,7 @@
               background: image-url("mercari_profile.png") ;
               background-size: contain;
             }
-            .mypage--item--body{
+            .mypage-item-body{
               margin: 0 40px 0 68px;
               &__text {
                 overflow: hidden;
@@ -163,7 +158,7 @@
             }
           }
         }
-        .mypage--go--list {
+        .mypage-go-list {
           border: 0;
           position: relative;
           padding: 16px;
@@ -181,10 +176,16 @@
         }
       }
     }
-    .mypage--tab__container{
+
+
+
+
+
+
+    .mypage-tab-container{
       padding: 40px 0 0;
       background: #f5f5f5;
-      .mypage--tab--head {
+      .mypage-tab-head {
         background: #fafafa;
         font-size: 16px;
         line-height: 72px;
@@ -197,21 +198,39 @@
         margin-inline-end: 0px;
         font-weight: bold;
       }
-      .mypage--tabs {
+      .listing-tabs{
+        border: 0;
+        background: #eee;
+        font-size: 0;
+
+        li{
+          width: 33%;
+          display: inline-block;
+          text-align: center;
+          vertical-align: top;
+        }
+        a{
+          position: relative;
+          display: block;
+          color: #333;
+          font-size: 16px;
+          line-height: 72px;
+        }
+      }
+      .mypage-tabs {
         border: 0;
         background: #eee;
         list-style: none;
-        &__active {
+        li {
           background: #fff;
           width: 50%;
           text-align: center;
           vertical-align: top;
           float: left;
-          &__h3 {
+          h3 {
             font-weight: bold;
             font-size: 22px;
-            &__a {
-              border-top: 2px solid $red;
+            a {
               position: relative;
               display: block;
               color: #333;
@@ -222,29 +241,11 @@
             }
           }
         }
-        &__inactive {
-          width: 50%;
-          display: inline-block;
-          text-align: center;
-          vertical-align: top;
-          &__h3 {
-            font-weight: bold;
-            font-size: 22px;
-            &__a {
-              position: relative;
-              display: block;
-              color: #333;
-              font-size: 16px;
-              line-height: 72px;
-              text-decoration: none;
-              touch-action: manipulation;
-            }
-          }
-        }
+        
       }
-      .tab--content{
+      .tab-content{
         background-color: white;
-        .mypage--item--not--found {
+        .mypage-item-not-found {
           padding: 60px 0 60px;
           background-repeat: no-repeat;
           background-position: center 40px;
@@ -253,12 +254,16 @@
           font-size: 16px;
           color: #ccc;
           font-weight: 600;
-          .mypage--item--not--found__figure {
+          &__figure {
             margin: auto;
           }
         }
       }
     }  
-  }
-} 
+  } 
+}
+
     
+.active{
+  border-top: 2px solid $red;
+}
