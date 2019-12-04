@@ -1,8 +1,18 @@
 ---
 ja:
   activerecord:
+    models:
+      event: イベント
+    attributes:
+      event:
+        nickname: イベント名
+        place: 開催場所
+        content: イベント内容
     errors:
       messages:
+        last_name: "苗字"
+        first_name: "名前"
+        email: 'メールアドレス'
         record_invalid: 'バリデーションに失敗しました: %{errors}'
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
@@ -110,7 +120,7 @@ ja:
     format: "%{attribute}%{message}"
     messages:
       accepted: を受諾してください
-      blank: を入力してください
+      blank: 入力してください
       confirmation: と%{attribute}の入力が一致しません
       empty: を入力してください
       equal_to: は%{count}にしてください

@@ -3,7 +3,6 @@
 @import "mixin";
 @import "common";
 @import 'login';
-@import "items";
 @import "header";
 @import "footer";
 @import "show";
@@ -12,7 +11,7 @@
 @import "profile";
 @import "credit";
 @import 'logout';
-@import "items";
+@import "items/items";
 @import "items/item";
 @import "items/new";
 @import "items/show";
