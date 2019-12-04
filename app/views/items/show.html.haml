@@ -9,7 +9,7 @@
             .owl-stage
               .owl-item.active
                 .owl-item-inner
-                  %img.owl-lazy{alt: "商品名", src: "https://static.mercdn.net/item/detail/orig/photos/m39995405277_1.jpg?1575261482", style: "opacity: 1;"}/
+                  = image_tag @item.images.first.image, class: 'owl-lazy'
           .owl-nav.disabled
             .owl-prev prev
             .owl-next next
