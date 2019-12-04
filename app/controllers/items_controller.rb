@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: :index
   layout :false, only: :new
 
 
@@ -36,7 +37,6 @@ class ItemsController < ApplicationController
   end
 
   def create
-    binding.pry
     @item = current_user.items.new(item_params)
     if @item.save
       unless image_params == {}
@@ -46,8 +46,13 @@ class ItemsController < ApplicationController
     else   
       render :new, layout: false
     end
+  end
 
-
+  def show
+    @item = Item.find(params[:id])
+    @user = @item.user
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @brand = Brand.find(@item.brand_id)
   end
 
 

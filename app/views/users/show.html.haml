@@ -1,0 +1,61 @@
+-#- breadcrumb mypage
+-#= render partial:"layouts/breadcrumbs"
+
+.wrapper
+  .mypage-main-content
+    = render 'users/show-sidebar'
+
+    .right-content
+      %section.right-content__user-icon
+        %a
+          %figure
+            = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
+          %h2.bold ユーザー名
+          -# = current_user.first_name + current_user.last_name
+          .right-content__user-about
+            %p.right-content__user-about__review 評価
+            %span 0
+            %p.right-content__user-about__exhibit 出品数
+            %span 0
+      %section.mypage--tab__container__notification--todo
+        %ul.mypage--tabs
+          %li.mypage--tabs__active
+            %h3.mypage--tabs__active__h3
+              =link_to "#", class: "mypage--tabs__active__h3__a" do
+                お知らせ
+          %li.mypage--tabs__inactive
+            %h3.mypage--tabs__inactive__h3
+              =link_to "#", class: "mypage--tabs__inactive__h3__a" do
+                やることリスト
+        .tab--content
+          %ul.mypage--item--ul
+            %li.mypage--item--ul__li
+              =link_to "#", class: "mypage--item--ul__li__a" do
+                %figure.mypage--item--ul__li__a__figure
+                  = image_tag 'mypage/logo_red.svg', size: '45x45'
+                .mypage--item--body
+                  .mypage--item--body__text 事務局から個別メッセージ「Googleログイン通知」
+                  %time.mypage--item--body__time
+                    %i.far.fa-clock
+                    %span 2 時間前
+                %i.fa.fa-chevron-right
+            %li.mypage--go--list
+              =link_to "#", class: "go" do
+                一覧を見る
+        %section.mypage--tab__container
+          %h2.mypage--tab--head 購入した商品
+          %ul.mypage--tabs
+            %li.mypage--tabs__active
+              %h3.mypage--tabs__active__h3
+                =link_to "#", class: "mypage--tabs__active__h3__a" do
+                  取引中
+            %li.mypage--tabs__inactive
+              %h3.mypage--tabs__inactive__h3
+                =link_to "#", class: "mypage--tabs__inactive__h3__a" do
+                  過去の取引
+          .tab--content
+            %ul.mypage--item--list
+              %li.mypage--item--not--found
+                %figure.mypage--item--not--found__figure
+                  = image_tag 'mypage/logo_gray.svg', size: '100x100'
+                取引中の商品がありません

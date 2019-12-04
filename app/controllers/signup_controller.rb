@@ -47,7 +47,7 @@ class SignupController < ApplicationController
      birthday: session[:birthday],
      phone_number: '090XXXXXXXX'
    )
-   render '/signup/step2' unless @user.valid?
+   render '/signup/user_registration' unless @user.valid?
   end
 
   def validates_sms_confirmation
@@ -63,7 +63,7 @@ class SignupController < ApplicationController
       birthday: session[:birthday],
       phone_number: session[:phone_number]
      )
-     render '/signup/step3' unless @user.valid?
+     render '/signup/sms_confirmation' unless @user.valid?
   end
 
   def validates_address
@@ -94,8 +94,8 @@ class SignupController < ApplicationController
       town: session[:town],
       building: session[:building]
     )
-    render '/signup/step4' unless @user.valid?
-    render '/signup/step4' unless @address.valid?
+    # render '/signup/address' unless @user.valid?
+    render '/signup/address' unless @address.valid?
   end
 
   def create
@@ -126,7 +126,7 @@ class SignupController < ApplicationController
       redirect_to root_path(@user)
   
     else
-      render '/signup/step1'
+      render '/signup/social_choice'
     end
   end
 

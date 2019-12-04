@@ -30,3 +30,11 @@
   line-height: 48px;
   font-size: 14px;
 }
+
+@mixin social-media-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  line-height: 44px;
+  color: #fff;
+}
