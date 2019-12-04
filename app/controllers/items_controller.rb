@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @current_user.items.new(item_params)
+    @item = current_user.items.new(item_params)
     if @item.save
       unless image_params == {}
         @item.images.create(image_params)
