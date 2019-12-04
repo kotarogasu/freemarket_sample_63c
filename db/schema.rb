@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "city",          null: false
     t.string   "town",          null: false
     t.string   "building"
-    t.integer  "user_id"
+    t.integer  "user_id",       null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
   end
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",     null: false
+    t.integer  "user_id"
     t.string   "customer_id"
     t.string   "card_id"
     t.datetime "created_at",  null: false
@@ -65,19 +65,17 @@ ActiveRecord::Schema.define(version: 20191201023413) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                                      null: false
+    t.string   "name",                          null: false
     t.text     "item_text",       limit: 65535
-    t.integer  "price",                                     null: false
-    t.integer  "condition",                                 null: false
-    t.integer  "delivery_fee",                              null: false
-    t.integer  "delivery_method"
-    t.integer  "days",                                      null: false
-    t.integer  "prefecture_id",                             null: false
-    t.integer  "status",                        default: 1, null: false
-    t.integer  "size"
+    t.integer  "price",                         null: false
+    t.string   "condition",                     null: false
+    t.string   "delivery_fee",                  null: false
+    t.string   "delivery_method"
+    t.string   "days",                          null: false
+    t.string   "prefecture_id",                 null: false
     t.integer  "user_id"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "category_id"
     t.integer  "brand_id"
     t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
