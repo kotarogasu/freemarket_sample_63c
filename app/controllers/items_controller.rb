@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_current_user, except: :index
+  before_action :authenticate_user!, except: :index
   layout :false, only: :new
 
 

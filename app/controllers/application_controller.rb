@@ -21,9 +21,10 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def set_current_user
-    @current_user = User.find(session[:id])
-  end
+  # def set_current_user
+  #   binding.pry
+  #   @current_user = User.find(session[:id])
+  # end
   
 
 
