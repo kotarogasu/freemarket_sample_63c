@@ -8,6 +8,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = render 'signup/login-header'
     .product-exhibit
       %section.product-exhibit-main
         .sell-container
@@ -183,4 +184,6 @@
                   に同意したことになります。
               =f.submit '出品する', class: "btn-default btn-red"
               =f.submit '戻る', name: 'back', class: 'btn-default btn-gray'
+      = render 'signup/footer'
+
               
