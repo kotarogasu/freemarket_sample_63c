@@ -14,8 +14,9 @@
       %li
         %a いいね！一覧
         %i.fa.fa-chevron-right
-      %li 
-        %a 出品する
+      %li  
+        = link_to new_item_path, class:"side-bar__menu-link" do
+          出品する
         %i.fa.fa-chevron-right
       %li
         %a 出品した商品 - 出品中
