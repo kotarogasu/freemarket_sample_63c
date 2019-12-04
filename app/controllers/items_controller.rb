@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  before_action :set_current_user, except: :index
   layout :false, only: :new
 
 
@@ -37,7 +36,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = @current_user.items.new(item_params)
+    binding.pry
+    @item = current_user.items.new(item_params)
     if @item.save
       unless image_params == {}
         @item.images.create(image_params)

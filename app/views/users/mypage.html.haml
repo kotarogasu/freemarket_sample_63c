@@ -9,7 +9,7 @@
         %figure
           = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
         %h2.bold 
-          =@current_user.nickname
+          = current_user.nickname
         .user-info__user-rate
           %p.user-info__user-rate--review 評価
           %span 0
