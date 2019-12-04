@@ -46,8 +46,13 @@ class ItemsController < ApplicationController
     else   
       render :new, layout: false
     end
+  end
 
-
+  def show
+    @item = Item.find(params[:id])
+    @user = @item.user
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @brand = Brand.find(@item.brand_id)
   end
 
 
