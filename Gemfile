@@ -72,5 +72,7 @@ gem 'faker'
 gem 'gimei'
 gem 'pry-rails'
 gem 'active_hash'
+gem 'bcrypt'
+gem 'rails-i18n'
 gem "payjp"
 gem "gretel"
