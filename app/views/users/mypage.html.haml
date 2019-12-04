@@ -1,0 +1,70 @@
+
+.mypage-main-content
+  = render 'users/mypage-sidebar'
+
+  .right-content
+
+    %section.user-info
+      %a
+        %figure
+          = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
+        %h2.bold 
+          =@current_user.nickname
+        .user-info__user-rate
+          %p.user-info__user-rate--review 評価
+          %span 0
+          %p.user-info__user-rate--exhibit 出品数
+          %span 0
+
+
+
+    %section.mypage-tab-container-notification-todo
+
+      %ul.mypage-tabs
+        %li.mypage-tabs__active
+          %h3.mypage-tabs__active__h3
+            =link_to "#", class: "mypage-tabs__active__h3__a" do
+              お知らせ
+        %li.mypage-tabs__inactive
+          %h3.mypage-tabs__inactive__h3
+            =link_to "#", class: "mypage-tabs__inactive__h3__a" do
+              やることリスト
+
+              
+      .tab-content
+        %ul.mypage-item-ul
+          %li.mypage-item-ul__li
+            =link_to "#", class: "mypage-item-ul__li__a" do
+              %figure.mypage-item-ul__li__a__figure
+                = image_tag 'mypage/logo_red.svg', size: '45x45'
+              .mypage-item-body
+                .mypage-item-body__text 事務局から個別メッセージ「Googleログイン通知」
+                %time.mypage-item-body__time
+                  %i.far.fa-clock
+                  %span 2 時間前
+              %i.fa.fa-chevron-right
+          %li.mypage-go-list
+            =link_to "#", class: "go" do
+              一覧を見る
+      
+      
+      
+      
+        
+      %section.mypage-tab-container
+        %h2.mypage-tab-head 購入した商品
+        %ul.mypage-tabs
+          %li
+            %h3
+              =link_to "#", class: "mypage--tabs__active__h3__a" do
+                出品中
+          %li
+            %h3
+              =link_to "#", class: "mypage--tabs__inactive__h3__a" do
+                取引中
+        .tab-content
+          %ul.mypage-item-list
+            %li.mypage-item-not-found
+              %figure.mypage-item-not-found__figure
+                = image_tag 'mypage/logo_gray.svg', size: '100x100'
+              取引中の商品がありません
