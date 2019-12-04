@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
         :days,
         :price,
         :delivery_method
-      ).merge(user_id: current_user.id, status: 1)
+      ).merge(user_id: current_user.id)
     else 
       @brand = Brand.search(params[:brand_name])
       params.require(:item).permit(
@@ -83,7 +83,7 @@ class ItemsController < ApplicationController
         :days,
         :price,
         :delivery_method
-      ).merge(user_id: current_user.id, brand_id: @brand.id, status: 1)
+      ).merge(user_id: current_user.id, brand_id: @brand.id)
     end
   end
 
