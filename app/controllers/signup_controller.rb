@@ -1,7 +1,7 @@
 class SignupController < ApplicationController
-  before_action :validates_user_registration, only: :sms_confirmation # step2のバリデーション
-  before_action :validates_sms_confirmation, only: :address # step3のバリデーション
-  before_action :validates_address, only: :step5 # step4のバリデーション
+  before_action :validates_user_registration, only: :sms_confirmation # user_registrationのバリデーション
+  before_action :validates_sms_confirmation, only: :address # sms_confirmationのバリデーション
+  before_action :validates_address, only: :card_new # addressのバリデーション
 
   def social_choice
     @user = User.new
