@@ -1,5 +1,4 @@
 .done{
-  height: 100vh;
   width: 100vw;
   background-color: rgb(245,245,245);
   position: relative;
@@ -69,23 +68,25 @@
       }
       #ball-first{
         background-color: $red;
-        z-index: 10;
       }
       #ball-second{
         background-color: $red;
-        z-index: 10;
       }
       #ball-third{
         background-color: $red;
-        z-index: 10;
       }
-      #third__li{
+      #ball-fors{
+        background-color: $red;
+      }
+      #last__li{
         color: $red;
+      }
+      #end{
+        background-color: $red;
       }
     }
   }
   &-block{
-    height: 475px;
     width: 600px;
     margin: 0 auto;
     background-color: #ffffff;

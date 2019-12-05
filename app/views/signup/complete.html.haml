@@ -1,23 +1,23 @@
 %body.done
   %header.done-header
     = render "title"
-    .step4-progress
-      %ul.step4-progress-distance
-        %li.step4-progress-distance__li#first__li
+    .done-progress
+      %ul.done-progress-distance
+        %li.done-progress-distance__li#first__li
           会員情報
           .ball#ball-first
-        %li.step4-progress-distance__li#second__li
+        %li.done-progress-distance__li#second__li
           電話番号認証
           .ball#ball-second
-        %li.step4-progress-distance__li#third__li
+        %li.done-progress-distance__li#third__li
           お届け先住所入力
           .ball#ball-third
-        %li.step4-progress-distance__li
+        %li.done-progress-distance__li#fors__li
           支払い方法
-          .ball
-        %li.step4-progress-distance__li
+          .ball#ball-fors
+        %li.done-progress-distance__li#last__li
           完了
-          .ball-end
+          .ball-end#end
 
   = form_for @user, url: signup_index_path, method: :post, html: {class: 'first-main__box'} do |f|
     .done-block
@@ -33,7 +33,4 @@
             = f.submit "メルカリをはじめる", class: "done-block-main-submain-address" 
       .done-block-image
         = image_tag "top_page/eee.png", class: "done-block-image-img"
-        .done-block-image-btn
-          = link_to "", class: "apple_store" do
-            = image_tag "top_page/uu.png", class:"apple_store_image", width:"40px"
   = render 'footer'

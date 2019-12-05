@@ -17,10 +17,11 @@ class SignupController < ApplicationController
   end
 
   def address
-    @user = User.new
+    @user
     @address = Address.new
   end
 
+  
   def complete
     @user = User.new
     @address = Address.new
@@ -36,18 +37,20 @@ class SignupController < ApplicationController
    session[:last_name_kana] = user_params[:last_name_kana]
    session[:first_name_kana] = user_params[:first_name_kana]
    session[:birthday] = user_params[:birthday]
+   session[:agreement] = user_params[:agreement]
    @user = User.new(
      nickname: session[:nickname],
      email: session[:email],
      password: session[:password],
      last_name: session[:last_name],
-     first_name: session[:first_name], 
-     last_name_kana: session[:last_name_kana], 
-     first_name_kana: session[:first_name_kana], 
+     first_name: session[:first_name],
+     last_name_kana: session[:last_name_kana],
+     first_name_kana: session[:first_name_kana],
      birthday: session[:birthday],
-     phone_number: '090XXXXXXXX'
+     phone_number: '090XXXXXXXX',
+     agreement: session[:agreement]
    )
-   render '/signup/step2' unless @user.valid?
+   render '/signup/user_registration' unless @user.valid?
   end
 
   def validates_sms_confirmation
@@ -61,9 +64,11 @@ class SignupController < ApplicationController
       last_name_kana: session[:last_name_kana], 
       first_name_kana: session[:first_name_kana], 
       birthday: session[:birthday],
-      phone_number: session[:phone_number]
+      phone_number: session[:phone_number],
+      agreement: session[:agreement]
      )
-     render '/signup/step3' unless @user.valid?
+     render '/signup/sms_confirmation' unless @user.valid?
+
   end
 
   def validates_address
@@ -85,7 +90,8 @@ class SignupController < ApplicationController
       last_name_kana: session[:last_name_kana],
       first_name_kana: session[:first_name_kana],
       birthday: session[:birthday],
-      phone_number: session[:phone_number]
+      phone_number: session[:phone_number],
+      agreement: session[:agreement]
     )
     @address = Address.new(
       post_number: session[:post_number],
@@ -94,8 +100,7 @@ class SignupController < ApplicationController
       town: session[:town],
       building: session[:building]
     )
-    render '/signup/step4' unless @user.valid?
-    render '/signup/step4' unless @address.valid?
+    render '/signup/address' unless @address.valid? && @user.valid?
   end
 
   def create
@@ -108,7 +113,8 @@ class SignupController < ApplicationController
       last_name_kana: session[:last_name_kana],
       first_name_kana: session[:first_name_kana],
       birthday: session[:birthday],
-      phone_number: session[:phone_number]
+      phone_number: session[:phone_number],
+      agreement: session[:agreement]
     )
     @address = Address.new(
       post_number: session[:post_number],
@@ -124,9 +130,8 @@ class SignupController < ApplicationController
       @address.save
       sign_in(@user)
       redirect_to root_path(@user)
-  
     else
-      render '/signup/step1'
+      render '/signup/social_choice'
     end
   end
 
@@ -153,7 +158,8 @@ class SignupController < ApplicationController
         :last_name_kana,
         :first_name_kana,
         :birthday,
-        :phone_number
+        :phone_number,
+        :agreement
       )
     end
 
@@ -174,7 +180,11 @@ class SignupController < ApplicationController
         return
       end
 
-      params[:birthday] = Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
+        begin
+          params[:birthday] = Date.new date["birthday(1i)"].to_i,date["birthday(2i)"].to_i,date["birthday(3i)"].to_i
+        rescue
+          return false
+        end
     end
 
 end

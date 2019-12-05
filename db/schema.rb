@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "city",          null: false
     t.string   "town",          null: false
     t.string   "building"
-    t.integer  "user_id",       null: false
+    t.integer  "user_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "first_name_kana",                                   null: false
     t.string   "last_name_kana",                                    null: false
     t.date     "birthday",                                          null: false
+    t.boolean  "agreement"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "phone_number",                                      null: false
