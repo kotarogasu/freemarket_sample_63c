@@ -3,7 +3,7 @@
     = number_to_currency(@item.price, unit: "¥", precision:0)
   %span.item-tax (税込)
   %span.item-shipping-fee 送料込み
-  = link_to "#", class:"item-buy-btn" do
+  = link_to buy_user_path(@item), method: :post, class:"item-buy-btn" do
     購入画面に進む
 .item-description
   %p.item-description-inner

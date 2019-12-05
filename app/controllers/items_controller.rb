@@ -58,7 +58,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
     @user = @item.user
     @prefecture = Prefecture.find(@item.prefecture_id)
     @brand = Brand.find(@item.brand_id)

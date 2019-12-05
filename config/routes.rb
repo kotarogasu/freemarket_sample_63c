@@ -38,6 +38,10 @@ Rails.application.routes.draw do
       get :identification
       post :address
     end
+
+    member do
+      post :buy
+    end
   end
 
   resources :card, only: [:new, :show] do
