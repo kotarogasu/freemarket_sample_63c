@@ -186,7 +186,6 @@ $(function(){
     
     $(document).on('change','#category-select', function(){
       var parent_id = $(this).val();
-      console.log(parent_id)
       $.ajax({
         url: "/items/category_find",
         type: "GET",
