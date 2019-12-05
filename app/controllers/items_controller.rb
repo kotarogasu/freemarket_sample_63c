@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: :index
+  before_action :set_item, only: [:edit, :show, :show_user_item]
+
   layout :false, only: :new
 
 
@@ -48,16 +50,32 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+
+  end
+
   def show
-    @item = Item.find(params[:id])
+   
     @user = @item.user
     @prefecture = Prefecture.find(@item.prefecture_id)
     @brand = Brand.find(@item.brand_id)
   end
 
+  def show_user_item
+    @brand = @item.brand
+    @prefecture = Prefecture.find(@item.prefecture_id)
+    @user = current_user
+  end
 
   private
 
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
   def item_params
     if params[:brand_name] == ""
       params.require(:item).permit(

@@ -19,8 +19,9 @@
           出品する
         %i.fa.fa-chevron-right
       %li
-        %a 出品した商品 - 出品中
-        %i.fa.fa-chevron-right
+        = link_to listing_users_path, class:"side-bar__menu-link" do
+          出品した商品 - 出品中
+          %i.fa.fa-chevron-right
       %li
         %a 出品した商品 - 取引中
         %i.fa.fa-chevron-right
