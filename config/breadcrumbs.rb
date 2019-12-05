@@ -27,6 +27,11 @@ crumb :logout do
   parent :mypage
 end
 
+crumb :item do |item|
+  item = Item.find_by(id: params[:id])
+  link item.name
+  parent :root
+end
 
 # If you want to split your breadcrumbs configuration over multiple files, you
 # can create a folder named `config/breadcrumbs` and put your configuration
