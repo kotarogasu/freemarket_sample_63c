@@ -17,9 +17,9 @@ class UsersController < ApplicationController
 
   def listing
 
-    @items_on_sale = current_user.items.where(status: 1)
-    @items_on_transaction = current_user.items.where(status: 2)
-    @purchased_items = current_user.items.where(status: 3)
+    @items_on_sale = current_user.items(status: "出品中")
+    @items_on_transaction = current_user.items(status: "交渉中")
+    @purchased_items = current_user.items(status: "売却済み")
 
   end
 
