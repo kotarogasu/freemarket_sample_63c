@@ -1,7 +1,7 @@
 class SignupController < ApplicationController
   before_action :validates_user_registration, only: :sms_confirmation # step2のバリデーション
   before_action :validates_sms_confirmation, only: :address # step3のバリデーション
-  before_action :validates_address, only: :complete # step4のバリデーション
+  before_action :validates_address, only: :step5 # step4のバリデーション
 
   def social_choice
     @user = User.new
@@ -21,7 +21,7 @@ class SignupController < ApplicationController
     @address = Address.new
   end
 
-  def step5
+  def card_new
   end
 
   def card_create #payjpとCardのデータベース作成を実施します。
@@ -32,9 +32,9 @@ class SignupController < ApplicationController
       ) 
       @@card = Card.new(customer_id: customer.id, card_id: customer.default_card)
       if @@card.save
-        redirect_to action: "done"
+        redirect_to action: "complete"
       else
-        redirect_to action: "step5"
+        redirect_to action: "card_new"
       end
   end
   
