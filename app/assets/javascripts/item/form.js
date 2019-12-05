@@ -27,10 +27,6 @@ $(function(){
       $("#grandchild-wrap").hide();
       $("#delivery-method-wrap").hide();
   
-
-
-
-
     $(document).on('change','#category-select', function(){
       var parent_id = $(this).val();
       $.ajax({
@@ -137,11 +133,8 @@ $(function(){
       }else {
         $("#fee").empty();
         $("#profit").empty();
-      };
-  
-      
-    })
-  
+      };     
+    }) 
   }
   
   // 商品編集ページの場合
@@ -161,7 +154,6 @@ $(function(){
           appendChildOptions(child)
         })
       });
-
     })
 
     $(function(){
@@ -179,7 +171,6 @@ $(function(){
           appendGrandChildOptions(child)
         })
       });
-
     })
     
 
@@ -203,7 +194,6 @@ $(function(){
           appendChildOptions(child)
         })
       });
-
     });
 
     $(document).on('change', '#child-select', function(){
@@ -239,9 +229,7 @@ $(function(){
       }else {
         $("#fee").empty();
         $("#profit").empty();
-      };
-  
-      
+      };  
     })
 
     $(document).on('keyup', "#brand-select", function(){
@@ -266,7 +254,6 @@ $(function(){
       .fail(function(){
         return false;
       })
-
     });
 
     $(document).on('click', '.search_result', function(){
@@ -274,13 +261,5 @@ $(function(){
       $('#brand-select').val(brand_name);
       $("#brands-search-list").empty();
     });
-
-  }
-
-
-
-
-
-
-  
+  }  
 });
