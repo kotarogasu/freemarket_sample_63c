@@ -3,10 +3,10 @@
     %section.item-box-container
       %h1.item-name
         = @item.name
-      =render 'detail'
+      =render partial: 'detail', locals: {item: @item}
       .item-price-box
         %span.item-price 
-          = number_to_currency(@item.price, unit: "¥", precision:0)
+          = number_to_currency(@item.price, format: "%u%n", unit: "¥", precision:0)
         %span.item-tax (税込)
         %span.item-shipping-fee 送料込み
       .item-description

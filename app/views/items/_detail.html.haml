@@ -5,7 +5,7 @@
         .owl-stage
           .owl-item
             .owl-item-inner
-              = image_tag @item.images.first.image, class: 'owl-lazy'
+              = image_tag item.images.first.image, class: 'owl-lazy'
       .owl-nav.disabled
         .owl-prev prev
         .owl-next next
@@ -37,15 +37,16 @@
         %th カテゴリー
         %td
           = link_to "#" do
-            %div おもちゃ・ホビー・グッズ
+            %div 
+              =item.category.root.name
           = link_to "#" do
             .item-detail-table-sub-category
               %i.fa.fa-chevron-right
-              タレントグッズ
+              = item.category.parent.name
           = link_to "#" do
             .item-detail-table-sub-sub-category
               %i.fa.fa-chevron-right
-              アイドル
+              = item.category.name
       %tr
         %th ブランド
         %td
@@ -53,15 +54,15 @@
       %tr
         %th 商品の状態
         %td
-          = @item.condition
+          = item.condition
       %tr
         %th 配送料の負担
         %td 
-          = @item.delivery_fee
+          = item.delivery_fee
       %tr
         %th 配送の方法
         %td 
-          = @item.delivery_method
+          = item.delivery_method
       %tr
         %th 配送元地域
         %td
@@ -69,4 +70,4 @@
       %tr
         %th 発送日の目安
         %td 
-          = @item.days
+          = item.days

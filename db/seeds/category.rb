@@ -26,8 +26,6 @@ lady_grandchild_array =
   ['すべて','コスプレ','下着','その他']
 ]
 
-Category.create(name: '---')
-
 parent = Category.create(name: 'レディース')
 
 lady_child_array.each_with_index do |child_name, i|

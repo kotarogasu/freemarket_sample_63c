@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.integer  "prefecture_id",                             null: false
     t.integer  "status",                        default: 1, null: false
     t.integer  "size"
+    t.integer  "fee",                                       null: false
+    t.integer  "profit",                                    null: false
     t.integer  "user_id"
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
