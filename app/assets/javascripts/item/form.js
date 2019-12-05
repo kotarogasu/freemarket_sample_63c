@@ -5,7 +5,7 @@ $(function(){
     $('#child-select').append(child_option);
   }
   function appendGrandChildOptions(child){
-    var child_option =`<option value="${child.id}" class="child-option">${child.name}</option>`
+    var child_option =`<option value="${child.id}" class="grandchild-option">${child.name}</option>`
     $('#grandchild-select').append(child_option);
   }
 
@@ -26,7 +26,7 @@ $(function(){
       $("#child-wrap").hide();
       $("#grandchild-wrap").hide();
       $("#delivery-method-wrap").hide();
-  
+// 親カテゴリーが変わったら
     $(document).on('change','#category-select', function(){
       var parent_id = $(this).val();
       $.ajax({
@@ -48,7 +48,7 @@ $(function(){
       });
 
     });
-
+// 子カテゴリーが変わったら
     $(document).on('change', '#child-select', function(){
       var parent_id = $(this).val();
       $.ajax({
@@ -68,7 +68,7 @@ $(function(){
       });
 
     });
-
+// 孫カテゴリーが変わったら
     $(document).on('change', '#grandchild-select', function(){
       var child_id = $('#child-select').val();
       if (child_id < 380){
@@ -80,7 +80,7 @@ $(function(){
     });
 
 
-
+// ブランドフォームに入力したら
     $(document).on('keyup', "#brand-select", function(){
       let input = $(this).val();
       $.ajax({
@@ -95,9 +95,8 @@ $(function(){
           brands.forEach(function(brand){
             searchBrand(brand);
           });
-        }else if (input.length == 0) {
-          return false;
         }else {
+          return false;
         }
       })
       .fail(function(){
@@ -105,7 +104,7 @@ $(function(){
       })
 
     });
-
+// 検索結果を押したら
     $(document).on('click', '.search_result', function(){
       let brand_name = $(this).data("name");
       $('#brand-select').val(brand_name);
@@ -139,6 +138,8 @@ $(function(){
   
   // 商品編集ページの場合
   else{
+
+//ロードして即
     $(function(){
       parent_id = $('#category-select').val();
       $.ajax({
@@ -150,12 +151,15 @@ $(function(){
         }
       })
       .done(function(children){
+        $('.child-option').remove();
         children.forEach(function(child){
           appendChildOptions(child)
         })
       });
     })
 
+
+ // ロードして即 
     $(function(){
       parent_id = $('#child-select').val();
       $.ajax({
@@ -167,6 +171,7 @@ $(function(){
         }
       })
       .done(function(children){
+        $('.grandchild-option').remove();
         children.forEach(function(child){
           appendGrandChildOptions(child)
         })
@@ -186,8 +191,8 @@ $(function(){
         }
       })
       .done(function(children){
-        $("#child-wrap").show();
         $('.child-option').remove();
+        $('#child-select').append(`<option value="" class="child-option">---</option>`)
         $("#grandchild-wrap").hide();
         $('.grandchild-option').remove();
         children.forEach(function(child){
@@ -209,6 +214,7 @@ $(function(){
       .done(function(children){
         $("#grandchild-wrap").show();
         $('.grandchild-option').remove();
+        $('#grandchild-select').append(`<option value="" class="child-option">---</option>`)
         children.forEach(function(child){
           appendGrandChildOptions(child)
         })
@@ -246,9 +252,8 @@ $(function(){
           brands.forEach(function(brand){
             searchBrand(brand);
           });
-        }else if (input.length == 0) {
+        }else{
           return false;
-        }else {
         }
       })
       .fail(function(){
