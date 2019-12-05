@@ -8,6 +8,7 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = render 'signup/login-header'
     .product-exhibit
       %section.product-exhibit-main
         .sell-container
@@ -16,7 +17,7 @@
             .sell-container__upload-box.clearfix
               %h3.sell-container__upload-box-head
                 出品画像
-                %span.form-require 必須
+                %span 必須
               %p 最大10枚までアップロードできます
               .sell-container__upload-drop-box
                 =f.label :image, class: "sell-container__upload-drop-box__items-container" do
@@ -29,31 +30,71 @@
               .form-group
                 =f.label :name do
                   商品名
-                  %span.form-require 必須
+                  %span 必須
                 =f.text_field :name, class: "input-default", placeholder: "商品名（必須 40文字まで)", value: ""
+              - if @item.errors[:name].any?
+                %ul.error-text
+                  - @item.errors[:name].each do |message|
+                    %li= message
               .form-group
                 =f.label :item_text do
                   商品の説明
-                  %span.form-require 必須
+                  %span 必須
                 =f.text_area :item_text, class: "textarea-default", placeholder: "商品の説明（必須 1,000文字以内）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", rows: 5, value: ""
+              - if @item.errors[:item_text].any?
+                %ul.error-text
+                  - @item.errors[:item_text].each do |message|
+                    %li= message
             .sell-content.clearfix
               %h3.sell-sub-head 商品の詳細
               .sell-form-box
                 .form-group
                   =f.label :category_id do
                     カテゴリー
-                    %span.form-require 必須
-                  %div
+                    %span 必須
+                  .select-wraps
                     .select-wrap
                       %i.fas.fa-chevron-down
-                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default"
+                      = f.collection_select :category_id, Category.where(ancestry: nil), :id, :name, {}, class: "select-default", id: "category-select" do
+                        %option{value: ''} ---
+                    - if @item.errors[:category_id].any?
+                      %ul.error-text
+                        - @item.errors[:category_id].each do |message|
+                          %li= message
+                    .select-wrap#child-wrap
+                      %i.fas.fa-chevron-down
+                      =f.select :category_id, {}, {}, class: "select-default", id: "child-select" do
+                        %option{value: ''} ---
+                      - if @item.errors[:category_id].any?
+                        %ul.error-text
+                          - @item.errors[:category_id].each do |message|
+                            %li= message
+                    .select-wrap#grandchild-wrap
+                      %i.fas.fa-chevron-down
+                      =f.select :category_id, {}, {}, class: "select-default", id: "grandchild-select" do
+                        %option{value: ''} ---
+                      - if @item.errors[:category_id].any?
+                        %ul.error-text
+                          - @item.errors[:category_id].each do |message|
+                            %li= message
+                .form-group#brand-wrap
+                  %label{for: "brand_name"}
+                    ブランド
+                    %span.gray 任意
+                  .select-wrap
+                    %input{name: "brand_name", id: "brand-select", class: "select-default", placeholder: "例）シャネル"}
+                    %ul{id: 'brands-search-list'}
                 .form-group
                   =f.label :condition do
                     商品の状態
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    = f.select :condition, Item.conditions.keys,{}, class: "select-default"
+                    = f.select :condition, Item.conditions.keys,{prompt: '---'}, class: "select-default"
+                - if @item.errors[:condition].any?
+                  %ul.error-text
+                    - @item.errors[:condition].each do |message|
+                      %li= message
             .sell-content.clearfix
               %h3.sell-sub-head 配送について
               = link_to "?", 'https://www.mercari.com/jp/help_center/article/68/', class:"round-icon" 
@@ -61,45 +102,71 @@
                 .form-group
                   =f.label :delivery_fee do
                     配送料の負担
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :delivery_fee, Item.delivery_fees.keys,{}, class: "select-default"
+                    =f.select :delivery_fee, Item.delivery_fees.keys,{prompt: '---'}, class: "select-default", id: "condition-select"
+                  - if @item.errors[:delivery_fee].any?
+                    %ul.error-text
+                      - @item.errors[:delivery_fee].each do |message|
+                        %li= message
+                .form-group#delivery-method-wrap
+                  =f.label :delivery_method do
+                    配送の方法
+                    %span 必須
+                  .select-wrap
+                    %i.fas.fa-chevron-down
+                    =f.select :delivery_method, Item.delivery_methods.keys,{prompt: '---'}, class: "select-default"
+                  - if @item.errors[:delivery_method].any?
+                    %ul.error-text
+                      - @item.errors[:delivery_method].each do |message|
+                        %li= message
                 .form-group
                   =f.label :prefecture_id do
                     発送元の地域
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
                     =f.collection_select :prefecture_id, Prefecture.all, :id, :name, {}, class: "select-default"
-                  
+                  - if @item.errors[:prefecture_id].any?
+                    %ul.error-text
+                      - @item.errors[:prefecture_id].each do |message|
+                        %li= message
                 .form-group
                   =f.label :days do
                     発送までの日数
-                    %span.form-require 必須
+                    %span 必須
                   .select-wrap
                     %i.fas.fa-chevron-down
-                    =f.select :days, Item.days.keys,{}, class: "select-default"
+                    =f.select :days, Item.days.keys,{prompt: '---'}, class: "select-default"
+                  - if @item.errors[:days].any?
+                    %ul.error-text
+                      - @item.errors[:days].each do |message|
+                        %li= message
             .sell-content.clearfix
               %h3.sell-sub-head 販売価格(300〜9,999,999)
               = link_to "?", 'https://www.mercari.com/jp/help_center/article/64/', class:"round-icon" 
               .sell-form-box
                 %ul.sell-price
-                  %li.sell-price-group
+                  %li.form-group
                     .clearfix
                       =f.label :price, class: "l-left" do 
                         価格
-                        %span.form-require 必須
+                        %span 必須
                       .l-right.sell-price-input
                         ¥
                         %div
-                          =f.text_field :price, class: "input-default", placeholder: "例）300", value: ""
+                          =f.text_field :price, class: "input-default", placeholder: "例）300", value: "", id: "price-input" 
+                  - if @item.errors[:price].any?  
+                    %ul.error-text
+                      - @item.errors[:price].each do |message|
+                        %li= message
                   %li.clearfix
                     .l-left 販売手数料 (10%)
-                    .l-right -
+                    .l-right#fee -
                   %li.clearfix.bold
                     .l-left 販売利益
-                    .l-right -
+                    .l-right#profit -
             .sell-content__sell-btn-box
               %div
                 %p
@@ -117,4 +184,6 @@
                   に同意したことになります。
               =f.submit '出品する', class: "btn-default btn-red"
               =f.submit '戻る', name: 'back', class: 'btn-default btn-gray'
+      = render 'signup/footer'
+
               

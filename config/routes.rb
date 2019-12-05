@@ -4,29 +4,39 @@ Rails.application.routes.draw do
 
   resources :signup do
     collection do
-      get 'step1'
-      get 'step2'
-      get 'step3'
-      get 'step4'
+      get 'social_choice'
+      get 'user_registration'
+      get 'sms_confirmation'
+      get 'address'
       get 'step5' # ここで、入力の全てが終了する
       post 'card_create', to: 'signup#card_create'
-      get 'done'
+      get 'complete'
       get 'logout'
     end
   end
 
   delete '/logout', to: 'signup#destroy'
 
-  resources :items, only: [:new, :create]
+  resources :items, only: [:index, :new, :show, :create] do
+
+    collection do
+      get :category_find
+      get :brand_find
+    end
+  end
+
 
   resources :users, only: [:show, :create] do
     collection do
+      get :mypage
       get :profile
+      get :listing
       get :credit
       get :identification
       post :address
     end
   end
+
   resources :card, only: [:new, :show] do
     collection do
       post 'show', to: 'card#show'

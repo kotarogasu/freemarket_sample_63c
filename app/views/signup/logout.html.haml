@@ -1,9 +1,18 @@
+= render partial: "layouts/header"
+= render partial: "layouts/camera"
+- breadcrumb :logout
+= render "layouts/breadcrumbs"  
+
 .wrapper
   .mypage-main-content
-    = render 'users/show-sidebar'
+    = render 'users/mypage-sidebar'
     .l-content
       .l-chapter-container
         %form.l-single-inner{action: "#", method: "POST", novalidate: "novalidate"}
           .l-single-content
             =link_to "ログアウト", logout_path, method: :delete, class: 'btn-default btn-red' 
             %input{name: "__csrf_value", type: "hidden", value: ""}/
+
+.app-banner
+  =image_tag "top_page/eee.png" 
+= render partial: "layouts/footer"

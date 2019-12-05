@@ -1,6 +1,9 @@
+- breadcrumb :identification
+= render "layouts/breadcrumbs"
+
 .wrapper
   .mypage-main-content
-    = render 'users/show-sidebar'
+    = render 'users/mypage-sidebar'
 
     .l-content
       %section.l-chapter-container
@@ -18,16 +21,16 @@
           .form-group
             %label お名前
             %p 
-            = @current_user.first_name + @current_user.last_name
+            = current_user.first_name + current_user.last_name
           .form-group
             %label お名前カナ
             %p 
-            =@current_user.first_name_kana  + @current_user.last_name_kana
+            =current_user.first_name_kana  + current_user.last_name_kana
           .form-group
             =f.label :birthday do
               生年月日
             %p 
-            = @current_user.birthday.to_s
+            = current_user.birthday.to_s
           .form-group
             =f.label :post_number do
               郵便番号

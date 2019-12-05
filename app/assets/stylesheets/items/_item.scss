@@ -7,6 +7,11 @@
 
   .category-items-box{
     height: 455px;
+    margin-top: 60px;
+
+    &:first-child{
+      margin: 0;
+    }
 
     &__header{
       display: flex;
@@ -15,7 +20,9 @@
       margin-bottom: 16px;
       
 
-      &__title h3{
+      &__title a{
+        text-decoration: none;
+        color: black;
         font-weight: bold;
         font-size: 24px;
         font-family: Arial, 游ゴシック体, YuGothic, メイリオ, Meiryo, sans-serif;

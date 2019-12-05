@@ -7,5 +7,7 @@
     first_name_kana: Gimei.first.hiragana, 
     last_name_kana: Gimei.last.hiragana, 
     birthday: Faker::Date.birthday(min_age = 18, max_age = 65), 
-    password: "password")
+    password: "password",
+    phone_number: "08000000000"
+  )
 end
