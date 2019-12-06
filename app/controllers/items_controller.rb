@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_item, only: [:edit, :update, :show, :show_user_item]
-
-  layout :false, only: :new
+  before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy]
 
 
   def index 
@@ -35,21 +33,21 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @image = Image.new
     render layout: false
   end
 
   def create
     @item = current_user.items.new(item_params)
-    @item.set_fee_profit
-    if @item.save
-      unless image_params == {}
-        @item.images.create(image_params)
-      end
+    @item.set_fee_profit unless @item.price == nil
+    @image = @item.images.new(image_params)
+    if @item.save && @image.save
       redirect_to root_path
     else   
       render :new, layout: false
     end
   end
+ 
 
   def edit
     render layout: false
@@ -78,6 +76,11 @@ class ItemsController < ApplicationController
     @brand = @item.brand
     @prefecture = Prefecture.find(@item.prefecture_id)
     @user = current_user
+  end
+
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
