@@ -11,7 +11,11 @@
         %pre.visible-pc 
           :preserve
             ドラッグアンドドロップ
-            またはクリックしてファイルファイルをアップロード                
+            またはクリックしてファイルファイルをアップロード        
+    - if @image.errors[:image].any?
+      %ul.error-text
+        - @image.errors[:image].each do |message|
+          %li= message         
   .sell-content
     .form-group
       =f.label :name do
@@ -38,7 +42,7 @@
         =f.label :category_id do
           カテゴリー
           %span 必須
-        .select-wraps
+        #category-wraps
           .select-wrap
             %i.fas.fa-chevron-down
             = f.collection_select :category_id, Category.roots, :id, :name, {prompt: '---'}, class: "select-default", id: "category-select" 
@@ -60,7 +64,7 @@
             %i.fas.fa-chevron-down
             =f.select :category_id, {}, {prompt: "---"}, class: "select-default", id: "grandchild-select" do
               - if item.category.present?
-                %option{value: "#{item.category.id}", class: "child-option"}
+                %option{value: "#{item.category.id}", class: "grandchild-option"}
                   =item.category.name
             - if item.errors[:category_id].any?
               %ul.error-text
