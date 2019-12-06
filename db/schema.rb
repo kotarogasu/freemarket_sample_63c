@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "first_name_kana",                                   null: false
     t.string   "last_name_kana",                                    null: false
     t.date     "birthday",                                          null: false
+    t.boolean  "agreement"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "phone_number",                                      null: false

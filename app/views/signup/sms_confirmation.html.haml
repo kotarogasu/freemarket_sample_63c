@@ -30,6 +30,10 @@
               携帯電話の番号
           .step3-block-main-submain-texts
             = f.phone_field :phone_number, class:'step3-block-main-submain-texts-text', autofocus: true, placeholder: "携帯電話の番号を入力"
+          - if @user.errors[:phone_number].any?
+            %ul.error-text
+              - @user.errors[:phone_number].each do |message|
+                %li= message
           .step3-block-main-submain-confirmation__details
             本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
           .step3-block-main-submain-next

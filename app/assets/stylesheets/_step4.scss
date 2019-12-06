@@ -1,5 +1,4 @@
 .step4{
-  height: 205vh;
   width: 100vw;
   background-color: rgb(245,245,245);
   position: relative;
@@ -85,7 +84,6 @@
     }
   }
   &-block{
-    height: 1250px;
     width: 700px;
     margin: 0 auto;
     background-color: #ffffff;
@@ -99,7 +97,6 @@
       font-family: sans-serif;
     }
     &-main{
-      height: 400px;
       padding: 0 40px 60px 20px;
       &-submain{
         margin: 0 auto;
