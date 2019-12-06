@@ -12,6 +12,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :brand
   has_many :images
+  has_one :prefecture
   
 
 
@@ -48,9 +49,21 @@ class Item < ApplicationRecord
 
   }, _suffix: true
 
+  enum status: {
+
+    出品中:1,
+    交渉中:2,
+    売却済み:3,
+  }
+
+
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
 
+  def set_fee_profit
+    self.fee = self.price * 0.1
+    self.profit = self.price * 0.9
+  end
 
   def self.range(categories)
     start_id = categories.first.id

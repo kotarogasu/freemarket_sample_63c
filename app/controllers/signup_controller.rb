@@ -67,7 +67,6 @@ class SignupController < ApplicationController
       agreement: session[:agreement]
      )
      render '/signup/sms_confirmation' unless @user.valid?
-
   end
 
   def validates_address

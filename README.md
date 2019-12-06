@@ -174,6 +174,9 @@ Things you may want to cover:
 |days|string|null: false <!-- 発送目安 -->
 |price|string|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
+|status|integer|default: 1 <!-- 出品中かどうかなど -->
+|fee|integer|null: false <!-- 販売手数料 -->
+|profit|integer|null: false <!-- 販売利益 -->
 ### Association
 - has_many :images dependent: :destroy
 - has_many :item_likes dependent: :destroy

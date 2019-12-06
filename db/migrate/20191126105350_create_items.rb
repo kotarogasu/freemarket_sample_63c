@@ -9,6 +9,10 @@ class CreateItems < ActiveRecord::Migration[5.0]
       t.integer :delivery_method
       t.integer :days, null: false
       t.integer :prefecture_id, null: false
+      t.integer :status, null: false, default: 1
+      t.integer :size
+      t.integer :fee, null: false
+      t.integer :profit, null: false
       t.references :user, foreign_key: true
       t.timestamps
     end
