@@ -1,5 +1,8 @@
+- breadcrumb :card
+= render "layouts/breadcrumbs"
+
 .main-contents
-  = render 'users/show-sidebar'
+  = render 'users/mypage-sidebar'
   = render 'credit-box'
   .credit-content__index__add
     = link_to mypage_new_card_index_path, class: "credit-content__index__add-btn", data: {"turbolinks" => false} do

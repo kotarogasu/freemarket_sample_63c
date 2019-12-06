@@ -220,6 +220,7 @@
         }
         .btn-default.btn-red {
           @include register-btn-red;
+          margin: 40px 0 0;
         }
         .btn-default.btn-gray {
           width: 45%;
