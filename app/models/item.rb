@@ -52,14 +52,18 @@ class Item < ApplicationRecord
   enum status: {
 
     出品中:1,
-    取引中:2,
-    売り切れ:3,
+    交渉中:2,
+    売却済み:3,
   }
 
 
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
 
+  def set_fee_profit
+    self.fee = self.price * 0.1
+    self.profit = self.price * 0.9
+  end
 
   def self.range(categories)
     start_id = categories.first.id

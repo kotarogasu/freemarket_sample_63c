@@ -1,0 +1,12 @@
+
+.item-detail-message
+  .message-container
+    .message-content
+      %form.message-form{action: "url", method: "POST"}
+        %input{name: "__csrf_value", type: "hidden", value: ""}/
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %input{name: "item_id", type: "hidden", value: ""}/
+        %input{name: "redirect_url_key", type: "hidden", value: "item_detail"}/
+        %textarea.textarea-default{name: "body", type: "text", value: ""}
+        %button.btn-default.btn-gray{type: "submit"}
+          %span コメントする
