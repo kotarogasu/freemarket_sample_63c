@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'user_registration'
       get 'sms_confirmation'
       get 'address'
-      # get 'step5' # ここで、入力の全てが終了する
+      get 'card_new' # ここで、入力の全てが終了する
+      post 'card_create', to: 'signup#card_create'
       get 'complete'
       get 'logout'
     end

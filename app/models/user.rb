@@ -28,4 +28,5 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :address
   has_many :items, dependent: :destroy
   has_one :address, dependent: :destroy
+  has_one :cards,dependent: :destroy
 end
