@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
  
 
   def edit
+    @image = @item.images.first
     render layout: false
   end
 
