@@ -41,6 +41,7 @@ Rails.application.routes.draw do
 
     member do
       post :buy
+      get :buy_complete
     end
   end
 

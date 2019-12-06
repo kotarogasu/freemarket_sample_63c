@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %link{href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", rel: "stylesheet"}/
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title FreemarketSample63c
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render 'signup/login-header'
+    .l-buy-item-container
+      .transact-attention
+        %h3
+          %i.far.fa-clock
+          %span 発送をお待ちください
+        %p 出品者からの発送通知をお待ちください
+      %h2.l-single-head 購入が完了しました
+      %form
+        =link_to "マイページへ戻る", mypage_users_path
+    = render 'signup/footer'
+  
