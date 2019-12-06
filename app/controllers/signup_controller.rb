@@ -17,7 +17,6 @@ class SignupController < ApplicationController
   end
 
   def address
-    @user
     @address = Address.new
   end
 
