@@ -1,0 +1,12 @@
+
+%section.item-box-container
+  %h1.item-name
+    = @item.name
+  =render partial: 'detail', locals: {item: @item}
+  =render 'item-price'
+=render 'item-detail-message'
+=render 'prev-next'
+=render 'social-media-box'
+- breadcrumb :item
+= render "layouts/breadcrumbs"
+

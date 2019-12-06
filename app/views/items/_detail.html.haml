@@ -1,0 +1,73 @@
+.item-main-content.clearfix
+  .item-photo
+    .owl-carousel__loaded__drag
+      .owl-stage-outer
+        .owl-stage
+          .owl-item
+            .owl-item-inner
+              = image_tag item.images.first.image, class: 'owl-lazy'
+      .owl-nav.disabled
+        .owl-prev prev
+        .owl-next next
+      .owl-dots.disabled
+        .owl-dot
+          %span
+  %section.visible-sp
+    .item-btn-float-area
+    = link_to "#", class:"item-buy-btn" do
+      購入画面に進む
+  %table.item-detail-table
+    %tbody
+      %tr
+        %th 出品者
+        %td
+          %a
+            = @user.nickname
+          %div
+            .item-user-ratings
+              %i.fas.fa-grin
+              %span 3
+            .item-user-ratings
+              %i.fas.fa-meh
+              %span 1
+            .item-user-ratings
+              %i.fas.fa-frown
+              %span 0
+      %tr
+        %th カテゴリー
+        %td
+          = link_to "#" do
+            %div 
+              =item.category.root.name
+          = link_to "#" do
+            .item-detail-table-sub-category
+              %i.fa.fa-chevron-right
+              = item.category.parent.name
+          = link_to "#" do
+            .item-detail-table-sub-sub-category
+              %i.fa.fa-chevron-right
+              = item.category.name
+      %tr
+        %th ブランド
+        %td
+          = @brand.name
+      %tr
+        %th 商品の状態
+        %td
+          = item.condition
+      %tr
+        %th 配送料の負担
+        %td 
+          = item.delivery_fee
+      %tr
+        %th 配送の方法
+        %td 
+          = item.delivery_method
+      %tr
+        %th 配送元地域
+        %td
+          = @prefecture.name
+      %tr
+        %th 発送日の目安
+        %td 
+          = item.days
