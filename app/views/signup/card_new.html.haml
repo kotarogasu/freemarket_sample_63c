@@ -21,6 +21,6 @@
           %li.step4-progress-distance__li
             完了
             .ball-end
-    = form_tag(card_create_signup_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+    = form_tag(card_create_signup_index_path, method: :get, id: 'charge-form',  name: "inputForm") do
       = render "card/card-index" 
       = render 'footer'           

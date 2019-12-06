@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'sms_confirmation'
       get 'address'
       get 'card_new' # ここで、入力の全てが終了する
-      post 'card_create', to: 'signup#card_create'
+      get 'card_create', to: 'signup#card_create'
       get 'complete'
       get 'logout'
     end
