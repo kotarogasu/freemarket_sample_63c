@@ -1,19 +1,33 @@
 
 =form_for item do |f|
   .sell-container__upload-box.clearfix
-    %h3.sell-container__upload-box-head
+    %h3.sell-container__upload-box__header
       出品画像
       %span 必須
     %p 最大10枚までアップロードできます
+    .image-container
     .sell-container__upload-drop-box
-      =f.label :image, class: "sell-container__upload-drop-box__items-container" do
-        =f.file_field :image, class: "sell-container__upload-drop-box__have-item hidden"
+      -# - (0..10).each do
+      -#   %label.sell-container__upload-drop-box__label
+      -#     =f.file_field :image, class: "item-image-form hidden"
+      -#     %pre.visible-pc 
+      -#       :preserve
+      -#         ドラッグアンドドロップ
+      -#         またはクリックしてファイルファイルをアップロード          
+      %label.sell-container__upload-drop-box__label
+        =f.file_field :images, multiple: true, class: "item-image-form hidden"
         %pre.visible-pc 
           :preserve
             ドラッグアンドドロップ
-            またはクリックしてファイルファイルをアップロード        
+            またはクリックしてファイルファイルをアップロード          
+      %label.sell-container__upload-drop-box__label
+        =f.file_field :images, multiple: true, class: "item-image-form hidden"
+        %pre.visible-pc 
+          :preserve
+            ドラッグアンドドロップ
+            またはクリックしてファイルファイルをアップロード          
     - if @image.errors[:image].any?
-      %ul.error-text
+      %ul.error-text--image
         - @image.errors[:image].each do |message|
           %li= message         
   .sell-content
