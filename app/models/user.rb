@@ -22,25 +22,11 @@ class User < ApplicationRecord
         # step3入力項目
     validates :phone_number,            presence: {message: "会員登録できません"}, length: {minimum: 10, maximum: 11}
 
-    def self.from_omniauth(access_token)
-        binding.pry
-        data = access_token.info
-        user = User.where(email: data['email']).first
-        # binding.pry
-        # Uncomment the section below if you want users to be created if they don't exist
-        # unless user
-        #     user = User.create(
-        #       nickname: data['name'],
-        #       email: data['email'],
-        #       password: Devise.friendly_token[0,20],
-        #       first_name: data['first_name'],
-        #       last_name: data['last_name'],
-        #       birthday: data['birthday'],
-        #       phone_number: data['phone_number']
-        #     )
-        #     binding.pry
-        # end
-        user
+    def self.from_omniauth(auth)
+      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0,20]
+      end
     end
 
   has_many :authorizations

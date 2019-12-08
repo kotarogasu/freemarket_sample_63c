@@ -8,7 +8,6 @@ class SignupController < ApplicationController
   end
 
   def user_registration
-    binding.pry
     @user = User.new
   end
 
@@ -104,20 +103,50 @@ class SignupController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      last_name: session[:last_name],
-      first_name: session[:first_name],
-      last_name_kana: session[:last_name_kana],
-      first_name_kana: session[:first_name_kana],
-      birthday: session[:birthday],
-      phone_number: session[:phone_number],
-      agreement: session[:agreement],
-      uid: session["devise.#{provider}_data"][:uid],
-      provider:session["devise.#{provider}_data"][:provider]
-    )
+    if not session["devise.google_data"].blank?
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: session[:phone_number],
+        agreement: session[:agreement],
+        uid: session["devise.google_data"]['uid'],
+        provider: session["devise.google_data"]['provider']
+        )
+    elsif not session["devise.facebook_data"].blank?
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: session[:phone_number],
+        agreement: session[:agreement],
+        uid: session["devise.facebook_data"]['uid'],
+        provider: session["devise.facebook_data"]['provider']
+        )
+    else
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: session[:phone_number],
+        agreement: session[:agreement]
+        )
+    end
     @address = Address.new(
       post_number: session[:post_number],
       prefecture_id: session[:prefecture_id],
@@ -127,9 +156,10 @@ class SignupController < ApplicationController
     )
 
     if @user.save
-      session[:user_id] = @user.id
       @address[:user_id] = @user.id
       @address.save
+      reset_session
+      session[:user_id] = @user.id
       sign_in(@user)
       redirect_to root_path(@user)
     else

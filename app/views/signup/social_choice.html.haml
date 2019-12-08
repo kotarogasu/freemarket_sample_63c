@@ -15,7 +15,7 @@
         =link_to user_facebook_omniauth_authorize_path, method: :post, class: "step1-block-facebook" do
           %i.fab.fa-facebook-square
           Facebookで登録する
-        =link_to "", method: :post, class: "step1-block-google", style:"" do
+        =link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "step1-block-google", style:"" do
           = image_tag "mypage/281764.png", class:"logo_google", width:"20px"
           Googleで登録する
   = render 'footer'
