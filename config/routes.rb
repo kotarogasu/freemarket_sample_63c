@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'items#index'
 
   resources :signup do
@@ -10,10 +10,14 @@ Rails.application.routes.draw do
       get 'address'
       # get 'step5' # ここで、入力の全てが終了する
       get 'complete'
+      get 'auth/:provider/callback', to: 'sessions#create'
       get 'logout'
     end
   end
-
+# 　# ログアウト用
+# devise_scope :user do
+#   delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
+# end
   delete '/logout', to: 'signup#destroy'
 
   resources :items, only: [:index, :new, :show, :create, :edit, :update] do

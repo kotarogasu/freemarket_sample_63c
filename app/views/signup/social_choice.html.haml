@@ -12,7 +12,7 @@
         =link_to user_registration_signup_index_path, class: "step1-block-address" do
           %i.far.fa-envelope
           メールアドレスで登録する
-        =link_to "", method: :post, class: "step1-block-facebook" do
+        =link_to user_facebook_omniauth_authorize_path, method: :post, class: "step1-block-facebook" do
           %i.fab.fa-facebook-square
           Facebookで登録する
         =link_to "", method: :post, class: "step1-block-google", style:"" do

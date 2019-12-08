@@ -8,6 +8,7 @@ class SignupController < ApplicationController
   end
 
   def user_registration
+    binding.pry
     @user = User.new
   end
 
@@ -67,6 +68,7 @@ class SignupController < ApplicationController
       agreement: session[:agreement]
      )
      render '/signup/sms_confirmation' unless @user.valid?
+
   end
 
   def validates_address
@@ -112,7 +114,9 @@ class SignupController < ApplicationController
       first_name_kana: session[:first_name_kana],
       birthday: session[:birthday],
       phone_number: session[:phone_number],
-      agreement: session[:agreement]
+      agreement: session[:agreement],
+      uid: session["devise.#{provider}_data"][:uid],
+      provider:session["devise.#{provider}_data"][:provider]
     )
     @address = Address.new(
       post_number: session[:post_number],
