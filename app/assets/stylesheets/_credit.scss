@@ -73,6 +73,9 @@
           padding-right: 50px;
           border: 1px solid #ea352d;
           transition: all ease-out .3s;
+          :hover{
+            opacity: 0.5; 
+          }
         }
         &__add-btn{
           color: #fff;
