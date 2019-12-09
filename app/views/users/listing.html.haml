@@ -1,24 +1,28 @@
+- breadcrumb :listing_users
+= render "layouts/breadcrumbs"
+
 .mypage-main-content
   = render 'users/mypage-sidebar'
 
   .right-content
     %section.mypage-tab-container
       %h2.mypage-tab-head 出品した商品
-      %ul.listing-tabs
-        %li
+      %ul.mypage-tabs.mypage-tabs--listing
+        %li.active
           %h3.mypage-tabs__active__h3
+            =link_to "#" do
+              出品中
+        %li
+          %h3.mypage-tabs__inactive__h3
             =link_to "#" do
               取引中
         %li
           %h3.mypage-tabs__inactive__h3
             =link_to "#" do
-              交渉中
-        %li
-          %h3.mypage-tabs__inactive__h3
-            =link_to "#" do
               売却済み
-      .tab-content
-        %ul.mypage-item-list
+
+      .mypage-content
+        %ul.listing-item.active
           - if @items_on_sale.present?
             -@items_on_sale.each do |item|
               %li
@@ -37,10 +41,65 @@
                         0
                       .item-status-icon.awating
                         =item.status
-                  %i.fas.fa-chevron-right.icon-arrow-right
+                  %i.fa.fa-chevron-right
 
           - else
-            %li.mypage-item-not-found
+            %li.listing-item-not-found
+              %figure.mypage-item-not-found__figure
+                = image_tag 'mypage/logo_gray.svg', size: '100x100'
+              出品中の商品がありません
+
+        %ul.listing-item
+          -if @items_on_transaction.present?
+            -@items_on_transaction.each do |item|
+              %li
+                =link_to show_user_item_item_path(item), class: "mypage-item-link" do
+                  %figure
+                    =image_tag item.images.first.image
+                  .mypage-item-link__body
+                    .mypage-item-link__body__text
+                      =item.name
+                    %div
+                      %span.listing-item-count
+                        %i.fas.fa-heart
+                        0
+                      %span.listing-item-count
+                        %i.fas.fa-comment-alt
+                        0
+                      .item-status-icon.awating
+                        =item.status
+                  %i.fa.fa-chevron-right
+          -else
+            %li.listing-item-not-found
               %figure.mypage-item-not-found__figure
                 = image_tag 'mypage/logo_gray.svg', size: '100x100'
               取引中の商品がありません
+
+        %ul.listing-item
+          - if @purchased_items.present?
+            -@purchased_items.each do |item|
+              %li
+                =link_to show_user_item_item_path(item), class: "mypage-item-link" do
+                  %figure
+                    =image_tag item.images.first.image
+                  .mypage-item-link__body
+                    .mypage-item-link__body__text
+                      =item.name
+                    %div
+                      %span.listing-item-count
+                        %i.fas.fa-heart
+                        0
+                      %span.listing-item-count
+                        %i.fas.fa-comment-alt
+                        0
+                      .item-status-icon.awating
+                        =item.status
+                  %i.fa.fa-chevron-right
+
+          - else
+            %li.listing-item-not-found
+              %figure.mypage-item-not-found__figure
+                = image_tag 'mypage/logo_gray.svg', size: '100x100'
+              売却済みの商品がありません
+
+ 

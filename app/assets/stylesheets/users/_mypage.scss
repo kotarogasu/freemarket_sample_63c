@@ -13,9 +13,6 @@ a{
     padding: 0;
     background-repeat: no-repeat;
     float: right;
-
-
-
     .user-info {
       position: relative;
       display: flex;
@@ -46,7 +43,7 @@ a{
       &__user-rate {
         margin: 8px 0 0;
         font-size: 0;
-        &--review {
+        &__review {
           display: inline-block;
           font-size: 14px;
           margin: 0 0 0 8px;
@@ -56,57 +53,53 @@ a{
           font-size: 14px;
           font-weight: 600;
         }
-        &--exhibit {
+        &__exhibit {
           margin: 0 0 0 16px;
           font-size: 14px;
           display: inline-block;
         }
-        }
-      
+      }
     }
 
 
-
-
-    
-    .mypage-tab-container-notification-todo {
+    .mypage-tab-container-todo {
       padding: 0px;
       margin: 0;
       background: #fff;
       .mypage-tabs{
         border: 0;
-        background: #eee;
         list-style: none;
         font-size: 0;
+        display: block;
         li {
-          background: #fff;
           width: 50%;
-          text-align: center;
-          vertical-align: top;
-          display: inline-block;
-          h3 {
-            font-weight: bold;
-            font-size: 22px;
-            a {
-              position: relative;
-              display: block;
-              color: #333;
-              font-size: 16px;
-              line-height: 72px;
-              text-decoration: none;
-              touch-action: manipulation;
-            }
-          }
+          @include tab-list
+        }
+        h3 {
+          font-weight: bold;
+          font-size: 22px;
+        }
+        a {
+          position: relative;
+          display: block;
+          color: #333;
+          font-size: 16px;
+          line-height: 72px;
+        }
+          
+        .active{
+          border-top: 2px solid $red;
+          background: #fff;
         }
       }
-
-
-
-      .mypage-item-ul {
-        position: relative;
-        display: block;
+    }
+    .mypage-content {
+      display: block;
+      .mypage-item {
+        display: none;
         &__li {
           border-bottom: 1px solid #eee;
+          position: relative;
           &__a {
             display: block;
             min-height: 60px;
@@ -137,7 +130,7 @@ a{
                 display: inline-block;
                 color: #888;
                 font-size: 14px;
-                i {
+                i{
                   margin: 0 8px 0 0;
                   display: inline-block;
                   font-style: normal;
@@ -146,70 +139,138 @@ a{
                   text-transform: none;
                   line-height: 1;
                 }
-                span {
+                span{
                   vertical-align: middle;
                 }
               }
             }
-            .fa-chevron-right{
-              position: absolute;
-              right: 16px;
-              transform: translate(0, -100%);
-            }
-          }
-        }
-        .mypage-go-list {
-          border: 0;
-          position: relative;
-          padding: 16px;
-          .go {
-            display: block;
-            height: 60px;
-            margin: 0 auto;
-            background: #eee;
-            color: #333;
-            line-height: 60px;
-            text-align: center;
-            text-decoration: none;
-            touch-action: manipulation;
           }
         }
       }
+
+      .fa-chevron-right{
+        position: absolute;
+        top: 50%;
+        right: 16px;
+      }
+
+      .listing-item{
+        background: #fff;
+        display: none;
+        li{
+          list-style: none;
+          position: relative;
+          border-bottom: 1px solid #eee;
+        
+          .mypage-item-link{
+            min-height: 80px;
+            padding: 15px;
+            color: #333;
+            figure{
+              position: relative;
+              overflow: hidden;
+              float: left;
+              width: 55px;
+              height: 55px;
+              margin: 20px;
+              img{
+              z-index: 1;
+              width: 100%;
+              vertical-align: middle;
+              }
+            }
+      
+            &__body{
+              margin: 0 100px 0 68px;
+      
+              &__text{
+                overflow: hidden;
+                display: block;
+                max-height: 4.4em;
+                text-overflow: ellipsis;
+                line-height: 1.5;
+              }
+              .listing-item-count i{
+                vertical-align: middle;
+                color: #ccc;
+              }
+              .item-status-icon{
+                display: inline-block;
+                margin: 8px 0 0 0;
+                padding: 5px 6px;
+                border-radius: 2px;
+                font-size: 12px;
+                color: #fff;
+              }
+              .awating{
+                background-color: #0099e8;
+              }
+            }
+          }
+        }
+      }
+      .listing-item.active {
+        display: block;
+      }
+
+      .mypage-go-list {
+        border: 0;
+        position: relative;
+        padding: 16px;
+        .go {
+          display: block;
+          height: 60px;
+          margin: 0 auto;
+          background: #eee;
+          color: #333;
+          line-height: 60px;
+          text-align: center;
+          text-decoration: none;
+          touch-action: manipulation;
+        }
+      }
+      .mypage-item.active {
+        display: block;
+      }
     }
-
-
-
-
-
 
     .mypage-tab-container{
       padding: 40px 0 0;
       background: #f5f5f5;
+      list-style: none;
       .mypage-tab-head {
         background: #fafafa;
-        font-size: 16px;
         line-height: 72px;
-        padding: 0 16px;
+        padding: 0 16px;          
         font-size: 100%;
-        font-weight: normal;
         display: block;
         margin-block-start: 0.83em;
-        margin-inline-start: 0px;
-        margin-inline-end: 0px;
         font-weight: bold;
       }
-      .listing-tabs{
+     
+      .mypage-tabs {
         border: 0;
-        background: #eee;
         font-size: 0;
-
+        display: block;
         li{
-          width: 33%;
-          display: inline-block;
-          text-align: center;
-          vertical-align: top;
+          width: 50%;
+          @include tab-list
         }
-        a{
+        &--listing{
+          li{
+            width: 33%;
+            @include tab-list
+          }
+        }
+
+        .active{
+          border-top: 2px solid $red;
+          background: #fff;
+        }
+        h3 {
+          font-weight: bold;
+        }
+        a {
           position: relative;
           display: block;
           color: #333;
@@ -217,35 +278,11 @@ a{
           line-height: 72px;
         }
       }
-      .mypage-tabs {
-        border: 0;
-        background: #eee;
-        list-style: none;
-        li {
-          background: #fff;
-          width: 50%;
-          text-align: center;
-          vertical-align: top;
-          float: left;
-          h3 {
-            font-weight: bold;
-            font-size: 22px;
-            a {
-              position: relative;
-              display: block;
-              color: #333;
-              font-size: 16px;
-              line-height: 72px;
-              text-decoration: none;
-              touch-action: manipulation;
-            }
-          }
-        }
-        
-      }
-      .tab-content{
+      .mypage-item-list {
         background-color: white;
-        .mypage-item-not-found {
+
+        li{
+          display: none;
           padding: 60px 0 60px;
           background-repeat: no-repeat;
           background-position: center 40px;
@@ -254,16 +291,28 @@ a{
           font-size: 16px;
           color: #ccc;
           font-weight: 600;
-          &__figure {
+          figure {
             margin: auto;
           }
+        }
+        .active {
+          display: block;
+        }
+      }
+
+      .listing-item-not-found{
+        padding: 60px 0 60px;
+        background-repeat: no-repeat;
+        background-position: center 40px;
+        background-size: 200px 100px;
+        text-align: center;
+        font-size: 16px;
+        color: #ccc;
+        font-weight: 600;
+        figure {
+          margin: auto;
         }
       }
     }  
   } 
-}
-
-    
-.active{
-  border-top: 2px solid $red;
 }

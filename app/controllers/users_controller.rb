@@ -16,9 +16,9 @@ class UsersController < ApplicationController
   end
 
   def listing
-    @items_on_sale = current_user.items(status: "出品中")
-    @items_on_transaction = current_user.items(status: "交渉中")
-    @purchased_items = current_user.items(status: "売却済み")
+    @items_on_sale = current_user.items.出品中
+    @items_on_transaction = current_user.items.取引中
+    @purchased_items = current_user.items.売却済み
   end
 
   def shopping

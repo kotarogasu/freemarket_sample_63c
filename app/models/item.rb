@@ -51,9 +51,8 @@ class Item < ApplicationRecord
   }, _suffix: true
 
   enum status: {
-
     出品中:1,
-    交渉中:2,
+    取引中:2,
     売却済み:3,
     購入済み:4,
   }
