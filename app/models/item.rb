@@ -11,8 +11,8 @@ class Item < ApplicationRecord
   belongs_to :user, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :category
-  belongs_to :brand
-  has_many :images
+  belongs_to :brand, optional: true
+  has_many :images, dependent: :destroy
   has_one :prefecture
   
 
@@ -66,6 +66,7 @@ class Item < ApplicationRecord
     self.fee = self.price * 0.1
     self.profit = self.price * 0.9
   end
+
 
   def self.range(categories)
     start_id = categories.first.id
