@@ -84,6 +84,7 @@
     }
     .btn-default.btn-red {
       @include register-btn-red;
+      margin: 40px 0 0; 
     }
     .form-group.text-right {
       margin: 40px 0 0;

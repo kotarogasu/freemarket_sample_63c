@@ -8,7 +8,8 @@ Rails.application.routes.draw do
       get 'user_registration'
       get 'sms_confirmation'
       get 'address'
-      # get 'step5' # ここで、入力の全てが終了する
+      get 'card_new' # ここで、入力の全てが終了する
+      get 'card_create', to: 'signup#card_create'
       get 'complete'
       get 'auth/:provider/callback', to: 'sessions#create'
       get 'logout'
@@ -20,7 +21,7 @@ Rails.application.routes.draw do
 # end
   delete '/logout', to: 'signup#destroy'
 
-  resources :items, only: [:index, :new, :show, :create, :edit, :update] do
+  resources :items do
 
     collection do
       get :category_find
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
 
     member do
       post :buy
+      get :buy_complete
     end
   end
 

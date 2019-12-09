@@ -16,5 +16,5 @@
       =link_to "商品の編集", edit_item_path(@item), class: "btn-default btn-red" 
       %p.text-center or
       %button.btn-default.btn-gray 出品を一時停止する
-      %button.btn-default.btn-gray 商品を削除する
+      =link_to "商品を削除する", item_path(@item), method: :delete, class: "btn-default btn-gray", data: {confirm: "本当に削除しますか？"} 
     =render 'item-detail-message'

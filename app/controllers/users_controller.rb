@@ -23,6 +23,10 @@ class UsersController < ApplicationController
     render layout: false
   end
 
+  def buy_complete
+    render layout: false
+  end
+
   def listing
     @items_on_sale = current_user.items(status: "出品中")
     @items_on_transaction = current_user.items(status: "交渉中")
