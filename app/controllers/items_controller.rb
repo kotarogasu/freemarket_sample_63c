@@ -6,25 +6,21 @@ class ItemsController < ApplicationController
   def index 
     if user_signed_in?
       @items = Item.where.not(user_id:current_user.id,status:4)
-      @ladies_items = @items.get_ladies
-      @mens_items = @items.get_mens
-      @electronics_items = @items.get_electronics
-      @hobbies_items = @items.get_hobbies
       @chanel_items = Brand.search("シャネル").items.where.not(user_id:current_user.id,status:4)
       @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(user_id:current_user.id,status:4)
       @supreme_items = Brand.search("スプリーム").items.where.not(user_id:current_user.id,status:4)
       @nike_items = Brand.search("ナイキ").items.where.not(user_id:current_user.id,status:4)
     else
       @items = Item.where.not(status:4)
-      @ladies_items = @items.get_ladies
-      @mens_items = @items.get_mens
-      @electronics_items = @items.get_electronics
-      @hobbies_items = @items.get_hobbies
       @chanel_items = Brand.search("シャネル").items.where.not(status:4)
       @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(status:4)
       @supreme_items = Brand.search("スプリーム").items.where.not(status:4)
       @nike_items = Brand.search("ナイキ").items.where.not(status:4)
     end
+    @ladies_items = @items.get_ladies
+    @mens_items = @items.get_mens
+    @electronics_items = @items.get_electronics
+    @hobbies_items = @items.get_hobbies
   end
 
   def category_find
@@ -134,6 +130,10 @@ class ItemsController < ApplicationController
 
   def image_params
     params.require(:item).permit(:image)
+  end
+
+  def set_category
+    
   end
 
 end
