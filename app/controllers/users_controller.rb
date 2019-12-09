@@ -21,6 +21,10 @@ class UsersController < ApplicationController
     @purchased_items = current_user.items(status: "売却済み")
   end
 
+  def shopping
+    @buy_items = Item.where(status: 4,buyer_id: current_user.id)
+  end
+
 
   private
 

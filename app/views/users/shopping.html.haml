@@ -3,7 +3,7 @@
 
   .right-content
     %section.mypage-tab-container
-      %h2.mypage-tab-head 出品した商品
+      %h2.mypage-tab-head 購入した商品
       %ul.listing-tabs
         %li
           %h3.mypage-tabs__active__h3
@@ -12,17 +12,13 @@
         %li
           %h3.mypage-tabs__inactive__h3
             =link_to "#" do
-              交渉中
-        %li
-          %h3.mypage-tabs__inactive__h3
-            =link_to "#" do
-              売却済み
+              過去の取引
       .tab-content
         %ul.mypage-item-list
-          - if @items_on_sale.present?
-            -@items_on_sale.each do |item|
+          - if @buy_items.present?
+            -@buy_items.each do |item|
               %li
-                =link_to show_user_item_item_path(item), class: "mypage-item-link" do
+                =link_to "#", class: "mypage-item-link" do
                   %figure
                     =image_tag item.images.first.image
                   .mypage-item-link__body

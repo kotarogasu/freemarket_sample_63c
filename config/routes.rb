@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get :mypage
       get :profile
       get :listing
+      get :shopping
       get :identification
       post :address
     end

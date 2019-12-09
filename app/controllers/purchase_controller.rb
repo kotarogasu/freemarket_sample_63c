@@ -36,7 +36,13 @@ class PurchaseController < ApplicationController
       :customer => card.customer_id, #顧客ID
       :currency => 'jpy', #日本円
       )
-      redirect_to action: "buy_complete" #完了画面に移動
+      if @item.update(status: 4, buyer_id: current_user.id)
+        flash[:notice] = '購入しました'
+        redirect_to action: "buy_complete" #完了画面に移動
+      else
+        flash[:alert] = '購入に失敗しました'
+        redirect_to action: "buy_" #完了画面に移動
+      end
     end
   end
 
