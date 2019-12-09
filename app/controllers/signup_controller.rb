@@ -8,7 +8,20 @@ class SignupController < ApplicationController
   end
 
   def user_registration
-    @user = User.new
+    if session["devise.provider_data"].blank?
+      @user = User.new
+    else
+    @user = User.new(
+    nickname: session["devise.provider_data"]["info"]["name"],
+    email: session["devise.provider_data"]["info"]["email"],
+    last_name: session["devise.provider_data"]["info"]["last_name"],
+    first_name: session["devise.provider_data"]["info"]["first_name"],
+    last_name_kana: session["devise.provider_data"]["info"]["last_name_kana"],
+    first_name_kana: session["devise.provider_data"]["info"]["first_name_kana"],
+    birthday: session["devise.provider_data"]["info"]["birthday"],
+    phone_number: session["devise.provider_data"]["info"]["phone_number"]
+    )
+    end
   end
 
 
@@ -42,30 +55,57 @@ class SignupController < ApplicationController
     @address = Address.new
   end
 
- def validates_user_registration
-   params[:user][:birthday] = birthday_join(params[:birthday])
-   session[:nickname] = user_params[:nickname]
-   session[:email] = user_params[:email]
-   session[:password] = user_params[:password]
-   session[:last_name] = user_params[:last_name]
-   session[:first_name] = user_params[:first_name]
-   session[:last_name_kana] = user_params[:last_name_kana]
-   session[:first_name_kana] = user_params[:first_name_kana]
-   session[:birthday] = user_params[:birthday]
-   session[:agreement] = user_params[:agreement]
-   @user = User.new(
-     nickname: session[:nickname],
-     email: session[:email],
-     password: session[:password],
-     last_name: session[:last_name],
-     first_name: session[:first_name],
-     last_name_kana: session[:last_name_kana],
-     first_name_kana: session[:first_name_kana],
-     birthday: session[:birthday],
-     phone_number: '090XXXXXXXX',
-     agreement: session[:agreement]
-   )
-   render '/signup/user_registration' unless @user.valid?
+  def validates_user_registration
+    if session[:password].blank?
+      params[:user][:birthday] = birthday_join(params[:birthday])
+      session[:nickname] = user_params[:nickname]
+      session[:email] = user_params[:email]
+      session[:password] = user_params[:password]
+      session[:last_name] = user_params[:last_name]
+      session[:first_name] = user_params[:first_name]
+      session[:last_name_kana] = user_params[:last_name_kana]
+      session[:first_name_kana] = user_params[:first_name_kana]
+      session[:birthday] = user_params[:birthday]
+      session[:agreement] = user_params[:agreement]
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: '090XXXXXXXX',
+        agreement: session[:agreement]
+      )
+
+    render '/signup/user_registration' unless @user.valid?
+    else
+      params[:user][:birthday] = birthday_join(params[:birthday])
+      session[:nickname] = user_params[:nickname]
+      session[:email] = user_params[:email]
+      session[:last_name] = user_params[:last_name]
+      session[:first_name] = user_params[:first_name]
+      session[:last_name_kana] = user_params[:last_name_kana]
+      session[:first_name_kana] = user_params[:first_name_kana]
+      session[:birthday] = user_params[:birthday]
+      session[:agreement] = user_params[:agreement]
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: '090XXXXXXXX',
+        agreement: session[:agreement]
+      )
+
+    render '/signup/user_registration' unless @user.valid?
+    end
   end
 
   def validates_sms_confirmation
@@ -75,14 +115,15 @@ class SignupController < ApplicationController
       email: session[:email],
       password: session[:password],
       last_name: session[:last_name],
-      first_name: session[:first_name], 
-      last_name_kana: session[:last_name_kana], 
-      first_name_kana: session[:first_name_kana], 
+      first_name: session[:first_name],
+      last_name_kana: session[:last_name_kana],
+      first_name_kana: session[:first_name_kana],
       birthday: session[:birthday],
       phone_number: session[:phone_number],
       agreement: session[:agreement]
      )
      render '/signup/sms_confirmation' unless @user.valid?
+
   end
 
   def validates_address
@@ -118,18 +159,35 @@ class SignupController < ApplicationController
   end
 
   def create
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      last_name: session[:last_name],
-      first_name: session[:first_name],
-      last_name_kana: session[:last_name_kana],
-      first_name_kana: session[:first_name_kana],
-      birthday: session[:birthday],
-      phone_number: session[:phone_number],
-      agreement: session[:agreement]
-    )
+    if not session["devise.provider_data"].blank?
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: session[:phone_number],
+        agreement: session[:agreement],
+        uid: session["devise.provider_data"]['uid'],
+        provider: session["devise.provider_data"]['provider']
+        )
+    else
+      @user = User.new(
+        nickname: session[:nickname],
+        email: session[:email],
+        password: session[:password],
+        last_name: session[:last_name],
+        first_name: session[:first_name],
+        last_name_kana: session[:last_name_kana],
+        first_name_kana: session[:first_name_kana],
+        birthday: session[:birthday],
+        phone_number: session[:phone_number],
+        agreement: session[:agreement]
+        )
+    end
     @address = Address.new(
       post_number: session[:post_number],
       prefecture_id: session[:prefecture_id],
@@ -138,11 +196,12 @@ class SignupController < ApplicationController
       building: session[:building]
     )
     if @user.save
-      session[:id] = @user.id
       @@card[:user_id] = @user.id
       @@card.save
       @address[:user_id] = @user.id
       @address.save
+      reset_session
+      session[:user_id] = @user.id
       sign_in(@user)
       redirect_to root_path(@user)
     else
@@ -151,7 +210,7 @@ class SignupController < ApplicationController
   end
 
   def logout
-    
+    reset_session
   end  
 
   def destroy
@@ -186,6 +245,23 @@ class SignupController < ApplicationController
         :city, 
         :town, 
         :building
+      )
+    end
+
+    def provider_params
+      params.require(:user).permit(
+        :nickname,
+        :email,
+        # :password,
+        # :password_confirmation,
+        # :last_name,
+        # :first_name,
+        # # :last_name_kana,
+        # # :first_name_kana,
+        # # :birthday,
+        # # :phone_number,
+        # :uid,      
+        # :provider
       )
     end
 
