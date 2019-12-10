@@ -8,7 +8,6 @@ class PurchaseController < ApplicationController
     @user = @item.user
     @prefecture = Prefecture.find(@item.prefecture_id)
     @address= Address.find_by(user_id: current_user.id)
-    @card = Card.where(user_id: current_user.id).first
     if @card.blank?
        render layout: false
     else
@@ -28,11 +27,10 @@ class PurchaseController < ApplicationController
       redirect_to controller: "card", action: "addition"
       flash[:alert] = '購入にはクレジットカード登録が必要です'
     else @card.present?
-      card = Card.where(user_id: current_user.id).first
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       Payjp::Charge.create(
       amount: @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-      customer: card.customer_id, #顧客ID
+      customer: @card.customer_id, #顧客ID
       currency: 'jpy', #日本円
       )
       if @item.update(status: 4, buyer_id: current_user.id)
