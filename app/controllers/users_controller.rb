@@ -15,22 +15,14 @@ class UsersController < ApplicationController
     @address = _user.address.new(address_params)
   end
 
-  def buy
-    @item = Item.find(params[:id])
-    @user = @item.user
-    @prefecture = Prefecture.find(@item.prefecture_id)
-    @address= Address.find_by(user_id: current_user.id)
-    render layout: false
-  end
-
-  def buy_complete
-    render layout: false
-  end
-
   def listing
     @items_on_sale = current_user.items.出品中
     @items_on_transaction = current_user.items.取引中
     @purchased_items = current_user.items.売却済み
+  end
+
+  def shopping
+    @buy_items = Item.where(status: 4,buyer_id: current_user.id)
   end
 
 

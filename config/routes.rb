@@ -39,14 +39,9 @@ Rails.application.routes.draw do
       get :mypage
       get :profile
       get :listing
-      get :credit
+      get :shopping
       get :identification
       post :address
-    end
-
-    member do
-      post :buy
-      get :buy_complete
     end
   end
 
@@ -59,4 +54,13 @@ Rails.application.routes.draw do
       get 'addition', to: 'card#addition'
     end
   end
+
+  resources :purchase do
+    member do
+      get :buy
+      get :buy_complete
+      get :pay
+    end
+  end
 end
+

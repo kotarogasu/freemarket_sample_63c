@@ -1,9 +1,9 @@
 !!!
 %html
   %head
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %link{href: "https://use.fontawesome.com/releases/v5.6.1/css/all.css", rel: "stylesheet"}/
   = stylesheet_link_tag    'application', media: 'all'
-  = javascript_include_tag 'application'
   %body
     = render 'signup/login-header'
     .l-single
@@ -28,8 +28,8 @@
                 .buy-price-cell
                   %span
                     = number_to_currency(@item.price, unit: "¥", format: "%u%n", precision:0)     
-            = link_to buy_complete_user_path, class:"btn-red" do
-              購入する
+              = link_to pay_purchase_path(@item),class:"btn-red" do
+                購入する
       .buy-content__second       
         .buy-content__second__text
           %h3 配送先
@@ -41,20 +41,8 @@
             %br/
             = current_user.first_name + current_user.last_name
           %p.buy-user-info-text
-          = link_to "#", class:"buy-user-info-fix" do
+          = link_to identification_users_path, class:"buy-user-info-fix" do
             %span 変更する
             %i.fa.fa-chevron-right
-      .buy-content__second
-        .buy-content__second__text
-          %h3 支払い方法
-          %p.buy-user-info-text
-            ************1080
-            %br/
-            01 / 24
-        
-          %p
-          = link_to "#", class:"buy-user-info-fix" do
-            %span 変更する
-            %i.fa.fa-chevron-right
-
-    = render 'signup/footer'
+      = render 'payment'
+  = render 'signup/footer'
