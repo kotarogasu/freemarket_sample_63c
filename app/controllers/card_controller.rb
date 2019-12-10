@@ -1,4 +1,5 @@
 class CardController < ApplicationController
+  before_action :authenticate_user!
   before_action :card_add, only: [:mypage_new]
   require "payjp"
 

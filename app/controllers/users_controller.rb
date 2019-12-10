@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_buy, only: [:mypage, :shopping]
 
   def mypage
