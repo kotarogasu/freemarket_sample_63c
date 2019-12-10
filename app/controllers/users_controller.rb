@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_buy, only: [:mypage, :shopping]
 
   def mypage
   end
@@ -22,14 +23,16 @@ class UsersController < ApplicationController
   end
 
   def shopping
-    @buy_items = Item.where(status: 4,buyer_id: current_user.id)
   end
 
 
   private
 
   def address_params
+  end
 
+  def set_buy
+    @buy_items = Item.where(status: 4,buyer_id: current_user.id)
   end
 
 end

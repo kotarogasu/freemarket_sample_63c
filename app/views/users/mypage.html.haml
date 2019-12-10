@@ -61,26 +61,4 @@
           %li.mypage-go-list
             =link_to "#", class: "go" do
               一覧を見る
-        
-        
-    %section.mypage-tab-container
-      %h2.mypage-tab-head 購入した商品
-      %ul.mypage-tabs.buy
-        %li.active
-          %h3
-            =link_to "#", class: "mypage--tabs__active__h3__a" do
-              取引中
-        %li
-          %h3
-            =link_to "#", class: "mypage--tabs__inactive__h3__a" do
-              過去の取引
-      
-      %ul.mypage-item-list
-        %li.mypage-item-not-found.active
-          %figure.mypage-item-not-found__figure
-            = image_tag 'mypage/logo_gray.svg', size: '100x100'
-          取引中の商品がありません
-        %li.mypage-item-not-found
-          %figure.mypage-item-not-found__figure
-            = image_tag 'mypage/logo_gray.svg', size: '100x100'
-          過去に取引した商品がありません
+    = render "shopping_box"

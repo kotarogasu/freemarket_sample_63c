@@ -210,7 +210,6 @@ class SignupController < ApplicationController
   end
 
   def logout
-    reset_session
   end  
 
   def destroy

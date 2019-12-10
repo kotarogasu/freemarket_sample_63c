@@ -32,6 +32,12 @@ crumb :logout do
   parent :mypage
 end
 
+crumb :shopping_users do
+  link "購入した商品", shopping_users_path
+  parent :mypage
+end
+
+
 crumb :item do |item|
   item = Item.find_by(id: params[:id])
   link item.name
