@@ -1,4 +1,4 @@
-  //マイページ お知らせ・やることリスト
+  //マイページ お知らせ・やることリスト  //マイページ 出品した商品
 $(function(){
   $('.mypage-tabs li').on('click',function(e){
     e.preventDefault(); //ページトップへ移動するのを防ぐ
@@ -19,14 +19,5 @@ $(function(){
     }
   });
 
-  //マイページ 出品した商品
-  $('.mypage-tabs li').on('click',function(e){
-    e.preventDefault(); //ページトップへ移動するのを防ぐ
-    if($(this).not('active')){
-      $(this).addClass('active').siblings('li').removeClass('active');
-      var index = $(".mypage-tabs li").index(this);
-      $(".mypage-content ul").eq(index).addClass('active').siblings("ul").removeClass('active');
-    }
-  });
 }); 
 
