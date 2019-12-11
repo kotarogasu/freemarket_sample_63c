@@ -49,8 +49,11 @@
               = item.category.name
       %tr
         %th ブランド
-        %td
-          = @brand.name
+        -if @brand.present?
+          %td
+            = @brand.name
+        -else 
+          %td
       %tr
         %th 商品の状態
         %td
