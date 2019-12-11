@@ -5,30 +5,49 @@
       出品画像
       %span 必須
     %p 最大10枚までアップロードできます
-    .image-container
-    .sell-container__upload-drop-box
-      -# - (0..10).each do
-      -#   %label.sell-container__upload-drop-box__label
-      -#     =f.file_field :image, class: "item-image-form hidden"
-      -#     %pre.visible-pc 
-      -#       :preserve
-      -#         ドラッグアンドドロップ
-      -#         またはクリックしてファイルファイルをアップロード          
-      %label.sell-container__upload-drop-box__label
-        =f.file_field :images, multiple: true, class: "item-image-form hidden"
-        %pre.visible-pc 
-          :preserve
-            ドラッグアンドドロップ
-            またはクリックしてファイルファイルをアップロード          
-      %label.sell-container__upload-drop-box__label
-        =f.file_field :images, multiple: true, class: "item-image-form hidden"
-        %pre.visible-pc 
-          :preserve
-            ドラッグアンドドロップ
-            またはクリックしてファイルファイルをアップロード          
-    - if @image.errors[:image].any?
+    -if item.images.first.image.present?
+      .image-container
+        -item.images.each do |image|
+          -if image.id.present?
+            %ul.listing-image-container
+              %li.image-box
+                %figure.sell-image-figure
+                  =image_tag image.image 
+                .button
+                  %a{class: "edit"} 編集
+                  %a{class: "delete"} 削除
+      .sell-container__upload-drop-box 
+        =f.fields_for :images do |i|
+          =i.label :image, class: "sell-container__upload-drop-box__label" do
+            =i.file_field :image, class: "item-image-form hidden"
+            =i.check_box :_destroy, class: "hidden"
+            %pre.visible-pc 
+              ドラッグアンドドロップ
+              またはクリックしてファイルファイルをアップロード 
+      - if item.errors["images.image"].any?
+        %ul.error-text--image
+          - item.errors["images.image"].each do |message|
+            %li= message  
+        
+    - else
+      .image-container
+      .sell-container__upload-drop-box 
+        =f.fields_for :images do |i|
+          =i.label :image, class: "sell-container__upload-drop-box__label" do
+            =i.file_field :image, class: "item-image-form hidden"
+            %pre.visible-pc 
+              ドラッグアンドドロップ
+              またはクリックしてファイルファイルをアップロード                    
+    -# =f.fields_for :images do |i|        
+    -#   =i.label :image, class: "sell-container__upload-drop-box__label" do
+    -#     =i.file_field :image, class: "item-image-form hidden"
+    -#     %pre.visible-pc 
+    -#       :preserve
+    -#         ドラッグアンドドロップ
+    -#         またはクリックしてファイルファイルをアップロード                                  
+    - if item.errors[:images].any?
       %ul.error-text--image
-        - @image.errors[:image].each do |message|
+        - item.errors[:images].each do |message|
           %li= message         
   .sell-content
     .form-group

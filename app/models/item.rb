@@ -12,9 +12,10 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :brand, optional: true
   has_many :images, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: :reject_images
+  validates :images, length: { minimum: 1, message: "画像がありません"}
   has_one :prefecture
   
-
 
   enum condition: {
 
@@ -58,6 +59,10 @@ class Item < ApplicationRecord
 
 
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
+
+  def reject_images(attributes)
+    attributes['image'].blank?
+  end
 
 
   def set_fee_profit
