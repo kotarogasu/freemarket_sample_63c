@@ -27,8 +27,7 @@
       - if item.errors["images.image"].any?
         %ul.error-text--image
           - item.errors["images.image"].each do |message|
-            %li= message  
-        
+            %li= message     
     - else
       .image-container
       .sell-container__upload-drop-box 
@@ -37,14 +36,7 @@
             =i.file_field :image, class: "item-image-form hidden"
             %pre.visible-pc 
               ドラッグアンドドロップ
-              またはクリックしてファイルファイルをアップロード                    
-    -# =f.fields_for :images do |i|        
-    -#   =i.label :image, class: "sell-container__upload-drop-box__label" do
-    -#     =i.file_field :image, class: "item-image-form hidden"
-    -#     %pre.visible-pc 
-    -#       :preserve
-    -#         ドラッグアンドドロップ
-    -#         またはクリックしてファイルファイルをアップロード                                  
+              またはクリックしてファイルファイルをアップロード                                                    
     - if item.errors[:images].any?
       %ul.error-text--image
         - item.errors[:images].each do |message|
