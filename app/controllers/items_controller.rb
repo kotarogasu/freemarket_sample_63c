@@ -98,6 +98,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
   def item_params
     if params[:brand_name] == ""
       params.require(:item).permit(

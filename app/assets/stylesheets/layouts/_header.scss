@@ -56,22 +56,84 @@ header{
     &__left{
       display: flex;
 
-      .search-list{
-        display: flex;
-        margin-right: 20px;
+      .search-list {
+        display: inline-block;
+        position: relative;
         cursor: pointer;
+        height: 44px;
+        z-index: 3;
+        padding: 0px 10px;
+        cursor: pointer;
+        height: 44px;
+        z-index: 3;
+        padding: 0px 10px;
 
-        &__logo img{
-          width: 25px;
+        &:hover {
+          a{
+            color: $light_blue;
+          }
+          .droplist{
+            display: block;
+            visibility: visible;
+          }
+        } 
+        a{
+          display: block;
+          font-size: 14px;
+          line-height: 36px;
+          white-space: nowrap;
+          color: rgb(51, 51, 51);
         }
-
-        &__title h2{
+        img{
+          width: 25px;
+          vertical-align: middle;
+        }
+        .search-list-text {
+          float: right;
           font-size: 14px;
           font-weight: 600;
-          margin-top: 5px;
+          padding: 0 5px;
+          position: relative;   
+        }
+        .droplist {
+          display: none;
+          position: absolute;
+          ul {
+            background-color: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+            width: 224px;
+            list-style: none;
+            z-index: 100;
+            transition: all .2s ease;
+          }
+          li{
+            overflow: hidden;
+            width: 100%;
+            color: #fff;
+            transition: .2s;
+            a{
+              display: block;
+              font-size: 14px;
+              line-height: 44px;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              overflow: hidden;
+              cursor: pointer;
+              padding: 0px 16px;
+              color: rgb(51, 51, 51);
+            }
+          }
+        }
+
+        .droplist li {
+          a:hover {
+            background: $red;
+            color: #fff;
+          }
         }
       }
     }
+
 
     &__right{
 
