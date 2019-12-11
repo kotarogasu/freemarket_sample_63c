@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 20191209071650) do
     t.datetime "updated_at",                                null: false
     t.integer  "category_id"
     t.integer  "brand_id"
-    t.integer  "buyer_id"
+    t.integer  "Buyer_id"
+    t.index ["Buyer_id"], name: "index_items_on_Buyer_id", using: :btree
     t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
-    t.index ["buyer_id"], name: "index_items_on_Buyer_id", using: :btree
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree

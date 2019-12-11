@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: "users/sessions" }
   root 'items#index'
 
   resources :signup do
@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       get 'user_registration'
       get 'sms_confirmation'
       get 'address'
-      get 'card_new' # ここで、入力の全てが終了する
-      get 'card_create', to: 'signup#card_create'
+      # get 'card_new' # ここで、入力の全てが終了する
+      # get 'card_create', to: 'signup#card_create'
       get 'complete'
       get 'auth/:provider/callback', to: 'sessions#create'
       get 'logout'
@@ -20,6 +20,11 @@ Rails.application.routes.draw do
 #   delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
 # end
   delete '/logout', to: 'signup#destroy'
+
+  # devise_scope :user do
+  #   get "sign_in", to: "devise/sessions#new"
+  #   post "devise_create", to: "devise/sessions#devise_create"
+  # end
 
   resources :items do
 

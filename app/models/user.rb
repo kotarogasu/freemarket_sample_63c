@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
     # step2入力項目
     validates :nickname,                presence: {message: "ニックネームを入力してください"}, length: {maximum: 20}, unless: :uid?
-    validates :email,                   presence: {message: "メールアドレスを入力してください"}, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, on: :validates_step2, unless: :uid?
-    validates :password,                length: {minimum: 6, maximum: 128}, on: :validates_step2, unless: :uid?
+    validates :email,                   presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true, on: :signup_index
+    validates :password,                length: {minimum: 6, maximum: 10}
     validates :last_name,               presence: {message: "姓を入力してください"}, unless: :uid?
     validates :first_name,              presence: {message: "名を入力してください"}, unless: :uid?
     validates :last_name_kana,          presence: {message: "姓カナを入力してください"}, unless: :uid?
@@ -28,6 +28,16 @@ class User < ApplicationRecord
         user.password = Devise.friendly_token[0,20]
       end
     end
+    
+    # def self.find_first_by_auth_conditions(warden_conditions)
+    #   conditions = warden_conditions.dup
+    #   if login = conditions.delete(:login)
+    #     #認証の条件式を変更する
+    #     where(conditions).where([":agreement = :value", { :value => agreement }]).first
+    #   else
+    #     where(conditions).first
+    #   end
+    # end
 
   has_many :authorizations
   has_one :address
