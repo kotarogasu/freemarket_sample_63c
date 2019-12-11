@@ -11,15 +11,66 @@
     .header-inner__lower
       .header-inner__lower__left
         .search-list
-          .search-list__logo
+          =link_to "#" do
             =image_tag "top_page/a-1.png"
-          .search-list__title
-            %h2 カテゴリーから探す
+            .search-list-text
+              カテゴリーから探す
+          .droplist
+            %ul
+              %li
+                =link_to "#" do
+                  レディース
+              %li
+                =link_to "#" do
+                  メンズ
+              %li
+                =link_to "#" do
+                  ベビー・キッズ
+              %li
+                =link_to "#" do
+                  インテリア・住まい・小物
+              %li
+                =link_to "#" do
+                  本・音楽・ゲーム
+              %li
+                =link_to "#" do
+                  おもちや・ホビー・グッズ
+              %li
+                =link_to "#" do
+                  コスメ・香水・美容
+              %li
+                =link_to "#" do
+                  家電・スマホ・カメラ
+              %li
+                =link_to "#" do
+                  スポーツ・レジャー
+                       
         .search-list
-          .search-list__logo
+          =link_to "#" do
             =image_tag "top_page/a-2.png"
-          .search-list__title
-            %h2 ブランドから探す
+            .search-list-text
+              ブランドから探す
+          .droplist
+            %ul.second
+              %li
+                =link_to "#" do
+                  シャネル
+              %li
+                =link_to "#" do
+                  ナイキ
+              %li
+                =link_to "#" do
+                  ルイヴィトン
+              %li
+                =link_to "#" do
+                  スプリーム
+              %li
+                =link_to "#" do
+                  アディダス
+              %li
+                =link_to "#" do
+                  ブランド一覧  
+                                  
       .header-inner__lower__right
         - if user_signed_in?
           %ul.mypage-menu
