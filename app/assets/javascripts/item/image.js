@@ -68,8 +68,8 @@ function buildpreview(){
   // ページの読み込み時に画像が何個あるか、を読み取ってレイアウト調整。
   imagesLength = $('.image-container').children().length;
   layoutControl(imagesLength);
-  console.log('ページ読み込み時の画像の個数は');
-  console.log(imagesLength);
+  // console.log('ページ読み込み時の画像の個数は');
+  // console.log(imagesLength);
 
 
 
@@ -78,9 +78,9 @@ function buildpreview(){
   $(".sell-container").on("change", ".item-image-form", function(e){
     // イベントの発火時に、現状把握。
     index = ($(this).parents('label').index());//何番目のイメージフィールドが変更されたのか。
-    console.log(index);
-    console.log('番目のイメージフィールドがアップロードされました。その時の画像の個数は');
-    console.log(imagesLength);
+    // console.log(index);
+    // console.log('番目のイメージフィールドがアップロードされました。その時の画像の個数は');
+    // console.log(imagesLength);
     var html = buildpreview();
     $('.image-container').append(html);
     
@@ -96,8 +96,8 @@ function buildpreview(){
     // 画像の追加が終わったあとは、imagesLengthを１増やしてレイアウト調整。
     imagesLength += 1
     layoutControl(imagesLength);
-    console.log('画像の追加が終わりました。現在の画像の個数は');
-    console.log(imagesLength);
+    // console.log('画像の追加が終わりました。現在の画像の個数は');
+    // console.log(imagesLength);
   });
   
 
@@ -105,8 +105,8 @@ function buildpreview(){
   $(".sell-container__upload-box").on('click',".delete",function(){
     // どの画像が削除されたのか、という情報のみが必要。
     index = $(this).parents("ul").index();
-    console.log(index);
-    console.log('番目の画像が削除されようとしています。');
+    // console.log(index);
+    // console.log('番目の画像が削除されようとしています。');
      if (window.location.href.match(/\/items\/\d+/)){
       // 画像の削除が完了したら、削除した画像に対応するプレビューを消去。
       $('.listing-image-container').eq(index).remove();
@@ -117,9 +117,9 @@ function buildpreview(){
       layoutControl(imagesLength);
       $('.sell-container__upload-drop-box__label').css('display','none');
       $('.sell-container__upload-drop-box__label').eq(index).css('display','block');
-      console.log(index);
-      console.log('番目の画像が無事削除されました。現在の画像の個数は');
-      console.log(imagesLength);
+      // console.log(index);
+      // console.log('番目の画像が無事削除されました。現在の画像の個数は');
+      // console.log(imagesLength);
     }
     else{
       $('.listing-image-container').eq(index).remove();
@@ -129,9 +129,9 @@ function buildpreview(){
       layoutControl(imagesLength);
       $('.sell-container__upload-drop-box__label').css('display','none');
       $('.sell-container__upload-drop-box__label').eq(index).css('display','block');
-      console.log(index);
-      console.log('番目の画像が無事削除されました。現在の画像の個数は');
-      console.log(imagesLength);
+      // console.log(index);
+      // console.log('番目の画像が無事削除されました。現在の画像の個数は');
+      // console.log(imagesLength);
     }
   })
 
