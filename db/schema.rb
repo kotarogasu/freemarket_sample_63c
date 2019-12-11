@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191201023413) do
+ActiveRecord::Schema.define(version: 20191210054002) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "post_number",   null: false
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
+  end
+
+  create_table "authorizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid", unique: true, using: :btree
   end
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -40,7 +49,7 @@ ActiveRecord::Schema.define(version: 20191201023413) do
   end
 
   create_table "cards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",     null: false
+    t.integer  "user_id"
     t.string   "customer_id"
     t.string   "card_id"
     t.datetime "created_at",  null: false
@@ -82,7 +91,9 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.datetime "updated_at",                                null: false
     t.integer  "category_id"
     t.integer  "brand_id"
+    t.integer  "buyer_id"
     t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
+    t.index ["buyer_id"], name: "index_items_on_buyer_id", using: :btree
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
@@ -99,12 +110,15 @@ ActiveRecord::Schema.define(version: 20191201023413) do
     t.string   "first_name_kana",                                   null: false
     t.string   "last_name_kana",                                    null: false
     t.date     "birthday",                                          null: false
+    t.boolean  "agreement"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.string   "phone_number",                                      null: false
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.string   "uid"
+    t.string   "provider"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

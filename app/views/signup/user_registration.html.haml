@@ -20,37 +20,52 @@
           .ball-end
 
   = form_for @user, url: sms_confirmation_signup_index_path, method: :get, html: {class: 'first-main__box'} do |f|
-    = render 'devise/shared/error_messages', model: f.object
     .step2-block
       .step2-block-up
         %b 会員情報入力
       .step2-block-main
         .step2-block-submain
-          .step2-block-titlebox
-            .step2-block-titles
-              ニックネーム
-            .step2-block-required
-              必須
-          .step2-block-texts
-            = f.text_field :nickname, class:'step2-block-text', autofocus: true, placeholder: "例)フリマ太郎"
-          .step2-block-titlebox
-            .step2-block-titles
-              メールアドレス
-            .step2-block-required
-              必須
-          .step2-block-texts
-            = f.email_field :email, class:'step2-block-text', autofocus: true, placeholder: "PC・携帯どちらでも可"
-          .step2-block-titlebox
-            .step2-block-titles
-              パスワード
-            .step2-block-required
-              必須
-          .step2-block-texts
-            = f.password_field :password, class:'step2-block-text', autofocus: true, placeholder: "7文字以上"
-          .step2-block-chk-box
-            = check_box :group, :user_ids, {class: "step2-block-chk-box-check"}, true, false
-            .step2-block-chk-box-message
-              パスワードを表示する
+          .step2-block-submain-titles
+            .step2-block-titlebox
+              .step2-block-titles
+                ニックネーム
+              .step2-block-required
+                必須
+            .step2-block-texts
+              = f.text_field :nickname, class:'step2-block-text', placeholder: "例)フリマ太郎"
+            - if @user.errors[:nickname].any?
+              %ul.error-text
+                - @user.errors[:nickname].each do |message|
+                  %li= message
+          .step2-block-submain-titles
+            .step2-block-titlebox
+              .step2-block-titles
+                メールアドレス
+              .step2-block-required
+                必須
+            .step2-block-texts
+              = f.email_field :email, class:'step2-block-text', autofocus: true, placeholder: "PC・携帯どちらでも可"
+            - if @user.errors[:email].any?
+              %ul.error-text
+                - @user.errors[:email].each do |message|
+                  %li= message
+          - if session[:password].blank?
+            .step2-block-submain-titles
+              .step2-block-titlebox
+                .step2-block-titles
+                  パスワード
+                .step2-block-required
+                  必須
+              .step2-block-texts
+                = f.password_field :password, class:'step2-block-text', autofocus: true, placeholder: "7文字以上"
+              - if @user.errors[:password].any?
+                %ul.error-text
+                  - @user.errors[:password].each do |message|
+                    %li= message
+            .step2-block-chk-box
+              = check_box :group, :user_ids, {class: "step2-block-chk-box-check"}, true, false
+              .step2-block-chk-box-message
+                パスワードを表示する
           .step2-block-confirmation
             本人確認
           .step2-block-confirmation__details
@@ -61,29 +76,53 @@
             .step2-block-required
               必須
           .step2-block-name
-            = f.text_field :first_name, class:'step2-block-name-text', autofocus: true, placeholder: "例)山田"
-            = f.text_field :last_name, class:'step2-block-name-sei', autofocus: true, placeholder: "太郎"
+            = f.text_field :last_name, class:'step2-block-name-text', autofocus: true, placeholder: "例)山田"
+            = f.text_field :first_name, class:'step2-block-name-sei', autofocus: true, placeholder: "太郎"
+          - if @user.errors[:last_name].any?
+            %ul.error-text
+              - @user.errors[:last_name].each do |message|
+                %li= message
+          - if @user.errors[:first_name].any?
+            %ul.error-text
+              - @user.errors[:first_name].each do |message|
+                %li= message
           .step2-block-titlebox
-            .step2-block-titles
+            .step2-block-titlebox-titles
               お名前カナ(全角)
             .step2-block-required
               必須
           .step2-block-name
-            = f.text_field :first_name_kana, class:'step2-block-name-text', autofocus: true, placeholder: "例)ヤマダ"
-            = f.text_field :last_name_kana, class:'step2-block-name-sei', autofocus: true, placeholder: "タロウ"
+            = f.text_field :last_name_kana, class:'step2-block-name-text', autofocus: true, placeholder: "例)ヤマダ"
+            = f.text_field :first_name_kana, class:'step2-block-name-sei', autofocus: true, placeholder: "タロウ"
+          - if @user.errors[:last_name_kana].any?
+            %ul.error-text
+              - @user.errors[:last_name_kana].each do |message|
+                %li= message
+          - if @user.errors[:first_name_kana].any?
+            %ul.error-text
+              - @user.errors[:first_name_kana].each do |message|
+                %li= message
           .step2-block-titlebox
-            .step2-block-titles
+            .step2-block-titlebox-titles
               誕生日
             .step2-block-required
               必須
           .step2-block-name
             != sprintf(f.date_select(:birthday, prefix:'birthday',with_css_classes:'XXXXX', prompt:"--",use_month_numbers:true, start_year:Time.now.year, end_year:1900, date_separator:'%s'),'年','月')+'日'
+          - if @user.errors[:birthday].any?
+            %ul.error-text
+              - @user.errors[:birthday].each do |message|
+                %li= message
           .step2-block-confirmation__details
             ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
           %label.step2-block-robo
-            = check_box :group, :user_ids, {class: "step2-block-robo-check"}, true, false
+            = f.check_box :agreement, {class: "step2-block-robo-check"}, 1,nil
             .step2-block-robo-write
               私はロボットではありません
+          - if @user.errors[:agreement].any?
+            %ul.error-text
+              - @user.errors[:agreement].each do |message|
+                %li= message
           .step2-block-caution
             「次へ進む」のボタンを押すことにより、利用規約に同意したものとみなします
           .step2-block-next

@@ -1,13 +1,21 @@
 .index-container{
-  width: 1020px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
 
-.slider{
-  height: 390px;
-  width: 100%;
+.bx-wrapper {
+  border: none !important;
 }
+
+.slider{
+  height: 400px;
+  img {
+    background: #E7E6E2;
+  }
+}
+
+
 .popular-section{
   background-color: white;
   position: relative;

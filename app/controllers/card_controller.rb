@@ -1,9 +1,7 @@
 class CardController < ApplicationController
-  before_action :card_add, only: [:new, :mypage_new]
+  before_action :authenticate_user!
+  before_action :card_add, only: [:mypage_new]
   require "payjp"
-
-  def new
-  end
 
   def pay #payjpとCardのデータベース作成を実施します。
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]

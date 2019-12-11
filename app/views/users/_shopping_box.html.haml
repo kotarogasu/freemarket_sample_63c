@@ -1,0 +1,65 @@
+%section.mypage-tab-container
+  %h2.mypage-tab-head 購入した商品
+  %ul.mypage-tabs.buy
+    %li.active
+      %h3
+        =link_to "#", class: "mypage--tabs__active__h3__a" do
+          取引中
+    %li
+      %h3
+        =link_to "#", class: "mypage--tabs__inactive__h3__a" do
+          過去の取引
+            
+  .mypage-content
+    %ul.listing-item.active
+      - if @items_on_transaction.present?
+        -@items_on_transaction.each do |item|
+          %li
+            =link_to "#", class: "mypage-item-link" do
+              %figure
+                =image_tag item.images.first.image
+              .mypage-item-link__body
+                .mypage-item-link__body__text
+                  =item.name
+                %div
+                  %span.listing-item-count
+                    %i.fas.fa-heart
+                    0
+                  %span.listing-item-count
+                    %i.fas.fa-comment-alt
+                    0
+                  .item-status-icon.awating
+                    =item.status
+              %i.fa.fa-chevron-right
+
+      - else
+        %li.listing-item-not-found
+          %figure.mypage-item-not-found__figure
+            = image_tag 'mypage/logo_gray.svg', size: '100x100'
+          取引中の商品がありません
+      
+    %ul.listing-item
+      -if @buy_items.present?
+        -@buy_items.each do |item|
+          %li
+            =link_to "#", class: "mypage-item-link" do
+              %figure
+                =image_tag item.images.first.image
+              .mypage-item-link__body
+                .mypage-item-link__body__text
+                  =item.name
+                %div
+                  %span.listing-item-count
+                    %i.fas.fa-heart
+                    0
+                  %span.listing-item-count
+                    %i.fas.fa-comment-alt
+                    0
+                  .item-status-icon.awating
+                    =item.status
+              %i.fa.fa-chevron-right
+      -else
+        %li.listing-item-not-found
+          %figure.mypage-item-not-found__figure
+            = image_tag 'mypage/logo_gray.svg', size: '100x100'
+          過去に取引した商品がありません

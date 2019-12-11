@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root 'items#index'
 
   resources :signup do
@@ -8,13 +8,17 @@ Rails.application.routes.draw do
       get 'user_registration'
       get 'sms_confirmation'
       get 'address'
-      # get 'step5' # ここで、入力の全てが終了する
+      get 'card_new' # ここで、入力の全てが終了する
+      get 'card_create', to: 'signup#card_create'
       get 'complete'
+      get 'auth/:provider/callback', to: 'sessions#create'
       get 'logout'
     end
   end
-
-
+# 　# ログアウト用
+# devise_scope :user do
+#   delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
+# end
   delete '/logout', to: 'signup#destroy'
 
   resources :items do
@@ -36,7 +40,7 @@ Rails.application.routes.draw do
       get :mypage
       get :profile
       get :listing
-      get :credit
+      get :shopping
       get :identification
       post :address
     end
@@ -51,4 +55,13 @@ Rails.application.routes.draw do
       get 'addition', to: 'card#addition'
     end
   end
+
+  resources :purchase do
+    member do
+      get :buy
+      get :buy_complete
+      get :pay
+    end
+  end
 end
+

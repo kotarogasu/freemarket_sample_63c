@@ -1,185 +1,65 @@
-.alla{
-  width: 700px;
-  height: 570px;
-  background-color: #fff;
-  padding-top: 15px;
-  
-  }
-  .alla h1{
-    font-family:Source Sans Pro;
-    font-size: 24px;
-    font-weight: 700;
-    color: #333333;
-    text-align: center;
-    margin-bottom: 15px;
+.mypage-main-content {
+  margin: 40px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+  .l-content {
+    float: right;
+    width: 700px;
+    color: #333;
+    &__container {
+      background: #fff;
     }
-  .xxxx img{
-    width: 702px;
-    height: 157px;
-  }
-  .xxxx{
-    position: relative;
-  }
-  .xxxx2{
-    position: absolute;
-    display: flex;
-    top: 70px;
-    left: 205px;
-  }
-  .xxxx2 img{
-    overflow: hidden;
-    width: 60px;
-    height: 60px;
-    margin: 0 auto;
-    border-radius: 50%;
-  }
-  input.hoge { 
-    width: 220px;
-    margin: 0 0 0 8px;
-    vertical-align: middle;
-    height: 50px;
-    padding: 10px 16px 8px;
-    border-radius: 7px;
-    border: solid 1px #CCCCCC;
-    }
-   
-    input.hoge2 {  
-      margin-top: 40px;
-      width: 670px; 
-      height: 215px;
-      margin-left: 17px;
-      border: solid 1px #CCCCCC;
-    }
-  
-    .ii223{
-      width: 670px;
-      height: 50px;
-      background-color: #EA342D;
-      margin-left: 17px;
-      margin-top: 15px;
-    }
-    .ii223 h1{
-      color: #fff;
-      font-size: 14px;
-      font-weight: 400;
-      padding-top: 18px;
-    }
-   
-    .alla2  textarea{
-      width: 670px;
-      height: 215px;
-      padding: 10px;
-      margin-left: 17px;
-      margin-top: 15px;
-    }
-   ::placeholder{
-    font-size: 16px;
-    font-weight: 400;
-    }
-    .bb{
-      display: flex;
-      margin-top: 40px;
-      margin-left: 210px;
-    }
-    .pbox {
-      width: 700px;
-      height: 570px;
-      background-color: #fff;
-      padding-top: 15px;
-    }
-    .alla23 a{
-    padding-left: 412px;
-    
-    }
-    
-    .pbox h1 {
-      font-family: Source Sans Pro;
+    h2{
       font-size: 24px;
-      font-weight: 700;
-      color: #333333;
+      padding: 8px 24px;
+      border-bottom: 1px solid #f5f5f5;
       text-align: center;
-      margin-bottom: 15px;
-    }
-    
-    .pbox h2 {
-      font-family: Source Sans Pro;
-      font-size: 14px;
-      font-weight: 400;
-      color: #333333;
-    }
-    
-    .code{
-      border: solid 0.6px #CCCCCC;
-      width: 704px;
-      margin-bottom: 75px;
-    }
-    
-    .code3 {
-      width: 65px;
-      height: 1156px;
-    }
-    
-    .code2 {
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-    }
-    
-    .code4 a {
-      font-family: Source Sans Pro;
-      font-size: 14px;
-      font-weight: 400;
-      color: #333333;
-    }
-    
-    .code4 {
-      margin: 10px;
-      margin-left: 330px;
-    }
-    
-    .box200 {
-      margin-top: 40px;
-    }
-    
-    
-    .box200 h3 {
-      font-size: 14px;
       font-weight: 600;
     }
-    
-    .code5 {
-      width: 575px;
-      height: 50px;
-      background-color: #EA342D;
-      margin-top: 15px;
-      margin-bottom: 40px;
+    .profile-icon {
+      padding: 72px 16px 24px;
+      text-align: center;
+      font-size: 0;
+      background: url(mypage/background_image.png);
+      figure {
+        display: inline-block;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        vertical-align: middle;
+        margin-inline-start: 0;
+    margin-inline-end: 0  ;
+      }
+      .input-default {
+        width: 220px;
+        margin: 0 0 0 8px;
+        vertical-align: middle;
+        height: 48px;
+        padding: 10px 16px 8px;
+        border: 1px solid #ccc;
+        line-height: 1.5;
+        font-size: 16px;
+      }
     }
-    
-    .code5 h1 {
-      color: #fff;
-      font-size: 14px;
-      font-weight: 400;
-      padding-top: 18px;
+    .profile-content {
+      padding: 40px 16px;
+      .textarea-default {
+        display: block;
+        min-height: 216px;
+        max-width: 100%;
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background: #fff;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      .btn-red {
+        @include register-btn-red;
+        margin: 16px 0 0;
+        
+      }
     }
-    
-    
-    input.hoge3 {
-      width: 575px;
-      height: 50px;
-      margin-left: 5px;
-      border-radius: 7px;
-      border: solid 1px #CCCCCC;
-    
-    }
-    
-    
-    
-    ::placeholder {
-      font-size: 16px;
-      font-weight: 400;
-    }
-    .zennbu{
-      width: 700px;
-      height: 1208px;
-      background-color: #fff;
-    }
+  }
+}

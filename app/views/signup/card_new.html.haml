@@ -1,0 +1,26 @@
+%html
+  %head
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+  %body.step5
+    %header.step5-header
+      = render "title"
+      .step4-progress
+        %ul.step4-progress-distance
+          %li.step4-progress-distance__li#first__li
+            会員情報
+            .ball#ball-first
+          %li.step4-progress-distance__li#second__li
+            電話番号認証
+            .ball#ball-second
+          %li.step4-progress-distance__li#third__li
+            お届け先住所入力
+            .ball#ball-third
+          %li.step4-progress-distance__li
+            支払い方法
+            .ball
+          %li.step4-progress-distance__li
+            完了
+            .ball-end
+    = form_tag(card_create_signup_index_path, method: :get, id: 'charge-form',  name: "inputForm") do
+      = render "card/card-index" 
+      = render 'footer'           

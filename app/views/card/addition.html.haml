@@ -1,14 +1,10 @@
-.main__content
-  %section.chapter__container
-    %h2.chapter__head 支払い方法
-    .payment__main
-      .payment__list
-        .payment__list__content
-          %h3.sub__head クレジットカード一覧
-      .add__card
-        .payment__list__content
-          = link_to mypage_new_card_index_path, class: "red__btn", data: {"turbolinks" => false} do
-            %i.fas.fa-credit-card
-            クレジットカードを追加する
-      .not__regist
-        %span 支払い方法について
+- breadcrumb :card
+= render "layouts/breadcrumbs"
+
+.main-contents
+  = render 'users/mypage-sidebar'
+  = render 'credit-box'
+  .credit-content__index__add
+    = link_to mypage_new_card_index_path, class: "credit-content__index__add-btn", data: {"turbolinks" => false} do
+      %i.credit-content__index__add-icon.fas.fa-credit-card
+      クレジットカードを追加する

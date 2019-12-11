@@ -12,6 +12,11 @@ crumb :card do
   parent :mypage
 end
 
+crumb :listing_users do
+  link "出品した商品 - 出品中", listing_users_path
+  parent :mypage
+end
+
 crumb :profile do
   link "プロフィール", profile_users_path
   parent :mypage
@@ -26,6 +31,12 @@ crumb :logout do
   link "ログアウト", logout_signup_index_path
   parent :mypage
 end
+
+crumb :shopping_users do
+  link "購入した商品", shopping_users_path
+  parent :mypage
+end
+
 
 crumb :item do |item|
   item = Item.find_by(id: params[:id])
