@@ -1,18 +1,27 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, except: :index
   before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy, :image_edit]
+  before_action :authenticate_user!, except: [:index, :show]
+
 
 
   def index 
-    @items = Item.all
-    @ladies_items = Item.get_ladies
-    @mens_items = Item.get_mens
-    @electronics_items = Item.get_electronics
-    @hobbies_items = Item.get_hobbies
-    @chanel_items = Brand.search("シャネル").items
-    @louisvuitton_items = Brand.search("ルイヴィトン").items
-    @supreme_items = Brand.search("スプリーム").items
-    @nike_items = Brand.search("ナイキ").items
+    if user_signed_in?
+      @items = Item.where.not(user_id:current_user.id,status:4)
+      @chanel_items = Brand.search("シャネル").items.where.not(user_id:current_user.id,status:4)
+      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(user_id:current_user.id,status:4)
+      @supreme_items = Brand.search("スプリーム").items.where.not(user_id:current_user.id,status:4)
+      @nike_items = Brand.search("ナイキ").items.where.not(user_id:current_user.id,status:4)
+    else
+      @items = Item.where.not(status:4)
+      @chanel_items = Brand.search("シャネル").items.where.not(status:4)
+      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(status:4)
+      @supreme_items = Brand.search("スプリーム").items.where.not(status:4)
+      @nike_items = Brand.search("ナイキ").items.where.not(status:4)
+    end
+    @ladies_items = @items.get_ladies
+    @mens_items = @items.get_mens
+    @electronics_items = @items.get_electronics
+    @hobbies_items = @items.get_hobbies
   end
 
   def category_find
@@ -101,6 +110,7 @@ class ItemsController < ApplicationController
         :days,
         :price,
         :delivery_method,
+        :buyer_id,
         images_attributes: [:image, :id, :_destroy]
       ).merge(user_id: current_user.id)
     else 
@@ -115,6 +125,7 @@ class ItemsController < ApplicationController
         :days,
         :price,
         :delivery_method,
+        :buyer_id,
         images_attributes: [:image, :id, :_destroy]  
       ).merge(user_id: current_user.id, brand_id: @brand.id)
     end
@@ -128,6 +139,10 @@ class ItemsController < ApplicationController
     params.require(:images).map do |u|
       ActionController::Parameters.new(u.to_h).permit(:image)
     end
+  end
+
+  def set_category
+    
   end
 
 end

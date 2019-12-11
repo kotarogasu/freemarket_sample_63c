@@ -76,3 +76,8 @@ gem 'bcrypt'
 gem 'rails-i18n'
 gem "payjp"
 gem "gretel"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
+gem 'dotenv-rails'

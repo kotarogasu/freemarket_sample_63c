@@ -1,18 +1,21 @@
 - breadcrumb :profile
 = render "layouts/breadcrumbs"
 
-.bb
-  = render partial: "users/mypage-sidebar"
-  .alla
-    %h1 プロフィール
-    .xxxx
-      =image_tag "mypage/background_image.png"
-      .xxxx2
-        =image_tag "mypage/user-icon.png"
-        %input.hoge{placeholder: "例)AYA☆セール中", size: "20", type: "text"}/
-    .alla2
-      %textarea{cols: "60", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", :rows => "10"}
-    .ii223
-      %h1 変更する
+.mypage-main-content
+  = render 'users/mypage-sidebar'
+
+  .l-content
+    .l-content__container
+      %h2 プロフィール
+      %form{action: "#", method: "POST"}
+        %input{name: "__csrf_value", type: "hidden", value: ""}/
+        .profile-icon
+          %figure
+            = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
+          %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: current_user.nickname}/
+        .profile-content
+          %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
+          %input{name: "after_save_callback", type: "hidden", value: ""}/
+          %button.btn-red{type: "submit"} 変更する
 
   

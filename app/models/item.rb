@@ -8,7 +8,8 @@ class Item < ApplicationRecord
   validates :days, presence: {message: "選択してください"}
   validates :prefecture_id, numericality: {greater_than: 0, message: "選択してください" }
   validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_qual_to: 9999999, message: "300以上9999999以下で入力してください" }
-  belongs_to :user
+  belongs_to :user, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
   belongs_to :category
   belongs_to :brand, optional: true
   has_many :images, dependent: :destroy
@@ -51,10 +52,10 @@ class Item < ApplicationRecord
   }, _suffix: true
 
   enum status: {
-
     出品中:1,
-    交渉中:2,
+    取引中:2,
     売却済み:3,
+    購入済み:4,
   }
 
 

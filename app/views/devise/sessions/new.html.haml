@@ -1,8 +1,5 @@
 %body.login
-  %header.login-header
-    .login-header-title
-      =link_to "" do
-        = image_tag "mypage/fmarket_logo_red.svg", alt:"fmarket-icon", class:"fmarket-image", width:"175px"
+  = render 'signup/login'
   .login-block
     .login-block-up
       .login-block-up-text
@@ -12,10 +9,10 @@
           新規会員登録
     .login-block-main
       .login-block-main-lists
-        =link_to "", method: :post, class: "login-block-main-lists-facebook" do
+        =link_to user_facebook_omniauth_authorize_path, method: :post, class: "login-block-main-lists-facebook" do
           %i.fab.fa-facebook-square
           Facebookでログイン
-        =link_to "", method: :post, class: "login-block-main-lists-google", style:"" do
+        =link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "login-block-main-lists-google", style:"" do
           = image_tag "mypage/281764.png", class:"logo_google", width:"20px"
           Googleでログイン
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|

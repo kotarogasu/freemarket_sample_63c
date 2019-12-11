@@ -32,8 +32,9 @@
         %a 購入した商品 - 取引中
         %i.fa.fa-chevron-right
       %li
-        %a 購入した商品 - 過去の取引
-        %i.fa.fa-chevron-right
+        = link_to shopping_users_path, class:"side-bar__menu-link" do
+          購入した商品 - 過去の取引
+          %i.fa.fa-chevron-right
       %li
         %a ニュース一覧
         %i.fa.fa-chevron-right
