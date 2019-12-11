@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     member do
       get :show_user_item
+      get :image_edit
     end
   end
 
