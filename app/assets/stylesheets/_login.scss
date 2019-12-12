@@ -1,5 +1,4 @@
 .login{
-  height: 140vh;
   min-height: 1100px;
   width: 100vw;
   background-color: rgb(245, 245, 245);
@@ -15,7 +14,6 @@
     }
   }
   &-block{
-    height: 750px;
     width: 450px;
     min-width: 400px;
     background-color: #ffffff;
@@ -51,7 +49,6 @@
       }
     }
     &-main{
-      height: 520px;
       padding: 30px 60px;
       &-lists{
         margin: 0 auto;
@@ -138,7 +135,7 @@
         }
         &-remember{
           height: 16px;
-          padding-top: 34px;
+          padding: 34px 0;
           font-size: 14px;
         }
       }
