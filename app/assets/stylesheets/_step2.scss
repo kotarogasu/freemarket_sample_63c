@@ -173,7 +173,6 @@
       height: 50px;
       display: flex;
       line-height: 50px;
-      position: relative;
       &-text{
         width: 170px;
         padding: 10px;
@@ -242,18 +241,7 @@
 }
 
 select{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   width: 76px;
   padding: 0 10px;
-  border-radius: 5px;
-  border: none;
-  background-image: url(./images/mypage/icon_arrow.png);
-  background-repeat: no-repeat;
-  background-size: 12px 10px;
-  background-position: right 10px center;
 }
-
-
 

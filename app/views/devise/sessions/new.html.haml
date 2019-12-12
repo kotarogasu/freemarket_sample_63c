@@ -18,24 +18,12 @@
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .login-block-main-lists-email
           = f.email_field :email, autofocus: true, class:'login-block-main-lists-email-string',  autocomplete: "email", placeholder: "メールアドレス"
-        - if @user.errors[:email].any?
-          %ul.error-text
-            - @user.errors[:email].each do |message|
-              %li= message
         .login-block-main-lists-pass
           = f.password_field :password,class:'login-block-main-lists-pass-string', autocomplete: "current-password", placeholder: "パスワード"
-        - if @user.errors[:password].any?
-          %ul.error-text
-            - @user.errors[:password].each do |message|
-              %li= message
         %label.login-block-main-lists-robo
-          = f.check_box :agreement, {class: "login-block-main-lists-robo-check"}, 1, nil
+          = check_box :group, :user_ids, {class: "login-block-main-lists-robo-check"}, true, false
           .login-block-main-lists-robo-write
             私はロボットではありません
-        - if @user.errors[:password].any?
-          %ul.error-text
-            - @user.errors[:password].each do |message|
-              %li= message
         .login-block-main-lists-box
           = f.submit "ログイン", class:"login-block-main-lists-box-btn"
         .login-block-main-lists-remember

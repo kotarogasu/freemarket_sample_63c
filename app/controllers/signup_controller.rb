@@ -4,7 +4,6 @@ class SignupController < ApplicationController
   before_action :validates_address, only: :card_new # addressのバリデーション
 
   def social_choice
-    reset_session
     @user = User.new
   end
 
