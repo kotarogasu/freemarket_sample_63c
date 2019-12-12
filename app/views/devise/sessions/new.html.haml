@@ -32,9 +32,9 @@
           = f.check_box :agreement, {class: "login-block-main-lists-robo-check"}, 1, nil
           .login-block-main-lists-robo-write
             私はロボットではありません
-        - if @user.errors[:password].any?
+        - if @user.errors[:agreement].any?
           %ul.error-text
-            - @user.errors[:password].each do |message|
+            - @user.errors[:agreement].each do |message|
               %li= message
         .login-block-main-lists-box
           = f.submit "ログイン", class:"login-block-main-lists-box-btn"
