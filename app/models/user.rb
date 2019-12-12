@@ -9,7 +9,7 @@ class User < ApplicationRecord
     # step2入力項目
     validates :nickname,                presence: {message: "ニックネームを入力してください"}, length: {maximum: 20}, unless: :uid?
     validates :email,                   presence: {message: "メールアドレスを入力してください"}, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, on: :validates_step2, unless: :uid?
-    validates :password,                length: {minimum: 6, maximum: 128}, on: :validates_step2, unless: :uid?
+    validates :password,                presence: {message: "パスワードを入力してください"},length: {minimum: 6, maximum: 10}
     validates :last_name,               presence: {message: "姓を入力してください"}, unless: :uid?
     validates :first_name,              presence: {message: "名を入力してください"}, unless: :uid?
     validates :last_name_kana,          presence: {message: "姓カナを入力してください"}, unless: :uid?
