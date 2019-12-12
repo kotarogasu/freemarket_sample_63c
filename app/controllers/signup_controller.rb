@@ -1,10 +1,10 @@
 class SignupController < ApplicationController
-  before_action :authenticate_user!
   before_action :validates_user_registration, only: :sms_confirmation # user_registrationのバリデーション
   before_action :validates_sms_confirmation, only: :address # sms_confirmationのバリデーション
   before_action :validates_address, only: :card_new # addressのバリデーション
 
   def social_choice
+    reset_session
     @user = User.new
   end
 
