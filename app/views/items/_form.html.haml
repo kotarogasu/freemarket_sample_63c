@@ -106,6 +106,10 @@
           - else
             %input{name: "brand_name", id: "brand-select", class: "select-default", placeholder: "例）シャネル"}
             %ul{id: 'brands-search-list'}
+      - if item.errors[:brand_id].any?
+        %ul.error-text
+          - item.errors[:brand_id].each do |message|
+            %li= message  
       .form-group
         =f.label :condition do
           商品の状態

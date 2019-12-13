@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :days, presence: {message: "選択してください"}
   validates :prefecture_id, numericality: {greater_than: 0, message: "選択してください" }
   validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_qual_to: 9999999, message: "300以上9999999以下で入力してください" }
+  validate :brand_present, on: :update_brand
   belongs_to :user, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :category
@@ -105,6 +106,11 @@ class Item < ApplicationRecord
     children = Category.find_by(name: "おもちゃ・ホビー・グッズ").children
     hobbies_items = get_category_items(range(children))
   end
+
+  def update_brand(id)
+    self.update(brand_id: id)
+  end
+
   
 
 end

@@ -41,10 +41,16 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new(item_params)
     @item.set_fee_profit unless @item.price == nil
-    if @item.save
+    if brand_params.blank? && @item.save 
       redirect_to root_path
-    else  
+    elsif brand_params != "" && brand = Brand.search(brand_params)
+      @item.save 
+      brand = Brand.search(brand_params)
+      @item.update_brand(brand.id) 
+      redirect_to root_path
+    else
       10.times{@item.images.build}
+      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
       render :new, layout: false
     end
   end
@@ -56,10 +62,16 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
-      @item.set_fee_profit unless @item.price == nil
+    if brand_params.blank? && @item.update(item_params)
+      @item.set_fee_profit
+      redirect_to show_user_item_item_path(@item)
+    elsif brand_params != "" && brand = Brand.search(brand_params)
+      @item.update(item_params)
+      brand = Brand.search(brand_params)
+      @item.update_brand(brand.id) 
       redirect_to show_user_item_item_path(@item)
     else
+      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
       @images = @item.images
       (10 - @images.length).times{@item.images.build}
       render :edit, layout: false
@@ -90,37 +102,24 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def item_params
-    if params[:brand_name] == ""
-      params.require(:item).permit(
-        :name, 
-        :item_text,
-        :condition,
-        :category_id,
-        :prefecture_id,
-        :delivery_fee,
-        :days,
-        :price,
-        :delivery_method,
-        :buyer_id,
-        images_attributes: [:image, :id, :_destroy]
-      ).merge(user_id: current_user.id)
-    else 
-      @brand = Brand.search(params[:brand_name])
-      params.require(:item).permit(
-        :name, 
-        :item_text,
-        :condition,
-        :category_id,
-        :prefecture_id,
-        :delivery_fee,
-        :days,
-        :price,
-        :delivery_method,
-        :buyer_id,
-        images_attributes: [:image, :id, :_destroy]  
-      ).merge(user_id: current_user.id, brand_id: @brand.id)
-    end
+  def item_params  
+    item_params = params.require(:item).permit(
+      :name, 
+      :item_text,
+      :condition,
+      :category_id,
+      :prefecture_id,
+      :delivery_fee,
+      :days,
+      :price,
+      :delivery_method,
+      :buyer_id,
+      images_attributes: [:image, :id, :_destroy]  
+    ).merge(user_id: current_user.id)
+  end
+
+  def brand_params
+    params[:brand_name]
   end
 
 
