@@ -5,23 +5,15 @@ class ItemsController < ApplicationController
 
 
   def index 
-    if user_signed_in?
-      @items = Item.where.not(user_id:current_user.id,status:4).order(id: "DESC")
-      @chanel_items = Brand.search("シャネル").items.where.not(user_id:current_user.id,status:4).limit(10).order(id: "DESC")
-      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(user_id:current_user.id,status:4).limit(10).order(id: "DESC")
-      @supreme_items = Brand.search("スプリーム").items.where.not(user_id:current_user.id,status:4).limit(10).order(id: "DESC")
-      @nike_items = Brand.search("ナイキ").items.where.not(user_id:current_user.id,status:4).limit(10).order(id: "DESC")
-    else
-      @items = Item.where.not(status:4)
-      @chanel_items = Brand.search("シャネル").items.where.not(status:4).limit(10).order(id: "DESC")
-      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(status:4).limit(10).order(id: "DESC")
-      @supreme_items = Brand.search("スプリーム").items.where.not(status:4).limit(10).order(id: "DESC")
-      @nike_items = Brand.search("ナイキ").items.where.not(status:4).limit(10).order(id: "DESC")
-    end
-    @ladies_items = @items.get_ladies.limit(10).order(id: "DESC")
-    @mens_items = @items.get_mens.limit(10).order(id: "DESC")
-    @electronics_items = @items.get_electronics.limit(10).order(id: "DESC")
-    @hobbies_items = @items.get_hobbies.limit(10).order(id: "DESC")
+    id = user_signed_in? ? current_user.id : nil
+    @ladies_items = Item.get_ladies.buyable(id).recent10
+    @mens_items = Item.get_mens.buyable(id).recent10
+    @electronics_items = Item.get_electronics.buyable(id).recent10
+    @hobbies_items = Item.get_hobbies.buyable(id).recent10
+    @chanel_items = Brand.buyable_items("シャネル", id).recent10
+    @louisvuitton_items = Brand.buyable_items("ルイヴィトン", id).recent10
+    @supreme_items = Brand.buyable_items("スプリーム", id).recent10
+    @nike_items = Brand.buyable_items("ナイキ", id).recent10
   end
 
   def category_find
@@ -131,18 +123,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def image_params
-  #   params.require(:images).to_h
-  # end
 
-  def image_params
-    params.require(:images).map do |u|
-      ActionController::Parameters.new(u.to_h).permit(:image)
-    end
-  end
 
-  def set_category
-    
-  end
 
 end

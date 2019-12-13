@@ -58,7 +58,15 @@ class Item < ApplicationRecord
     購入済み:4,
   }
 
+  def self.buyable(id)
+    if id == nil
+      where.not(status: 4)
+    else
+      where.not(user_id: id, status: 4)
+    end
+  end
 
+  scope :recent10, -> { order(created_at: :desc).limit(10)}
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
   def reject_images(attributes)
