@@ -102,7 +102,7 @@ $(function(){
 
   // 商品出品ページ用のjs
 
-  else{
+  else if(window.location.href.match(/\/items\/\d+\/edit/)){
     $("#brand-wrap").show();
     $("#child-wrap").show();
     $("#grandchild-wrap").show();
@@ -186,5 +186,7 @@ $(function(){
       });
     });
 
+  }else{
+    return false
   }
 });
