@@ -8,8 +8,101 @@ $(function(){
     $('#grandchild-select').append(child_option);
   } 
   // 商品の編集ページ用js
-  if (window.location.href.match(/\/items\/\d+\/edit/)){
+  if (window.location.href.match(/\/items\/new/)){
+  
+      $("#brand-wrap").hide();
+      $("#child-wrap").hide();
+      $("#grandchild-wrap").hide();
+      $("#delivery-method-wrap").hide();
+  
+  
+  
+    // 親カテゴリーが変わったら
+      $('#category-wraps').on('change','#category-select', function(){
+        var parent_id = $(this).val();
+        $.ajax({
+          url: "/items/category_find",
+          type: "GET",
+          dataType: 'json',
+          data: {
+            category_id: parent_id
+          }
+        })
+        .done(function(children){
+          $("#child-wrap").show();
+          $('.child-option').remove();
+          $("#grandchild-wrap").hide();
+          $('.grandchild-option').remove();
+          children.forEach(function(child){
+            appendChildOptions(child)
+          })
+        });
+  
+      });
+    // 子カテゴリーが変わったら
+      $('#category-wraps').on('change', '#child-select', function(){
+        var parent_id = $(this).val();
+        $.ajax({
+          url: "/items/category_find",
+          type: "GET",
+          dataType: 'json',
+          data: {
+            category_id: parent_id
+          }
+        })
+        .done(function(children){
+          $("#grandchild-wrap").show();
+          $('.grandchild-option').remove();
+          children.forEach(function(child){
+            appendGrandChildOptions(child)
+          })
+        });
+  
+      });
+    // 孫カテゴリーが変わったら
+      $('#category-wraps').on('change', '#grandchild-select', function(){
+        var child_id = $('#child-select').val();
+        if (child_id < 380){
+          $("#brand-wrap").show();
+  
+        }else{
+          $('#brand-wrap').hide();
+        }
+      });
+  
+  
+    // 検索結果を押したら
+  
+  
+      $(".sell-form-box").on('change', '#condition-select', function(){
+        $("#delivery-method-wrap").show();
+      });
+  
+  
+      $(".sell-form-box").on('keyup', "#price-input", function(){
+        let price = $(this).val();
+        let fee = price * 0.1
+        let fee_to_i = parseInt(fee);
+        let added_comma_fee = fee_to_i.toLocaleString();
+        var profit = price - fee_to_i
+        var added_comma_profit =profit.toLocaleString();
+        if (price >= 300 && price <= 9999999) {
+          $("#fee").html("¥" + added_comma_fee);
+          $("#profit").html("¥" + added_comma_profit);
+        }else {
+          $("#fee").empty();
+          $("#profit").empty();
+        };     
+      }) 
     
+    
+
+
+  }
+
+  // 商品出品ページ用のjs
+
+  else if(window.location.href.match(/\/items\/\d+\/edit/)){
     $("#brand-wrap").show();
     $("#child-wrap").show();
     $("#grandchild-wrap").show();
@@ -93,97 +186,7 @@ $(function(){
       });
     });
 
-
-
-  }
-
-  // 商品出品ページ用のjs
-
-  else{
-
-    $("#brand-wrap").hide();
-    $("#child-wrap").hide();
-    $("#grandchild-wrap").hide();
-    $("#delivery-method-wrap").hide();
-
-
-
-  // 親カテゴリーが変わったら
-    $('#category-wraps').on('change','#category-select', function(){
-      var parent_id = $(this).val();
-      $.ajax({
-        url: "/items/category_find",
-        type: "GET",
-        dataType: 'json',
-        data: {
-          category_id: parent_id
-        }
-      })
-      .done(function(children){
-        $("#child-wrap").show();
-        $('.child-option').remove();
-        $("#grandchild-wrap").hide();
-        $('.grandchild-option').remove();
-        children.forEach(function(child){
-          appendChildOptions(child)
-        })
-      });
-
-    });
-  // 子カテゴリーが変わったら
-    $('#category-wraps').on('change', '#child-select', function(){
-      var parent_id = $(this).val();
-      $.ajax({
-        url: "/items/category_find",
-        type: "GET",
-        dataType: 'json',
-        data: {
-          category_id: parent_id
-        }
-      })
-      .done(function(children){
-        $("#grandchild-wrap").show();
-        $('.grandchild-option').remove();
-        children.forEach(function(child){
-          appendGrandChildOptions(child)
-        })
-      });
-
-    });
-  // 孫カテゴリーが変わったら
-    $('#category-wraps').on('change', '#grandchild-select', function(){
-      var child_id = $('#child-select').val();
-      if (child_id < 380){
-        $("#brand-wrap").show();
-
-      }else{
-        $('#brand-wrap').hide();
-      }
-    });
-
-
-  // 検索結果を押したら
-
-
-    $(".sell-form-box").on('change', '#condition-select', function(){
-      $("#delivery-method-wrap").show();
-    });
-
-
-    $(".sell-form-box").on('keyup', "#price-input", function(){
-      let price = $(this).val();
-      let fee = price * 0.1
-      let fee_to_i = parseInt(fee);
-      let added_comma_fee = fee_to_i.toLocaleString();
-      var profit = price - fee_to_i
-      var added_comma_profit =profit.toLocaleString();
-      if (price >= 300 && price <= 9999999) {
-        $("#fee").html("¥" + added_comma_fee);
-        $("#profit").html("¥" + added_comma_profit);
-      }else {
-        $("#fee").empty();
-        $("#profit").empty();
-      };     
-    }) 
+  }else{
+    return false
   }
 });

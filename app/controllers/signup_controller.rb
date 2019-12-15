@@ -196,18 +196,20 @@ class SignupController < ApplicationController
       town: session[:town],
       building: session[:building]
     )
-    if @user.save
-      @@card[:user_id] = @user.id
-      @@card.save
-      @address[:user_id] = @user.id
-      @address.save
-      reset_session
-      session[:user_id] = @user.id
-      sign_in(@user)
-      redirect_to root_path(@user)
-    else
-      render '/signup/social_choice'
-    end
+    @user.save
+    redirect_to root_path
+    # if @user.save
+    #   @@card[:user_id] = @user.id
+    #   @@card.save
+    #   @address[:user_id] = @user.id
+    #   @address.save
+    #   reset_session
+    #   session[:user_id] = @user.id
+    #   sign_in(@user)
+    #   redirect_to root_path(@user)
+    # else
+    #   render '/signup/social_choice'
+    # end
   end
 
   def logout

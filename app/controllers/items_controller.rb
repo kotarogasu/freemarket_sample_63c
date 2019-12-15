@@ -5,23 +5,15 @@ class ItemsController < ApplicationController
 
 
   def index 
-    if user_signed_in?
-      @items = Item.where.not(user_id:current_user.id,status:4)
-      @chanel_items = Brand.search("シャネル").items.where.not(user_id:current_user.id,status:4)
-      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(user_id:current_user.id,status:4)
-      @supreme_items = Brand.search("スプリーム").items.where.not(user_id:current_user.id,status:4)
-      @nike_items = Brand.search("ナイキ").items.where.not(user_id:current_user.id,status:4)
-    else
-      @items = Item.where.not(status:4)
-      @chanel_items = Brand.search("シャネル").items.where.not(status:4)
-      @louisvuitton_items = Brand.search("ルイヴィトン").items.where.not(status:4)
-      @supreme_items = Brand.search("スプリーム").items.where.not(status:4)
-      @nike_items = Brand.search("ナイキ").items.where.not(status:4)
-    end
-    @ladies_items = @items.get_ladies
-    @mens_items = @items.get_mens
-    @electronics_items = @items.get_electronics
-    @hobbies_items = @items.get_hobbies
+    id = user_signed_in? ? current_user.id : nil
+    @ladies_items = Item.get_ladies.buyable(id).recent10
+    @mens_items = Item.get_mens.buyable(id).recent10
+    @electronics_items = Item.get_electronics.buyable(id).recent10
+    @hobbies_items = Item.get_hobbies.buyable(id).recent10
+    @chanel_items = Brand.buyable_items("シャネル", id).recent10
+    @louisvuitton_items = Brand.buyable_items("ルイヴィトン", id).recent10
+    @supreme_items = Brand.buyable_items("スプリーム", id).recent10
+    @nike_items = Brand.buyable_items("ナイキ", id).recent10
   end
 
   def category_find
@@ -49,10 +41,16 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new(item_params)
     @item.set_fee_profit unless @item.price == nil
-    if @item.save
+    if brand_params.blank? && @item.save 
       redirect_to root_path
-    else  
+    elsif brand_params != "" && brand = Brand.search(brand_params)
+      @item.save 
+      brand = Brand.search(brand_params)
+      @item.update_brand(brand.id) 
+      redirect_to root_path
+    else
       10.times{@item.images.build}
+      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
       render :new, layout: false
     end
   end
@@ -64,10 +62,16 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if @item.update(item_params)
-      @item.set_fee_profit unless @item.price == nil
+    if brand_params.blank? && @item.update(item_params)
+      @item.set_fee_profit
+      redirect_to show_user_item_item_path(@item)
+    elsif brand_params != "" && brand = Brand.search(brand_params)
+      @item.update(item_params)
+      brand = Brand.search(brand_params)
+      @item.update_brand(brand.id) 
       redirect_to show_user_item_item_path(@item)
     else
+      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
       @images = @item.images
       (10 - @images.length).times{@item.images.build}
       render :edit, layout: false
@@ -98,51 +102,27 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def item_params
-    if params[:brand_name] == ""
-      params.require(:item).permit(
-        :name, 
-        :item_text,
-        :condition,
-        :category_id,
-        :prefecture_id,
-        :delivery_fee,
-        :days,
-        :price,
-        :delivery_method,
-        :buyer_id,
-        images_attributes: [:image, :id, :_destroy]
-      ).merge(user_id: current_user.id)
-    else 
-      @brand = Brand.search(params[:brand_name])
-      params.require(:item).permit(
-        :name, 
-        :item_text,
-        :condition,
-        :category_id,
-        :prefecture_id,
-        :delivery_fee,
-        :days,
-        :price,
-        :delivery_method,
-        :buyer_id,
-        images_attributes: [:image, :id, :_destroy]  
-      ).merge(user_id: current_user.id, brand_id: @brand.id)
-    end
+  def item_params  
+    item_params = params.require(:item).permit(
+      :name, 
+      :item_text,
+      :condition,
+      :category_id,
+      :prefecture_id,
+      :delivery_fee,
+      :days,
+      :price,
+      :delivery_method,
+      :buyer_id,
+      images_attributes: [:image, :id, :_destroy]  
+    ).merge(user_id: current_user.id)
   end
 
-  # def image_params
-  #   params.require(:images).to_h
-  # end
-
-  def image_params
-    params.require(:images).map do |u|
-      ActionController::Parameters.new(u.to_h).permit(:image)
-    end
+  def brand_params
+    params[:brand_name]
   end
 
-  def set_category
-    
-  end
+
+
 
 end
