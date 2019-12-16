@@ -50,8 +50,8 @@
         }
         &__btn{
           border-radius: 3px;
-          border: 1px solid #ea352d;
-          color: #ea352d;
+          border: 1px solid $red;
+          color: $red;
           min-height: 1.5em;
           font-size: 14px;
           padding: 4px 6px;
@@ -71,7 +71,7 @@
           padding-left: 50px;
           cursor: pointer;
           padding-right: 50px;
-          border: 1px solid #ea352d;
+          border: 1px solid $red;
           transition: all ease-out .3s;
           :hover{
             opacity: 0.5; 
@@ -99,6 +99,8 @@
         text-decoration: none;
         top: 10px;
         right: 20px;
+        color: $light_blue;
+        font-size: 14px;
         position: absolute
       }
     }
