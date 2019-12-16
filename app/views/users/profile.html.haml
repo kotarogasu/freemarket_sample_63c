@@ -10,9 +10,11 @@
       %form{action: "#", method: "POST"}
         %input{name: "__csrf_value", type: "hidden", value: ""}/
         .profile-icon
-          %figure
-            = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
-          %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: current_user.nickname}/
+          .back-image
+            = image_tag 'mypage/background_image.png', class: 'back-image'
+            %figure
+              = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
+            %input.input-default{name: "nickname", placeholder: "例)AYA☆セール中", type: "text", value: current_user.nickname}/
         .profile-content
           %textarea.textarea-default{name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪"}
           %input{name: "after_save_callback", type: "hidden", value: ""}/

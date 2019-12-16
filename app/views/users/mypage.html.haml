@@ -7,16 +7,18 @@
   .right-content
 
     %section.user-info
-      %a
-        %figure
-          = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
-        %h2.bold 
-          = current_user.nickname
-        .user-info__user-rate
-          %p.user-info__user-rate__review 評価
-          %span 0
-          %p.user-info__user-rate__exhibit 出品数
-          %span 0
+      .back-image
+        = image_tag 'mypage/background_image.png', class: 'back-image'
+        %a
+          %figure
+            = image_tag 'mypage/user-icon.png', size: '60x60', alt: 'user-icon'
+          %h2.bold 
+            = current_user.nickname
+          .user-info__user-rate
+            %p.user-info__user-rate__review 評価
+            %span 0
+            %p.user-info__user-rate__exhibit 出品数
+            %span 0
 
 
     %section.mypage-tab-container-todo
