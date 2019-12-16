@@ -19,7 +19,7 @@ a{
       height: 200px;
       padding: 20px;
       text-align: center;
-      background: url(mypage/background_image.png);
+      background-image: url("mypage/background_image.png");
       a{
         display: block;
         position: absolute;
@@ -114,8 +114,6 @@ a{
               width: 48px;
               height: 48px;
               margin:0;
-              background: image-url("mercari_profile.png") ;
-              background-size: contain;
             }
             .mypage-item-body{
               margin: 0 40px 0 68px;
