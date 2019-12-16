@@ -88,7 +88,6 @@
         }
       }
     &__etc{
-      vertical-align: middle;
       position: absolute;
       border-top: 1px solid #f5f5f5;
       width: 90%;
@@ -99,8 +98,8 @@
         text-decoration: none;
         top: 10px;
         right: 20px;
-        color: $light_blue;
         font-size: 14px;
+        color: $light_blue;
         position: absolute
       }
     }
