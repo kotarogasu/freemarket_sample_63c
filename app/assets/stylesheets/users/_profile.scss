@@ -17,10 +17,16 @@
       font-weight: 600;
     }
     .profile-icon {
-      padding: 72px 16px 24px;
+      
       text-align: center;
       font-size: 0;
-      background: url(mypage/background_image.png);
+      .back-image {
+        width: 700px;
+        height: 157px;
+        vertical-align: top;
+        position: relative;
+        z-index: 1;
+      }
       figure {
         display: inline-block;
         overflow: hidden;
@@ -29,7 +35,11 @@
         border-radius: 50%;
         vertical-align: middle;
         margin-inline-start: 0;
-    margin-inline-end: 0  ;
+        margin-inline-end: 0  ;
+        position: absolute;
+        top: 50px;
+        right: 435px;
+        z-index: 2;
       }
       .input-default {
         width: 220px;
@@ -40,6 +50,10 @@
         border: 1px solid #ccc;
         line-height: 1.5;
         font-size: 16px;
+        position: absolute;
+        top: 60px;
+        right: 205px;
+        z-index: 2;
       }
     }
     .profile-content {
