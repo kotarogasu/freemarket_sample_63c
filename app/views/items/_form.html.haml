@@ -5,35 +5,35 @@
       出品画像
       %span 必須
     %p 最大10枚までアップロードできます
-    -if item.images.first.image.present?
+    -if item.images.first.src.present?
       .image-container
         -item.images.each do |image|
           -if image.id.present?
             %ul.listing-image-container
               %li.image-box
                 %figure.sell-image-figure
-                  =image_tag image.image 
+                  =image_tag image.src 
                 .button
                   %a{class: "edit"} 編集
                   %a{class: "delete"} 削除
       .sell-container__upload-drop-box 
         =f.fields_for :images do |i|
-          =i.label :image, class: "sell-container__upload-drop-box__label" do
-            =i.file_field :image, class: "item-image-form hidden"
+          =i.label :src, class: "sell-container__upload-drop-box__label" do
+            =i.file_field :src, class: "item-image-form hidden"
             =i.check_box :_destroy, class: "hidden"
             %pre.visible-pc 
               ドラッグアンドドロップ
               またはクリックしてファイルファイルをアップロード 
-      - if item.errors["images.image"].any?
+      - if item.errors["images.src"].any?
         %ul.error-text--image
-          - item.errors["images.image"].each do |message|
+          - item.errors["images.src"].each do |message|
             %li= message     
     - else
       .image-container
       .sell-container__upload-drop-box 
         =f.fields_for :images do |i|
-          =i.label :image, class: "sell-container__upload-drop-box__label" do
-            =i.file_field :image, class: "item-image-form hidden"
+          =i.label :src, class: "sell-container__upload-drop-box__label" do
+            =i.file_field :src, class: "item-image-form hidden"
             %pre.visible-pc 
               ドラッグアンドドロップ
               またはクリックしてファイルファイルをアップロード                                                    

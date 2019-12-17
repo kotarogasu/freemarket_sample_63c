@@ -81,13 +81,13 @@ class ItemsController < ApplicationController
   def show
     @user = @item.user
     @prefecture = Prefecture.find(@item.prefecture_id)
-    @brand = Brand.find(@item.brand_id)
+    @brand = @item.brand
   end
 
   def show_user_item
-    @brand = @item.brand
     @prefecture = Prefecture.find(@item.prefecture_id)
     @user = current_user
+    @brand = @item.brand
   end
 
   def destroy
@@ -114,7 +114,7 @@ class ItemsController < ApplicationController
       :price,
       :delivery_method,
       :buyer_id,
-      images_attributes: [:image, :id, :_destroy]  
+      images_attributes: [:src, :id, :_destroy]  
     ).merge(user_id: current_user.id)
   end
 

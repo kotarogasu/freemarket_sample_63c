@@ -71,7 +71,7 @@ class Item < ApplicationRecord
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
   def reject_images(attributes)
-    attributes['image'].blank?
+    attributes['src'].blank?
   end
 
 
