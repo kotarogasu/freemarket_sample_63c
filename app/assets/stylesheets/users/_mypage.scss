@@ -155,12 +155,12 @@ a{
       }
 
       .listing-item{
-        background: #fff;
         display: none;
         li{
           list-style: none;
           position: relative;
           border-bottom: 1px solid #eee;
+          background: #fff;
         
           .mypage-item-link{
             min-height: 80px;

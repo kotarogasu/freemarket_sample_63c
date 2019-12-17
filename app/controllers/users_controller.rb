@@ -18,9 +18,10 @@ class UsersController < ApplicationController
   end
 
   def listing
-    @items_on_sale = current_user.items.出品中
-    @items_on_transaction = current_user.items.取引中
-    @purchased_items = current_user.items.売却済み
+    @items = current_user.items.page(params[:page]).per(5) 
+    @items_on_sale = @items.出品中
+    @items_on_transaction = @items.取引中
+    @purchased_items = @items.売却済み
   end
 
   def shopping
