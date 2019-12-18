@@ -21,10 +21,10 @@
           =link_to "", class: "popular-section__box__menu__list__item" do
             おもちゃ・ホビー・グッズ
   .new-arrival-section
-    =render partial: "item-card", locals: {items: @ladies_items, title: "レディース"}
-    =render partial: "item-card", locals: {items: @mens_items, title: "メンズ"}
-    =render partial: "item-card", locals: {items: @electronics_items, title: "家電・スマホ・カメラ"}
-    =render partial: "item-card", locals: {items: @hobbies_items, title: "おもちゃ・ホビー・グッズ"}
+    =render partial: "category-box", locals: {items: @ladies_items, title: "レディース"}
+    =render partial: "category-box", locals: {items: @mens_items, title: "メンズ"}
+    =render partial: "category-box", locals: {items: @electronics_items, title: "家電・スマホ・カメラ"}
+    =render partial: "category-box", locals: {items: @hobbies_items, title: "おもちゃ・ホビー・グッズ"}
   .popular-section
     %h2.popular-section__title
       人気のブランド
@@ -42,8 +42,8 @@
         =link_to "", class: "popular-section__box__menu__list__item" do
           ナイキ
   .new-arrival-section
-    =render partial: "item-card", locals: {items: @chanel_items , title: "シャネル"}
-    =render partial: "item-card", locals: {items: @louisvuitton_items, title: "ルイヴィトン"}
-    =render partial: "item-card", locals: {items: @supreme_items, title: "シュプリーム"}
-    =render partial: "item-card", locals: {items: @nike_items, title: "ナイキ"}
+    =render partial: "category-box", locals: {items: @chanel_items , title: "シャネル"}
+    =render partial: "category-box", locals: {items: @louisvuitton_items, title: "ルイヴィトン"}
+    =render partial: "category-box", locals: {items: @supreme_items, title: "シュプリーム"}
+    =render partial: "category-box", locals: {items: @nike_items, title: "ナイキ"}
   

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy, :image_edit]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :search, :show]
+  
 
 
 
@@ -16,6 +17,11 @@ class ItemsController < ApplicationController
     @nike_items = Brand.buyable_items("ナイキ", id).recent10
   end
 
+  def search
+    @q = Item.search(params[:q])
+    @items = @q.result(distinct: true).recent
+  end
+ 
   def category_find
     respond_to do |format| 
       parent = Category.find(params[:category_id])
@@ -121,7 +127,6 @@ class ItemsController < ApplicationController
   def brand_params
     params[:brand_name]
   end
-
 
 
 

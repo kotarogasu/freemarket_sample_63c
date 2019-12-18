@@ -68,6 +68,7 @@ class Item < ApplicationRecord
   end
 
   scope :recent10, -> { order(created_at: :desc).limit(10)}
+  scope :recent, -> { order(created_at: :desc)}
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
   def reject_images(attributes)

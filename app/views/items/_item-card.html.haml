@@ -1,24 +1,17 @@
-.category-items-box
-  .category-items-box__header
-    .category-items-box__header__title
-      =link_to "#{title}新着アイテム", "#"
-    .category-items-box__header__see-more
-      = link_to "" do
-        もっと見る
-  .category-items-box__content 
-  %ul.category-items-box__content__list
-    -items.each do |item|
-      %li.category-items-box__content__list__item
-        .visible-box
-          =link_to item_path(item.id), class:"list__item-link" do
-            %figure.style_card
-              .thumbnail
-                %span.price  
-                  = number_to_currency(item.price, unit: "¥", format: "%u%n", precision:0)
-                =image_tag item.images.first.image
-              %figcaption
-                %span.fig-text 
-                  = item.name
+
+%ul.item-card
+  -items.each do |item|
+    %li.item-card__item
+      .visible-box
+        =link_to item_path(item.id), class:"list__item-link" do
+          %figure.style_card
+            .thumbnail
+              %span.price  
+                = number_to_currency(item.price, unit: "¥", format: "%u%n", precision:0)
+              =image_tag item.images.first.src
+            %figcaption
+              %span.fig-text 
+                = item.name
 
 
 
