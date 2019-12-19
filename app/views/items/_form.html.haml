@@ -24,9 +24,9 @@
             %pre.visible-pc 
               ドラッグアンドドロップ
               またはクリックしてファイルファイルをアップロード 
-      - if item.errors["images.src"].any?
+      - if item.errors[:images].any?
         %ul.error-text--image
-          - item.errors["images.src"].each do |message|
+          - item.errors[:images].each do |message|
             %li= message     
     - else
       .image-container
