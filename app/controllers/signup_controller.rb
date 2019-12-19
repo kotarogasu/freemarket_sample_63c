@@ -53,7 +53,6 @@ class SignupController < ApplicationController
   
   def complete
     @user = User.new
-    @address = Address.new
   end
 
   def validates_user_registration
