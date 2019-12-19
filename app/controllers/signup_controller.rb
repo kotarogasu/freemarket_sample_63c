@@ -196,7 +196,6 @@ class SignupController < ApplicationController
       town: session[:town],
       building: session[:building]
     )
-    @user.save
     if @user.save
       @@card[:user_id] = @user.id
       @@card.save
