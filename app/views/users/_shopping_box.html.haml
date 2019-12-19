@@ -17,7 +17,7 @@
           %li
             =link_to "#", class: "mypage-item-link" do
               %figure
-                =image_tag item.images.first.image
+                =image_tag item.images.first.src
               .mypage-item-link__body
                 .mypage-item-link__body__text
                   =item.name
@@ -44,7 +44,7 @@
           %li
             =link_to "#", class: "mypage-item-link" do
               %figure
-                =image_tag item.images.first.image
+                =image_tag item.images.first.src
               .mypage-item-link__body
                 .mypage-item-link__body__text
                   =item.name

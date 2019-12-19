@@ -11,7 +11,7 @@
       .buy-content
         .buy-content__inner
           %h3.buy-item-image
-            = image_tag @item.images.first.image, class: 'lazyloaded'
+            = image_tag @item.images.first.src, class: 'lazyloaded'
           %p.buy-item-name 
             = @item.name
           %form.buy-form
