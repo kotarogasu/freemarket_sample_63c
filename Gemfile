@@ -84,3 +84,6 @@ gem "omniauth-rails_csrf_protection"
 gem 'dotenv-rails'
 gem 'rspec-rails'
 gem 'factory_bot_rails'
+gem 'ransack'
+gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
