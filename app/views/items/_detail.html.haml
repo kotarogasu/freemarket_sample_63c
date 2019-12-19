@@ -6,7 +6,7 @@
           -item.images.each do |image|
             .owl-item{style: "width:300px"}
               .owl-item__inner
-                = image_tag image.src, class: 'owl-lazy'
+                = image_tag image.image, class: 'owl-lazy'
       .owl-nav.disabled
         .owl-prev prev
         .owl-next next
@@ -15,7 +15,7 @@
           .owl-dot
             %span
             .owl-dot__inner
-              = image_tag image.src
+              = image_tag image.image
   %section.visible-sp
     .item-btn-float-area
     = link_to "#", class:"item-buy-btn" do
