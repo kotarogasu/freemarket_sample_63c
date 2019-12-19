@@ -29,8 +29,8 @@
               お名前
             .step4-block-main-submain-titlebox-required
               必須
-          = f.text_field :last_name, class: 'step4-block-main-submain-text-first', placeholder: session[:first_name]
-          = f.text_field :first_name, class: 'step4-block-main-submain-text-last', placeholder: session[:last_name]
+          = f.text_field :last_name, class: 'step4-block-main-submain-text-first'
+          = f.text_field :first_name, class: 'step4-block-main-submain-text-last'
           - if @user.errors[:last_name].any?
             %ul.error-text
               - @user.errors[:last_name].each do |message|
@@ -44,8 +44,8 @@
               お名前 カナ
             .step4-block-main-submain-titlebox-required
               必須
-          = f.text_field :last_name_kana, class: 'step4-block-main-submain-text-first', placeholder: session[:first_name_kana]
-          = f.text_field :first_name_kana, class: 'step4-block-main-submain-text-last', placeholder: session[:last_name_kana]
+          = f.text_field :last_name_kana, class: 'step4-block-main-submain-text-first'
+          = f.text_field :first_name_kana, class: 'step4-block-main-submain-text-last'
           - if @user.errors[:last_name_kana].any?
             %ul.error-text
               - @user.errors[:last_name_kana].each do |message|

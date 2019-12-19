@@ -39,7 +39,7 @@ class PurchaseController < ApplicationController
         redirect_to action: "buy_complete" #完了画面に移動
       else
         flash[:alert] = '購入に失敗しました'
-        redirect_to action: "buy_" #完了画面に移動
+        redirect_to action: "buy" 
       end
     end
   end

@@ -319,12 +319,12 @@
 }
 
 .error-text {
-  color: #ea352d;
+  color: $red;
   line-height: 1.5;
   font-size: 14px;
 
   &--image{
-    color: #ea352d;
+    color: $red;
     line-height: 1.5;
     font-size: 14px;
     position: absolute;
