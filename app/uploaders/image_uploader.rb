@@ -32,6 +32,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   #     storage :fog
   # end
 
+
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #

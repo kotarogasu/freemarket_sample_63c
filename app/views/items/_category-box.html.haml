@@ -1,0 +1,9 @@
+.category-items-box
+  .category-items-box__header
+    .category-items-box__header__title
+      =link_to "#{title}新着アイテム", "#"
+    .category-items-box__header__see-more
+      = link_to "" do
+        もっと見る
+  .category-items-box
+    =render partial: "item-card", locals: {items: items}

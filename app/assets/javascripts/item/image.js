@@ -3,10 +3,6 @@
   //グレーのブロックのレイアウト調整するメソッド。imagesLengthに表示される画像の個数を代入する。
 function layoutControl(imagesLength){
   if (imagesLength < 5){
-    // 画像プレビューを放り込んでいく箱の高さと幅を調整
-    $('.sell-container__upload-box__image-container').css('height', '172px');
-    $('.sell-container__upload-box__image-container').css('width', '620px');
-
     //グレーの箱の幅は、全体の幅から画像の個数だけ引いたもの。
     $('.sell-container__upload-drop-box__label').css('width', `calc(550px - ${112 * imagesLength }px`);
 
@@ -17,10 +13,6 @@ function layoutControl(imagesLength){
     $('.sell-container__upload-drop-box__label').eq(imagesLength).css('display','block');
 
   }else if(imagesLength == 5){
-    // 画像プレビューを放り込んでいく箱の高さと幅を調整。５個の時は、二列になるように高さを広げる。
-    $('.sell-container__upload-box__image-container').css('height','344px');
-    $('.sell-container__upload-box__image-container').css('width', '620px');
-
     //５個の時は、グレーの箱の幅は、全体の幅と同じ。
     $('.sell-container__upload-drop-box__label').css('width', `calc(550px - ${112 * (imagesLength -5) }px`);
 
@@ -29,10 +21,6 @@ function layoutControl(imagesLength){
     $('.sell-container__upload-drop-box__label').eq(imagesLength).css('display','block');
 
   }else{
-    // 画像が６個以上で二列になる時、画像プレビューを放り込んでいく箱は５個の時と同じ。
-    $('.sell-container__upload-box__image-container').css('height','344px');
-    $('.sell-container__upload-box__image-container').css('width', '620px');
-
     // グレーの箱の幅は、全体の幅から(画像の個数-5)だけ引いたもの。
     $('.sell-container__upload-drop-box__label').css('width', `calc(550px - ${112 * (imagesLength -5) }px`);
 
@@ -134,6 +122,10 @@ function buildpreview(){
       // console.log(imagesLength);
     }
   })
+
+
+
+  
 
 });
 

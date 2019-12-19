@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :days, presence: {message: "選択してください"}
   validates :prefecture_id, numericality: {greater_than: 0, message: "選択してください" }
   validates :price, numericality: {greater_than_or_equal_to: 300, less_than_or_qual_to: 9999999, message: "300以上9999999以下で入力してください" }
+  validate :brand_present, on: :update_brand
   belongs_to :user, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   belongs_to :category
@@ -58,11 +59,20 @@ class Item < ApplicationRecord
     購入済み:4,
   }
 
+  def self.buyable(id)
+    if id == nil
+      where.not(status: 4)
+    else
+      where.not(user_id: id, status: 4)
+    end
+  end
 
+  scope :recent10, -> { order(created_at: :desc).limit(10)}
+  scope :recent, -> { order(created_at: :desc)}
   scope :get_category_items, -> (category_id) {where(category_id: category_id)}
 
   def reject_images(attributes)
-    attributes['image'].blank?
+    attributes['src'].blank?
   end
 
 
@@ -97,6 +107,11 @@ class Item < ApplicationRecord
     children = Category.find_by(name: "おもちゃ・ホビー・グッズ").children
     hobbies_items = get_category_items(range(children))
   end
+
+  def update_brand(id)
+    self.update(brand_id: id)
+  end
+
   
 
 end
