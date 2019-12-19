@@ -120,7 +120,7 @@ class ItemsController < ApplicationController
       :price,
       :delivery_method,
       :buyer_id,
-      images_attributes: [:src, :id, :_destroy]  
+      images_attributes: [:image, :id, :_destroy]  
     ).merge(user_id: current_user.id)
   end
 
