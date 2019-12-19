@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy, :image_edit]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :search, :show]
+  
 
 
 
@@ -16,6 +17,11 @@ class ItemsController < ApplicationController
     @nike_items = Brand.buyable_items("ナイキ", id).recent10
   end
 
+  def search
+    @q = Item.search(params[:q])
+    @items = @q.result(distinct: true).recent
+  end
+ 
   def category_find
     respond_to do |format| 
       parent = Category.find(params[:category_id])
@@ -81,13 +87,13 @@ class ItemsController < ApplicationController
   def show
     @user = @item.user
     @prefecture = Prefecture.find(@item.prefecture_id)
-    @brand = Brand.find(@item.brand_id)
+    @brand = @item.brand
   end
 
   def show_user_item
-    @brand = @item.brand
     @prefecture = Prefecture.find(@item.prefecture_id)
     @user = current_user
+    @brand = @item.brand
   end
 
   def destroy
@@ -114,14 +120,13 @@ class ItemsController < ApplicationController
       :price,
       :delivery_method,
       :buyer_id,
-      images_attributes: [:image, :id, :_destroy]  
+      images_attributes: [:src, :id, :_destroy]  
     ).merge(user_id: current_user.id)
   end
 
   def brand_params
     params[:brand_name]
   end
-
 
 
 

@@ -23,15 +23,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-
-  if Rails.env.development?
-      storage :file
-    elsif Rails.env.test?
-      storage :file
-    else
-      storage :fog
-  end
-
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
