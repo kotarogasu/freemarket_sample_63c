@@ -11,8 +11,8 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     @user = User.new(configure_sign_in_params)
-    if @user[:agreement].blank?
-      render 'new' unless @user.valid?
+    if @user[:email].blank? or @user[:agreement].blank?
+      render 'new' unless @user.valid?(context: :create)
     else
       super do @users 
       end

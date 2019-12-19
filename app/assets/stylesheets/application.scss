@@ -2,7 +2,7 @@
 @import "color";
 @import "mixin";
 @import "common";
-@import 'login';
+@import 'signup/login';
 @import "layouts/header";
 @import "layouts/footer";
 @import "layouts/breadcrumbs";
@@ -18,14 +18,14 @@
 @import "items/new";
 @import "items/show";
 @import "items/show_user_item";
-@import "step1";
-@import "step2";
-@import "step3";
-@import "step4";
-@import "credit_new";
-@import "credit";
-@import 'logout';
-@import "done";
-@import "signup-title";
-@import "signup-footer";
+@import "signup/step1";
+@import "signup/step2";
+@import "signup/step3";
+@import "signup/step4";
+@import "signup/credit_new";
+@import "signup/credit";
+@import 'signup/logout';
+@import "signup/done";
+@import "signup/signup-title";
+@import "signup/signup-footer";
 
