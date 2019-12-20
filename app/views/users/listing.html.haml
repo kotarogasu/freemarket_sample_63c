@@ -6,7 +6,7 @@
 
   .right-content
     %section.mypage-tab-container
-      %h2.mypage-tab-head 購入した商品
+      %h2.mypage-tab-head 出品した商品
       %ul.mypage-tabs.mypage-tabs--listing
         %li.active
           %h3.mypage-tabs__active__h3
@@ -28,8 +28,3 @@
           =render partial: "listing-item", locals: {items: @items_on_transaction, status: "取引中"}
         %ul.listing-item
           =render partial: "listing-item", locals: {items: @purchased_items, status: "売却済み"}
-        
-          
-
-
- 
