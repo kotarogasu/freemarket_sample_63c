@@ -5,7 +5,8 @@ $(function(){
     if($(this).not('active')){
       $(this).addClass('active').siblings('li').removeClass('active');
       var index = $(".mypage-tabs li").index(this);
-      $(".mypage-content ul").eq(index).addClass('active').siblings("ul").removeClass('active');
+      $(".listing-item").eq(index).addClass('active').siblings("ul").removeClass('active');
+      console.log(index)
     }
   });
 

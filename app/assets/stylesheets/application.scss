@@ -2,7 +2,7 @@
 @import "color";
 @import "mixin";
 @import "common";
-@import 'login';
+@import 'signup/login';
 @import "layouts/header";
 @import "layouts/footer";
 @import "layouts/breadcrumbs";
@@ -29,4 +29,14 @@
 @import "signup-title";
 @import "signup-footer";
 @import "items/trading_complete";
+@import "signup/step1";
+@import "signup/step2";
+@import "signup/step3";
+@import "signup/step4";
+@import "signup/credit_new";
+@import "signup/credit";
+@import 'signup/logout';
+@import "signup/done";
+@import "signup/signup-title";
+@import "signup/signup-footer";
 

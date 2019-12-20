@@ -5,9 +5,10 @@
         =link_to root_path() do
           =image_tag "mypage/fmarket_logo_red.svg"
       .search-form
-        %input.search-form__input{type: "text", size: "20", name: "keyword", placeholder: "何かお探しですか？"}
-        %button.search-form__btn
-          %i.fas.fa-search
+        =search_form_for @q, url: search_items_path do |f|
+          =f.text_field :name_cont, class: "search-form__input" , size: "20", placeholder: "何かお探しですか？" 
+          %button{type: "submit", class: "search-form__btn"}
+            %i.fas.fa-search
     .header-inner__lower
       .header-inner__lower__left
         .search-list

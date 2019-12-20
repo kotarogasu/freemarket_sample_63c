@@ -15,10 +15,7 @@ Rails.application.routes.draw do
       get 'logout'
     end
   end
-# 　# ログアウト用
-# devise_scope :user do
-#   delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
-# end
+
   delete '/logout', to: 'signup#destroy'
 
   resources :items do
@@ -26,6 +23,7 @@ Rails.application.routes.draw do
     collection do
       get :category_find
       get :brand_find
+      get :search
     end
 
     member do

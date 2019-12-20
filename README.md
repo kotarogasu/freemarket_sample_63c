@@ -113,7 +113,7 @@ Things you may want to cover:
 |image|string|null: false| <!--アイテム写真 -->
 |items_id|references|null: false|foreign_key:true,
 ### Association
-- belongs_to :item
+- belongs_to :item, optional: true
 
 
 
@@ -168,11 +168,11 @@ Things you may want to cover:
 |category_id|references|null: false|foreign_key: true <!-- 外部キー、カテゴリーID-->
 |brand_id|references|foreign_key: true <!-- 外部キー、ブランド -->
 |user_id|references|foreign_key: true <!-- 外部キー、個人 -->
-|condition|string|null: false <!-- コンディション-->
-|delivery_fee|string|null: false <!-- 配送料負担 -->
-|delivery_method|string|null:false <!-- 配達方法 -->
-|days|string|null: false <!-- 発送目安 -->
-|price|string|null: false <!-- 価格 -->
+|condition|integer|null: false <!-- コンディション-->
+|delivery_fee|integer|null: false <!-- 配送料負担 -->
+|delivery_method|integer|null:false <!-- 配達方法 -->
+|days|integer|null: false <!-- 発送目安 -->
+|price|integer|null: false <!-- 価格 -->
 |item_text|text|null: false <!-- 商品説明 -->
 |status|integer|default: 1 <!-- 出品中かどうかなど -->
 |fee|integer|null: false <!-- 販売手数料 -->

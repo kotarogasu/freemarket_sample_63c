@@ -24,9 +24,9 @@
             %pre.visible-pc 
               ドラッグアンドドロップ
               またはクリックしてファイルファイルをアップロード 
-      - if item.errors["images.image"].any?
+      - if item.errors[:images].any?
         %ul.error-text--image
-          - item.errors["images.image"].each do |message|
+          - item.errors[:images].each do |message|
             %li= message     
     - else
       .image-container
@@ -106,6 +106,10 @@
           - else
             %input{name: "brand_name", id: "brand-select", class: "select-default", placeholder: "例）シャネル"}
             %ul{id: 'brands-search-list'}
+      - if item.errors[:brand_id].any?
+        %ul.error-text
+          - item.errors[:brand_id].each do |message|
+            %li= message  
       .form-group
         =f.label :condition do
           商品の状態

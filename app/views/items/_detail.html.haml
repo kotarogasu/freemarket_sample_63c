@@ -2,16 +2,20 @@
   .item-photo
     .owl-carousel__loaded__drag
       .owl-stage-outer
-        .owl-stage
-          .owl-item
-            .owl-item-inner
-              = image_tag item.images.first.image, class: 'owl-lazy'
+        .owl-stage{style: "left:0px;width:#{300*item.images.length}px"}
+          -item.images.each do |image|
+            .owl-item{style: "width:300px"}
+              .owl-item__inner
+                = image_tag image.image, class: 'owl-lazy'
       .owl-nav.disabled
         .owl-prev prev
         .owl-next next
-      .owl-dots.disabled
-        .owl-dot
-          %span
+      .owl-dots
+        -item.images.each do |image|
+          .owl-dot
+            %span
+            .owl-dot__inner
+              = image_tag image.image
   %section.visible-sp
     .item-btn-float-area
     = link_to "#", class:"item-buy-btn" do

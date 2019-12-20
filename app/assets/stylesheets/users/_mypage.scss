@@ -87,6 +87,7 @@ a{
           color: #333;
           font-size: 16px;
           line-height: 72px;
+          text-decoration: none;
         }
           
         .active{
@@ -155,17 +156,18 @@ a{
       }
 
       .listing-item{
-        background: #fff;
         display: none;
         li{
           list-style: none;
           position: relative;
           border-bottom: 1px solid #eee;
+          background: #fff;
         
           .mypage-item-link{
             min-height: 80px;
             padding: 15px;
             color: #333;
+            text-decoration: none;
             figure{
               position: relative;
               overflow: hidden;
@@ -276,6 +278,7 @@ a{
           color: #333;
           font-size: 16px;
           line-height: 72px;
+          text-decoration: none;
         }
       }
       .mypage-item-list {
