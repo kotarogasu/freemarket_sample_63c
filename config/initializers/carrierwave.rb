@@ -7,6 +7,7 @@ def use_s3?
 end
 
 CarrierWave.configure do |config|
+  if use_s3?
     config.storage = :fog
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
