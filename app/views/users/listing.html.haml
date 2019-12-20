@@ -50,7 +50,7 @@
               出品中の商品がありません
 
         %ul.listing-item
-          -if @items_on_transaction.present?
+          -if @it.present?
             -@items_on_transaction.each do |item|
               %li
                 =link_to show_user_item_item_path(item), class: "mypage-item-link" do
@@ -76,10 +76,10 @@
               取引中の商品がありません
 
         %ul.listing-item
-          - if @purchased_items.present?
-            -@purchased_items.each do |item|
+          - if @sold_item.present?
+            -@sold_item.each do |item|
               %li
-                =link_to show_user_item_item_path(item), class: "mypage-item-link" do
+                =link_to "#", class: "mypage-item-link" do
                   %figure
                     =image_tag item.images.first.image
                   .mypage-item-link__body

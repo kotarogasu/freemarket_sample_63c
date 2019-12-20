@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_buy, only: [:mypage, :shopping]
+  before_action :set_buy, only: [:mypage, :shopping,]
 
   def mypage
   end
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   def listing
     @items_on_sale = current_user.items.出品中
     @items_on_transaction = current_user.items.取引中
-    @purchased_items = current_user.items.売却済み
+    @sold_item = current_user.items.購入済み
   end
 
   def shopping

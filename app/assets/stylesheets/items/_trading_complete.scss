@@ -1,0 +1,107 @@
+.back-contents{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(245,245,245);
+  display: flex;
+  justify-content: center;
+}
+
+.left-menu{
+  margin-top: 30px;
+  height: max-content;
+  width: 300px;
+  &__item{
+    background-color: $white;
+    margin-top: 10px;
+    &__top{
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 10px;
+    }
+    &__image{
+      margin: auto;
+    }
+      &__name{
+        color: $light_blue;
+      }
+    &__delivery{
+      display: flex;
+      justify-content: flex-start;
+      padding: 10px;
+      background-color: beige;
+      &__method{
+        margin-left: 60px;
+      }
+    }
+    &__date{
+      padding: 10px ;
+      display: flex;
+      justify-content: flex-start;
+      &__index{
+        margin-left: 30px;
+      }
+    }
+    &__id{
+      padding: 10px ;
+      display: flex;
+      justify-content: flex-start; 
+      background-color: beige;
+    }
+    &__address{
+      padding: 10px;
+      display: flex;
+      justify-content: flex-start; 
+      margin-bottom: 40px;
+      &__index{
+        margin-left: 20px;
+      }
+    }
+  }
+  .seller-index__image{
+    background-color: $white;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start; 
+  }
+    .seller-index__name{
+      line-height: 50px;
+      margin-left: 50px;
+      .fa-chevron-right{
+        margin-left: 110px;
+      }
+
+    }
+
+}
+
+
+.right-menu{
+  background-color: $white;
+  margin-top: 30px;
+  margin-left: 40px;
+  height: max-content;
+  width: auto;
+  &__title{
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
+    padding: 10px;
+  }
+  &__status{
+    background-color: moccasin; 
+    text-align: center;
+    color: $red;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 20px;
+    &__message{
+      color: black;
+      font-weight: normal;
+      padding-top: 10px
+    }
+  }
+  &__remarks{
+    padding: 30px;
+  }
+}

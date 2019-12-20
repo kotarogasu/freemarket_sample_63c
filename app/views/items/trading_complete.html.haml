@@ -1,0 +1,52 @@
+.back-contents
+  .left-menu
+    .left-menu__title
+      取引情報
+    %ul.left-menu__item
+      %li.left-menu__item__top
+        商品
+        .left-menu__item__image
+          = image_tag @item.images.first.image, size: "120x150"
+          .left-menu__item__name
+            = link_to @item.name, class:"left-menu__item__name"
+          .left-menu__item__price
+            = link_to number_to_currency(@item.price, format: "%u%n", unit: "¥", precision:0)
+      %li.left-menu__item__delivery
+        送料
+        .left-menu__item__delivery__method
+          = @item.delivery_method 
+      %li.left-menu__item__date
+        購入日時
+        .left-menu__item__date__index
+          = @item.updated_at.strftime("%Y/%m/%d %H:%M")
+      %li.left-menu__item__id 
+        商品ID　　　
+        .left-menu__item__id-num
+          1234567899999
+      %li.left-menu__item__address
+        お届け先　
+        .left-menu__item__address__index
+          〒
+          = @address.post_number
+          %br/
+          = @prefecture.name + @address.city + @address.town + @address.building 
+          %br/ 
+    .seller-index
+      出品者情報
+      .seller-index__image
+        = image_tag 'mypage/user-icon.png', size: '50x50', alt: 'user-icon'
+        .seller-index__name
+          = @seller.nickname
+          %i.fa.fa-chevron-right
+  .right-menu
+    .right-menu__title
+      取引画面
+    .right-menu__status 
+      %i.fas.fa-check.fa-2x
+      取引が完了しました
+      .right-menu__status__message
+        この度はメルカリのご利用ありがとうございました
+    .right-menu__remarks
+      取引完了後、2週間経過または最新取引メッセージから2習慣経過したため、取引メッセージを
+      %br/
+      非公開にしました。
