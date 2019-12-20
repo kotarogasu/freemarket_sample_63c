@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy, :image_edit]
-  before_action :authenticate_user!, except: [:index, :search, :show]
+  before_action :set_item, only: [:edit, :update, :show, :show_user_item, :destroy, :image_edit, :trading_complete]
+  before_action :authenticate_user!, except: [:index, :show]
   
 
 
@@ -100,6 +100,12 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
+
+  def trading_complete
+    @address= Address.find_by(user_id: current_user.id)
+    @prefecture = Prefecture.find(@address.prefecture_id)
+    @seller = @item.user
+  end  
 
   private
 

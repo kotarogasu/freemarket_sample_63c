@@ -27,4 +27,4 @@
         %ul.listing-item
           =render partial: "listing-item", locals: {items: @items_on_transaction, status: "取引中"}
         %ul.listing-item
-          =render partial: "listing-item", locals: {items: @purchased_items, status: "売却済み"}
+          =render partial: "listing-item", locals: {items: @sold_item, status: "購入済み"}

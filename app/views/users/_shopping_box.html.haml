@@ -42,7 +42,7 @@
       -if @buy_items.present?
         -@buy_items.each do |item|
           %li
-            =link_to "#", class: "mypage-item-link" do
+            =link_to trading_complete_item_path(item), class: "mypage-item-link" do
               %figure
                 =image_tag item.images.first.image
               .mypage-item-link__body
