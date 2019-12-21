@@ -5,8 +5,7 @@ $(function(){
     if($(this).not('active')){
       $(this).addClass('active').siblings('li').removeClass('active');
       var index = $(".mypage-tabs li").index(this);
-      $(".listing-item").eq(index).addClass('active').siblings("ul").removeClass('active');
-      console.log(index)
+      $(".mypage-content ul").eq(index).addClass('active').siblings("ul").removeClass('active');
     }
   });
 
@@ -17,6 +16,17 @@ $(function(){
       $(this).addClass('active').siblings('li').removeClass('active');
       var index = $(".buy li").index(this);
       $(".mypage-item-list li").eq(index).addClass('active').siblings("li").removeClass('active');
+    }
+  });
+
+
+  $('.mypage-tabs li').on('click',function(e){
+    e.preventDefault(); //ページトップへ移動するのを防ぐ
+    if($(this).not('active')){
+      $(this).addClass('active').siblings('li').removeClass('active');
+      var index = $(".mypage-tabs li").index(this);
+      $(".listing-item").eq(index).addClass('active').siblings("ul").removeClass('active');
+      console.log(index)
     }
   });
 
