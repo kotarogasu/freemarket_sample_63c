@@ -10,7 +10,7 @@
         =link_to "#", class: "mypage--tabs__inactive__h3__a" do
           過去の取引
             
-  .mypage-content
+  .mypage-content#shopping
     %ul.listing-item.active
       - if @items_on_transaction.present?
         -@items_on_transaction.each do |item|
