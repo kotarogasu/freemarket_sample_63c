@@ -1,32 +1,34 @@
   //マイページ お知らせ・やることリスト  
 $(function(){
-  $('.mypage-tabs li').on('click',function(e){
+  $('#notification li').on('click',function(e){
     e.preventDefault(); //ページトップへ移動するのを防ぐ
     if($(this).not('active')){
       $(this).addClass('active').siblings('li').removeClass('active');
-      var index = $(".mypage-tabs li").index(this);
-      $(".mypage-content ul").eq(index).addClass('active').siblings("ul").removeClass('active');
+      var index = $("#notification li").index(this);
+      $(".messages ul").eq(index).addClass('active').siblings("ul").removeClass('active');
     }
+    console.log("OKお知らせ")
   });
 
   //マイページ 購入した商品
-  $('.mypage-tabs li').on('click',function(e){
+  $('.buy li').on('click',function(e){
     e.preventDefault(); //ページトップへ移動するのを防ぐ
     if($(this).not('active')){
       $(this).addClass('active').siblings('li').removeClass('active');
       var index = $(".buy li").index(this);
-      $(".mypage-item-list li").eq(index).addClass('active').siblings("li").removeClass('active');
+      $("#shopping ul").eq(index).addClass('active').siblings("ul").removeClass('active');
     }
   });
 
-  //マイページ 出品した商品
-  $('.mypage-tabs li').on('click',function(e){
+  // マイページ 出品した商品
+  $('.mypage-tabs--listing li').on('click',function(e){
     e.preventDefault(); //ページトップへ移動するのを防ぐ
     if($(this).not('active')){
       $(this).addClass('active').siblings('li').removeClass('active');
-      var index = $(".mypage-tabs li").index(this);
+      var index = $(".mypage-tabs--listing li").index(this);
       $(".listing-item").eq(index).addClass('active').siblings("ul").removeClass('active');
     }
+    console.log(index)
   });
 
 }); 

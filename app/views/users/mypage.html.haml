@@ -22,7 +22,7 @@
 
 
     %section.mypage-tab-container-todo
-      %ul.mypage-tabs
+      %ul.mypage-tabs#notification
         %li.active
           %h3.mypage-tabs__active__h3
             =link_to "#", class: "mypage-tabs__active__h3__a" do
@@ -33,7 +33,7 @@
               やることリスト
 
 
-      .mypage-content        
+      .mypage-content.messages        
         %ul.mypage-item.active
           %li.mypage-item__li
             =link_to "#", class: "mypage-item__li__a" do
@@ -49,7 +49,7 @@
             =link_to "#", class: "go" do
               一覧を見る
 
-        %ul.mypage-item
+        %ul.mypage-item.messages  
           %li.mypage-item__li
             =link_to "#", class: "mypage-item__li__a" do
               %figure.mypage-item__li__a__figure
