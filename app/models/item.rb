@@ -108,6 +108,7 @@ class Item < ApplicationRecord
     hobbies_items = get_category_items(range(children))
   end
 
+
   def update_brand(id)
     self.update(brand_id: id)
   end
