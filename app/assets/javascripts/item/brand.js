@@ -4,6 +4,16 @@ $(function(){
     $("#brands-search-list").append(brands_list)
   }  
 
+  $('#category-wraps').on('change', '#grandchild-select', function(){
+    var child_id = $('#child-select').val();
+    if (child_id < 380){
+      $("#brand-wrap").show();
+
+    }else{
+      $('#brand-wrap').hide();
+    }
+  });
+
   $("#brand-wrap").on('keyup', "#brand-select", function(){
     let input = $(this).val();
     $.ajax({

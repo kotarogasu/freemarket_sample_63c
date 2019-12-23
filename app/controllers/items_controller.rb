@@ -47,17 +47,24 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.new(item_params)
     @item.set_fee_profit unless @item.price == nil
-    if brand_params.blank? && @item.save 
-      redirect_to root_path
-    elsif brand_params != "" && brand = Brand.search(brand_params)
-      @item.save 
-      brand = Brand.search(brand_params)
-      @item.update_brand(brand.id) 
-      redirect_to root_path
-    else
-      10.times{@item.images.build}
-      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
-      render :new, layout: false
+    case 
+      when brand_params.blank? 
+        if @item.save
+          redirect_to show_user_item_item_path(@item)
+        else 
+          10.times{@item.images.build}
+          render :new, layout: false
+        end
+
+      when !brand_params.blank? 
+        if @item.save && brand = Brand.search(brand_params)
+          @item.update_brand(brand.id) 
+          redirect_to root_path
+        else
+          10.times{@item.images.build}
+          @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
+          render :new, layout: false
+        end
     end
   end
  
@@ -67,20 +74,31 @@ class ItemsController < ApplicationController
     render layout: false
   end
 
+
   def update
-    if brand_params.blank? && @item.update(item_params)
-      @item.set_fee_profit
-      redirect_to show_user_item_item_path(@item)
-    elsif brand_params != "" && brand = Brand.search(brand_params)
-      @item.update(item_params)
-      brand = Brand.search(brand_params)
-      @item.update_brand(brand.id) 
-      redirect_to show_user_item_item_path(@item)
-    else
-      @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
-      @images = @item.images
-      (10 - @images.length).times{@item.images.build}
-      render :edit, layout: false
+    case 
+      when brand_params.blank? 
+        if @item.update(item_params)
+          @item.update_brand(nil) if @item.brand.present?
+          @item.set_fee_profit
+          redirect_to show_user_item_item_path(@item)
+        else 
+          @images = @item.images
+          (10 - @images.length).times{@item.images.build}
+          render :edit, layout: false
+        end
+
+      when !brand_params.blank? 
+        if @item.update(item_params) && brand = Brand.search(brand_params)
+          brand = Brand.search(brand_params)
+          @item.update_brand(brand.id) 
+          redirect_to show_user_item_item_path(@item)
+        else
+          @item.errors.add(:brand_id, "入力いただいたブランドは見つかりませんでした")
+          @images = @item.images
+          (10 - @images.length).times{@item.images.build}
+          render :edit, layout: false
+        end
     end
   end
 

@@ -77,7 +77,7 @@
                 %li= message
           .select-wrap#child-wrap
             %i.fas.fa-chevron-down
-            =f.select :category_id, {}, {prompt: '---'}, class: "select-default", id: "child-select" do
+            =f.select :category_id, {}, {}, class: "select-default", id: "child-select" do
               - if item.category.present?
                 %option{value: "#{item.category.parent.id}", class: "child-option"}
                   =item.category.parent.name
@@ -87,7 +87,7 @@
                   %li= message
           .select-wrap#grandchild-wrap
             %i.fas.fa-chevron-down
-            =f.select :category_id, {}, {prompt: "---"}, class: "select-default", id: "grandchild-select" do
+            =f.select :category_id, {}, {}, class: "select-default", id: "grandchild-select" do
               - if item.category.present?
                 %option{value: "#{item.category.id}", class: "grandchild-option"}
                   =item.category.name
@@ -106,10 +106,10 @@
           - else
             %input{name: "brand_name", id: "brand-select", class: "select-default", placeholder: "例）シャネル"}
             %ul{id: 'brands-search-list'}
-      - if item.errors[:brand_id].any?
-        %ul.error-text
-          - item.errors[:brand_id].each do |message|
-            %li= message  
+        - if item.errors[:brand_id].any?
+          %ul.error-text
+            - item.errors[:brand_id].each do |message|
+              %li= message  
       .form-group
         =f.label :condition do
           商品の状態
